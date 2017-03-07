@@ -722,8 +722,20 @@ class TypeValidator {
    *     to an Object type, if possible.
    */
   String getReadableJSTypeName(Node n, boolean dereference) {
+    JSType type = getJSType(n);
+    if (dereference) {
+      ObjectType dereferenced = type.dereference();
+      if (dereferenced != null) {
+        type = dereferenced;
+      }
+    }
 
     // The best type name is the actual type name.
+    if (type.isFunctionPrototypeType() ||
+        (type.toObjectType() != null &&
+         type.toObjectType().getConstructor() != null)) {
+      return type.toString();
+    }
 
     // If we're analyzing a GETPROP, the property may be inherited by the
     // prototype chain. So climb the prototype chain and find out where
@@ -753,18 +765,6 @@ class TypeValidator {
       }
     }
 
-    JSType type = getJSType(n);
-    if (dereference) {
-      ObjectType dereferenced = type.dereference();
-      if (dereferenced != null) {
-        type = dereferenced;
-      }
-    }
-    if (type.isFunctionPrototypeType() ||
-        (type.toObjectType() != null &&
-         type.toObjectType().getConstructor() != null)) {
-      return type.toString();
-    }
     String qualifiedName = n.getQualifiedName();
     if (qualifiedName != null) {
       return qualifiedName;
