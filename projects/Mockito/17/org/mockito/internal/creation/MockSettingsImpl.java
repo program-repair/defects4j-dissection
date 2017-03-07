@@ -17,9 +17,11 @@ public class MockSettingsImpl implements MockSettings {
     private Object spiedInstance;
     private Answer<Object> defaultAnswer;
     private MockName mockName;
+    private boolean serializable;
 
     public MockSettings serializable() {
-        return this.extraInterfaces(java.io.Serializable.class);
+        this.serializable = true;
+        return this;
     }
 
     public MockSettings extraInterfaces(Class<?>... extraInterfaces) {
@@ -71,7 +73,7 @@ public class MockSettingsImpl implements MockSettings {
     }
 
     public boolean isSerializable() {
-        return extraInterfaces != null && java.util.Arrays.asList(extraInterfaces).contains(java.io.Serializable.class);
+        return serializable;
     }
 
     public void initiateMockName(Class classToMock) {
