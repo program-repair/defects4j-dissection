@@ -1569,9 +1569,13 @@ public class TypeCheck implements NodeTraversal.Callback, CompilerPass {
       ObjectType interfaceType) {
     ObjectType implicitProto = interfaceType.getImplicitPrototype();
     Set<String> currentPropertyNames;
+    if (implicitProto == null) {
       // This can be the case if interfaceType is proxy to a non-existent
       // object (which is a bad type annotation, but shouldn't crash).
+      currentPropertyNames = ImmutableSet.of();
+    } else {
       currentPropertyNames = implicitProto.getOwnPropertyNames();
+    }
     for (String name : currentPropertyNames) {
       ObjectType oType = properties.get(name);
       if (oType != null) {
