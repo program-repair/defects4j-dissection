@@ -182,10 +182,19 @@ public abstract class BaseSecantSolver
                 case PEGASUS:
                     f0 *= f1 / (f1 + fx);
                     break;
+                case REGULA_FALSI:
+                    if (x == x1) {
+                        final double delta = FastMath.max(rtol * FastMath.abs(x1),
+                                                          atol);
                         // Update formula cannot make any progress: Update the
                         // search interval.
+                        x0 = 0.5 * (x0 + x1 - delta);
+                        f0 = computeObjectiveValue(x0);
+                    }
+                    break;
                 default:
                     // Should never happen.
+                    throw new MathInternalError();
                 }
             }
             // Update from [x0, x1] to [x0, x].
