@@ -695,7 +695,8 @@ public class PeepholeFoldConstants extends AbstractPeepholeOptimization {
           // JavaScript handles zero shifts on signed numbers differently than
           // Java as an Java int can not represent the unsigned 32-bit number
           // where JavaScript can so use a long here.
-          result = lvalInt >>> rvalInt;
+          long lvalLong = lvalInt & 0xffffffffL;
+          result = lvalLong >>> rvalInt;
           break;
         default:
           throw new AssertionError("Unknown shift operator: " +
