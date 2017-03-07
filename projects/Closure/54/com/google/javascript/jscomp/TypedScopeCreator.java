@@ -1410,7 +1410,13 @@ final class TypedScopeCreator implements ScopeCreator {
           // then they are responsible for making sure that the object literal's
           // implicit prototype is set up appropriately. We just obey
           // the @extends tag.
-          if (!qVar.isTypeInferred()) {
+          ObjectType qVarType = ObjectType.cast(qVar.getType());
+          if (qVarType != null &&
+              rhsValue != null &&
+              rhsValue.getType() == Token.OBJECTLIT) {
+            typeRegistry.resetImplicitPrototype(
+                rhsValue.getJSType(), qVarType.getImplicitPrototype());
+          } else if (!qVar.isTypeInferred()) {
             // If the programmer has declared that F inherits from Super,
             // and they assign F.prototype to some arbitrary expression,
             // there's not much we can do. We just ignore the expression,
