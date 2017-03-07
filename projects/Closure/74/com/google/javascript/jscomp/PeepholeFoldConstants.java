@@ -904,8 +904,8 @@ class PeepholeFoldConstants extends AbstractPeepholeOptimization {
           && right.getString().equals("undefined"))
           || (Token.VOID == right.getType()
               && NodeUtil.isLiteralValue(right.getFirstChild(), false)));
-    int lhType = left.getType();
-    int rhType = right.getType();
+    int lhType = getNormalizedNodeType(left);
+    int rhType = getNormalizedNodeType(right);
     switch (lhType) {
       case Token.VOID:
         if (!NodeUtil.isLiteralValue(left.getFirstChild(), false)) {
@@ -1071,6 +1071,19 @@ class PeepholeFoldConstants extends AbstractPeepholeOptimization {
   /**
    * @return Translate NOT expressions into TRUE or FALSE when possible.
    */
+  private int getNormalizedNodeType(Node n) {
+    int type = n.getType();
+    if (type == Token.NOT) {
+      TernaryValue value = NodeUtil.getPureBooleanValue(n);
+      switch (value) {
+        case TRUE:
+          return Token.TRUE;
+        case FALSE:
+          return Token.FALSE;
+      }
+    }
+    return type;
+  }
 
   /**
    * The result of the comparison as a Boolean or null if the
