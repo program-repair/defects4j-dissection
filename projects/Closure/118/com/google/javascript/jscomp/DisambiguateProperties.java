@@ -492,6 +492,9 @@ class DisambiguateProperties<T> implements CompilerPass {
           child != null;
           child = child.getNext()) {
         // Maybe STRING, GET, SET
+        if (child.isQuotedString()) {
+          continue;
+        }
 
         // We should never see a mix of numbers and strings.
         String name = child.getString();
