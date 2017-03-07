@@ -68,6 +68,7 @@ final class MustBeReachingVariableDef extends
   private static class Definition {
     final Node node;
     final Set<Var> depends = Sets.newHashSet();
+    private boolean unknownDependencies = false;
 
     Definition(Node node) {
       this.node = node;
@@ -393,9 +394,13 @@ final class MustBeReachingVariableDef extends
         new AbstractCfgNodeTraversalCallback() {
       @Override
       public void visit(NodeTraversal t, Node n, Node parent) {
-        if (n.isName() && jsScope.isDeclared(n.getString(), true)) {
+        if (n.isName()) {
           Var dep = jsScope.getVar(n.getString());
+          if (dep == null) {
+            def.unknownDependencies = true;
+          } else {
             def.depends.add(dep);
+          }
         }
       }
     });
@@ -427,6 +432,9 @@ final class MustBeReachingVariableDef extends
     GraphNode<Node, Branch> n = getCfg().getNode(useNode);
     FlowState<MustDef> state = n.getAnnotation();
     Definition def = state.getIn().reachingDef.get(jsScope.getVar(name));
+    if (def.unknownDependencies) {
+      return true;
+    }
 
     for (Var s : def.depends) {
       if (s.scope != jsScope) {

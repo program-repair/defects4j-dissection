@@ -154,7 +154,7 @@ class FlowSensitiveInlineVariables extends AbstractPostOrderCallback
 
   @Override
   public void process(Node externs, Node root) {
-    (new NodeTraversal(compiler, this)).traverse(root);
+    (new NodeTraversal(compiler, this)).traverseRoots(externs, root);
   }
 
   @Override
