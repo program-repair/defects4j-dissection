@@ -376,6 +376,7 @@ public abstract class GenericMetadataSupport {
             for (Type type : typeVariable.getBounds()) {
                 registerTypeVariablesOn(type);
             }
+            registerTypeParametersOn(new TypeVariable[] { typeVariable });
             registerTypeVariablesOn(getActualTypeArgumentFor(typeVariable));
         }
 
