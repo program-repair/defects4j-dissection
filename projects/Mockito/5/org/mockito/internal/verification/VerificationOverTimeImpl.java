@@ -88,7 +88,7 @@ public class VerificationOverTimeImpl implements VerificationMode {
             } catch (MockitoAssertionError e) {
                 error = handleVerifyException(e);
             }
-            catch (org.mockito.exceptions.verification.junit.ArgumentsAreDifferent e) {
+            catch (AssertionError e) {
                 error = handleVerifyException(e);
             }
         }
