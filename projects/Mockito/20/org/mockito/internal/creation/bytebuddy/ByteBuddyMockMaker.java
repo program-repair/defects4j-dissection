@@ -29,9 +29,10 @@ public class ByteBuddyMockMaker implements MockMaker {
                 settings.getTypeToMock(),
                 settings.getExtraInterfaces()
         );
+        Instantiator instantiator = new InstantiatorProvider().getInstantiator(settings);
         T mockInstance = null;
         try {
-            mockInstance = classInstantiator.instantiate(mockedProxyType);
+            mockInstance = instantiator.newInstance(mockedProxyType);
             MockMethodInterceptor.MockAccess mockAccess = (MockMethodInterceptor.MockAccess) mockInstance;
             mockAccess.setMockitoInterceptor(new MockMethodInterceptor(asInternalMockHandler(handler), settings));
 
@@ -42,7 +43,7 @@ public class ByteBuddyMockMaker implements MockMaker {
                     "  class to mock : " + describeClass(mockedProxyType),
                     "  created class : " + describeClass(settings.getTypeToMock()),
                     "  proxy instance class : " + describeClass(mockInstance),
-                    "  instance creation by : " + classInstantiator.getClass().getSimpleName(),
+                    "  instance creation by : " + instantiator.getClass().getSimpleName(),
                     "",
                     "You might experience classloading issues, please ask the mockito mailing-list.",
                     ""
