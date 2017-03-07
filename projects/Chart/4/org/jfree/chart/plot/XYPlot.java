@@ -4490,6 +4490,7 @@ public class XYPlot extends Plot implements ValueAxisPlot, Pannable,
                     }
                 }
                 
+                if (r != null) {
                     Collection c = r.getAnnotations();
                     Iterator i = c.iterator();
                     while (i.hasNext()) {
@@ -4498,6 +4499,7 @@ public class XYPlot extends Plot implements ValueAxisPlot, Pannable,
                             includedAnnotations.add(a);
                         }
                     }
+                }
             }
         }
 
