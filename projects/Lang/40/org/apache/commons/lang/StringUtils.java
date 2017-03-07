@@ -1045,7 +1045,14 @@ public class StringUtils {
         if (str == null || searchStr == null) {
             return false;
         }
-        return contains(str.toUpperCase(), searchStr.toUpperCase());
+        int len = searchStr.length();
+        int max = str.length() - len;
+        for (int i = 0; i <= max; i++) {
+            if (str.regionMatches(true, i, searchStr, 0, len)) {
+                return true;
+            }
+        }
+        return false;
     }
 
     // IndexOfAny chars
