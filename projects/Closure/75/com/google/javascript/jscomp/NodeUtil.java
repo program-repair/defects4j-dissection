@@ -310,7 +310,10 @@ public final class NodeUtil {
   }
 
   static Double getStringNumberValue(String rawJsString) {
+    if (rawJsString.contains("\u000b")) {
       // vertical tab is not always whitespace
+      return null;
+    }
 
     String s = trimJsWhiteSpace(rawJsString);
     // return ScriptRuntime.toNumber(s);
@@ -372,7 +375,7 @@ public final class NodeUtil {
   static TernaryValue isStrWhiteSpaceChar(int c) {
     switch (c) {
       case '\u000B': // <VT>
-        return TernaryValue.TRUE;
+        return TernaryValue.UNKNOWN;  // IE says "no", EcmaScript says "yes"
       case ' ': // <SP>
       case '\n': // <LF>
       case '\r': // <CR>
