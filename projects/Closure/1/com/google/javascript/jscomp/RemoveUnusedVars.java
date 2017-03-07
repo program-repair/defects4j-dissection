@@ -376,6 +376,9 @@ class RemoveUnusedVars
     // is removing globals, then it's OK to remove unused function args.
     //
     // See http://code.google.com/p/closure-compiler/issues/detail?id=253
+    if (!removeGlobals) {
+      return;
+    }
 
     Node function = fnScope.getRootNode();
 
