@@ -227,14 +227,21 @@ public class RandomStringUtils {
         } else if (count < 0) {
             throw new IllegalArgumentException("Requested random string length " + count + " is less than 0.");
         }
+        if (chars != null && chars.length == 0) {
+            throw new IllegalArgumentException("The chars array must not be empty");
+        }
 
         if (start == 0 && end == 0) {
+            if (chars != null) {
+                end = chars.length;
+            } else {
                 if (!letters && !numbers) {
                     end = Integer.MAX_VALUE;
                 } else {
                     end = 'z' + 1;
                     start = ' ';                
                 }
+            }
         }
 
         char[] buffer = new char[count];
