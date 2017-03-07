@@ -2163,6 +2163,9 @@ public class CategoryPlot extends Plot implements ValueAxisPlot,
             markers = (ArrayList) this.backgroundDomainMarkers.get(new Integer(
                     index));
         }
+        if (markers == null) {
+            return false;
+        }
         boolean removed = markers.remove(marker);
         if (removed && notify) {
             fireChangeEvent();
@@ -2444,6 +2447,9 @@ public class CategoryPlot extends Plot implements ValueAxisPlot,
         else {
             markers = (ArrayList) this.backgroundRangeMarkers.get(new Integer(
                     index));
+        }
+        if (markers == null) {
+            return false;
         }
         boolean removed = markers.remove(marker);
         if (removed && notify) {
