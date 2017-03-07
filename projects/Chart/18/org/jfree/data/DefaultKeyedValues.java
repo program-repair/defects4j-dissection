@@ -315,9 +315,7 @@ public class DefaultKeyedValues implements KeyedValues,
     public void removeValue(int index) {
         this.keys.remove(index);
         this.values.remove(index);
-        if (index < this.keys.size()) {
         rebuildIndex();
-        }
     }
 
     /**
@@ -332,7 +330,8 @@ public class DefaultKeyedValues implements KeyedValues,
     public void removeValue(Comparable key) {
         int index = getIndex(key);
         if (index < 0) {
-			return;
+            throw new UnknownKeyException("The key (" + key 
+                    + ") is not recognised.");
         }
         removeValue(index);
     }
