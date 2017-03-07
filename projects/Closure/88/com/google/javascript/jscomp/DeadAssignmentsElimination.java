@@ -324,9 +324,15 @@ class DeadAssignmentsElimination extends AbstractPostOrderCallback implements
       Node n, String variable) {
     if (NodeUtil.isName(n) && variable.equals(n.getString())) {
       if (NodeUtil.isLhs(n, n.getParent())) {
+        Preconditions.checkState(n.getParent().getType() == Token.ASSIGN);
         // The expression to which the assignment is made is evaluated before
         // the RHS is evaluated (normal left to right evaluation) but the KILL
         // occurs after the RHS is evaluated.
+        Node rhs = n.getNext();
+        VariableLiveness state = isVariableReadBeforeKill(rhs, variable);
+        if (state == VariableLiveness.READ) {
+          return state;
+        }
         return VariableLiveness.KILL;
       } else {
         return VariableLiveness.READ;
