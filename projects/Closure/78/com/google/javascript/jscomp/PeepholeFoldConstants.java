@@ -708,14 +708,12 @@ class PeepholeFoldConstants extends AbstractPeepholeOptimization {
         break;
       case Token.MOD:
         if (rval == 0) {
-          error(DiagnosticType.error("JSC_DIVIDE_BY_0_ERROR", "Divide by 0"), right);
           return null;
         }
         result = lval % rval;
         break;
       case Token.DIV:
         if (rval == 0) {
-          error(DiagnosticType.error("JSC_DIVIDE_BY_0_ERROR", "Divide by 0"), right);
           return null;
         }
         result = lval / rval;
