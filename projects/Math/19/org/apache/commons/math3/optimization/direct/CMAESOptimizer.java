@@ -537,6 +537,19 @@ public class CMAESOptimizer
                 boundaries[1] = uB;
 
                 // Abort early if the normalization will overflow (cf. "encode" method).
+                for (int i = 0; i < lB.length; i++) {
+                    if (Double.isInfinite(boundaries[1][i] - boundaries[0][i])) {
+                        final double max = Double.MAX_VALUE + boundaries[0][i];
+                        final NumberIsTooLargeException e
+                            = new NumberIsTooLargeException(boundaries[1][i],
+                                                            max,
+                                                            true);
+                        e.getContext().addMessage(LocalizedFormats.OVERFLOW);
+                        e.getContext().addMessage(LocalizedFormats.INDEX, i);
+
+                        throw e;
+                    }
+                }
             }
         } else {
             // Convert API to internal handling of boundaries.
