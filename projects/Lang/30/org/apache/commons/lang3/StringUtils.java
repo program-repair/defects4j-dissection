@@ -1373,13 +1373,21 @@ public class StringUtils {
             return INDEX_NOT_FOUND;
         }
         int csLen = cs.length();
+        int csLast = csLen - 1;
         int searchLen = searchChars.length;
+        int searchLast = searchLen - 1;
         for (int i = 0; i < csLen; i++) {
             char ch = cs.charAt(i);
             for (int j = 0; j < searchLen; j++) {
                 if (searchChars[j] == ch) {
+                    if (i < csLast && j < searchLast && Character.isHighSurrogate(ch)) {
                         // ch is a supplementary character
+                        if (searchChars[j + 1] == cs.charAt(i + 1)) {
+                            return i;
+                        }
+                    } else {
                         return i;
+                    }
                 }
             }
         }
@@ -1440,7 +1448,7 @@ public class StringUtils {
      * <code>false</code> if no match or null input
      * @since 2.4
      */
-    public static boolean containsAny(CharSequence cs, char[] searchChars) {
+    public static boolean containsAny(String cs, char[] searchChars) {
         if (isEmpty(cs) || ArrayUtils.isEmpty(searchChars)) {
             return false;
         }
@@ -1452,9 +1460,12 @@ public class StringUtils {
             char ch = cs.charAt(i);
             for (int j = 0; j < searchLength; j++) {
                 if (searchChars[j] == ch) {
-                    if (i < csLast && j < searchLast && ch >= Character.MIN_HIGH_SURROGATE && ch <= Character.MAX_HIGH_SURROGATE) {
+                    if (Character.isHighSurrogate(ch)) {
+                        if (j == searchLast) {
                             // missing low surrogate, fine, like String.indexOf(String)
-                        if (searchChars[j + 1] == cs.charAt(i + 1)) {
+                            return true;
+                        }
+                        if (i < csLast && searchChars[j + 1] == cs.charAt(i + 1)) {
                             return true;
                         }
                     } else {
@@ -1494,7 +1505,7 @@ public class StringUtils {
      * @return the <code>true</code> if any of the chars are found, <code>false</code> if no match or null input
      * @since 2.4
      */
-    public static boolean containsAny(CharSequence cs, String searchChars) {
+    public static boolean containsAny(String cs, String searchChars) {
         if (searchChars == null) {
             return false;
         }
@@ -1530,13 +1541,21 @@ public class StringUtils {
             return INDEX_NOT_FOUND;
         }
         int csLen = cs.length();
+        int csLast = csLen - 1;
         int searchLen = searchChars.length;
+        int searchLast = searchLen - 1;
         outer:
         for (int i = 0; i < csLen; i++) {
             char ch = cs.charAt(i);
             for (int j = 0; j < searchLen; j++) {
                 if (searchChars[j] == ch) {
+                    if (i < csLast && j < searchLast && Character.isHighSurrogate(ch)) {
+                        if (searchChars[j + 1] == cs.charAt(i + 1)) {
+                            continue outer;
+                        }
+                    } else {
                         continue outer;
+                    }
                 }
             }
             return i;
@@ -1573,8 +1592,16 @@ public class StringUtils {
         int strLen = str.length();
         for (int i = 0; i < strLen; i++) {
             char ch = str.charAt(i);
-            if (searchChars.indexOf(ch) < 0) {
+            boolean chFound = searchChars.indexOf(ch) >= 0;
+            if (i + 1 < strLen && Character.isHighSurrogate(ch)) {
+                char ch2 = str.charAt(i + 1);
+                if (chFound && searchChars.indexOf(ch2) < 0) {
                     return i;
+                }
+            } else {
+                if (!chFound) {
+                    return i;
+                }
             }
         }
         return INDEX_NOT_FOUND;
@@ -1675,14 +1702,25 @@ public class StringUtils {
             return true;
         }
         int csLen = cs.length();
+        int csLast = csLen - 1;
         int searchLen = searchChars.length;
+        int searchLast = searchLen - 1;
         for (int i = 0; i < csLen; i++) {
             char ch = cs.charAt(i);
             for (int j = 0; j < searchLen; j++) {
                 if (searchChars[j] == ch) {
+                    if (Character.isHighSurrogate(ch)) {
+                        if (j == searchLast) {
                             // missing low surrogate, fine, like String.indexOf(String)
+                            return false;
+                        }
+                        if (i < csLast && searchChars[j + 1] == cs.charAt(i + 1)) {
+                            return false;
+                        }
+                    } else {
                         // ch is in the Basic Multilingual Plane
                         return false;
+                    }
                 }
             }
         }
