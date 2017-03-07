@@ -328,6 +328,9 @@ class InlineObjectLiterals implements CompilerPass {
       }
 
       Node replacement;
+      if (nodes.isEmpty()) {
+        replacement = new Node(Token.TRUE);
+      } else {
         // All assignments evaluate to true, so make sure that the
         // expr statement evaluates to true in case it matters.
         nodes.add(new Node(Token.TRUE));
@@ -347,6 +350,7 @@ class InlineObjectLiterals implements CompilerPass {
         }
         cur.addChildToFront(nodes.get(i));
         cur.addChildToFront(nodes.get(i + 1));
+      }
 
       Node replace = ref.getParent();
       replacement.copyInformationFromForTree(replace);
