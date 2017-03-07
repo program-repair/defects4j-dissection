@@ -237,12 +237,7 @@ public abstract class AbstractLeastSquaresOptimizer implements DifferentiableMul
      * @return RMS value
      */
     public double getRMS() {
-        double criterion = 0;
-        for (int i = 0; i < rows; ++i) {
-            final double residual = residuals[i];
-            criterion += residual * residual * residualsWeights[i];
-        }
-        return Math.sqrt(criterion / rows);
+        return Math.sqrt(getChiSquare() / rows);
     }
 
     /**
@@ -255,7 +250,7 @@ public abstract class AbstractLeastSquaresOptimizer implements DifferentiableMul
         double chiSquare = 0;
         for (int i = 0; i < rows; ++i) {
             final double residual = residuals[i];
-            chiSquare += residual * residual / residualsWeights[i];
+            chiSquare += residual * residual * residualsWeights[i];
         }
         return chiSquare;
     }
