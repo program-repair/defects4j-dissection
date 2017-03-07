@@ -107,6 +107,8 @@ public class Frequency implements Serializable {
      */
     @Deprecated
     public void addValue(Object v) {
+        addValue((Comparable<?>) v);
+    }
     
     /**
      * Adds 1 to the frequency count for v.
@@ -118,6 +120,7 @@ public class Frequency implements Serializable {
      * @param v the value to add.
      * @throws IllegalArgumentException if <code>v</code> is not comparable with previous entries
      */
+    public void addValue(Comparable<?>v){
         Object obj = v;
         if (v instanceof Integer) {
            obj = Long.valueOf(((Integer) v).longValue());
