@@ -28,7 +28,7 @@ import java.util.HashMap;
  */
 public class LookupTranslator extends CharSequenceTranslator {
 
-    private final HashMap<CharSequence, CharSequence> lookupMap;
+    private final HashMap<String, CharSequence> lookupMap;
     private final int shortest;
     private final int longest;
 
@@ -43,12 +43,12 @@ public class LookupTranslator extends CharSequenceTranslator {
      * @param lookup CharSequence[][] table of size [*][2]
      */
     public LookupTranslator(final CharSequence[]... lookup) {
-        lookupMap = new HashMap<CharSequence, CharSequence>();
+        lookupMap = new HashMap<String, CharSequence>();
         int _shortest = Integer.MAX_VALUE;
         int _longest = 0;
         if (lookup != null) {
             for (final CharSequence[] seq : lookup) {
-                this.lookupMap.put(seq[0], seq[1]);
+                this.lookupMap.put(seq[0].toString(), seq[1]);
                 final int sz = seq[0].length();
                 if (sz < _shortest) {
                     _shortest = sz;
@@ -74,7 +74,7 @@ public class LookupTranslator extends CharSequenceTranslator {
         // descend so as to get a greedy algorithm
         for (int i = max; i >= shortest; i--) {
             final CharSequence subSeq = input.subSequence(index, index + i);
-            final CharSequence result = lookupMap.get(subSeq);
+            final CharSequence result = lookupMap.get(subSeq.toString());
             if (result != null) {
                 out.write(result.toString());
                 return i;
