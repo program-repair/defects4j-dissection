@@ -239,7 +239,11 @@ public class SourceFile implements StaticSourceFile, Serializable {
       // If next new line cannot be found, there are two cases
       // 1. pos already reaches the end of file, then null should be returned
       // 2. otherwise, return the contents between pos and the end of file.
+      if (pos >= js.length()) {
         return null;
+      } else {
+        return js.substring(pos, js.length());
+      }
     } else {
       return js.substring(pos, js.indexOf('\n', pos));
     }
