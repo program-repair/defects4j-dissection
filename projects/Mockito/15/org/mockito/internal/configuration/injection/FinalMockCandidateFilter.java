@@ -1,6 +1,7 @@
 package org.mockito.internal.configuration.injection;
 
 import org.mockito.exceptions.base.MockitoException;
+import org.mockito.internal.util.reflection.BeanPropertySetter;
 import org.mockito.internal.util.reflection.FieldSetter;
 
 import java.lang.reflect.Field;
@@ -22,7 +23,9 @@ public class FinalMockCandidateFilter implements MockCandidateFilter {
             return new OngoingInjecter() {
                 public boolean thenInject() {
                     try {
+                        if (!new BeanPropertySetter(fieldInstance, field).set(matchingMock)) {
                             new FieldSetter(fieldInstance, field).set(matchingMock);
+                        }
                     } catch (Exception e) {
                         throw new MockitoException("Problems injecting dependency in " + field.getName(), e);
                     }
