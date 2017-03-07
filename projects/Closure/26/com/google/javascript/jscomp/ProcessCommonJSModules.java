@@ -125,6 +125,7 @@ public class ProcessCommonJSModules implements CompilerPass {
       AbstractPostOrderCallback {
 
     private int scriptNodeCount = 0;
+    private Set<String> modulesWithExports = Sets.newHashSet();
 
     @Override
     public void visit(NodeTraversal t, Node n, Node parent) {
@@ -204,6 +205,9 @@ public class ProcessCommonJSModules implements CompilerPass {
      */
     private void emitOptionalModuleExportsOverride(Node script,
         String moduleName) {
+      if (!modulesWithExports.contains(moduleName)) {
+        return;
+      }
 
       Node moduleExportsProp = IR.getprop(IR.name(moduleName),
           IR.string("module$exports"));
@@ -225,6 +229,7 @@ public class ProcessCommonJSModules implements CompilerPass {
       Node exports = prop.getChildAtIndex(1);
       exports.putProp(Node.ORIGINALNAME_PROP, "exports");
       exports.setString("module$exports");
+      modulesWithExports.add(moduleName);
     }
 
     /**
