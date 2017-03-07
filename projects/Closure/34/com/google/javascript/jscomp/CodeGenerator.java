@@ -119,9 +119,7 @@ class CodeGenerator {
         cc.addOp(opstr, true);
         addExpr(last, p, rhsContext);
       } else {
-        addExpr(first, p, context);
-        cc.addOp(opstr, true);
-        addExpr(last, p + 1, rhsContext);
+        unrollBinaryOperator(n, type, opstr, context, rhsContext, p, p + 1);
       }
       return;
     }
@@ -751,7 +749,7 @@ class CodeGenerator {
     Node current = firstNonOperator;
     do {
       current = current.getParent();
-      cc.listSeparator();
+      cc.addOp(opStr, true);
       addExpr(current.getFirstChild().getNext(), rightPrecedence, rhsContext);
     } while (current != n);
   }
