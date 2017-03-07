@@ -1259,6 +1259,7 @@ public final class NodeUtil {
       // Inversion
       case Token.NOT:
       // delete operator returns a boolean.
+      case Token.DELPROP:
         return true;
       default:
         return false;
@@ -2907,6 +2908,7 @@ public final class NodeUtil {
       case Token.OBJECTLIT:
         // Literals objects with non-literal children are allowed.
         return true;
+      case Token.DELPROP:
       case Token.IN:
         // TODO(johnlenz): should IN operator be included in #isSimpleOperator?
         return true;
