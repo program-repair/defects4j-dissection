@@ -289,7 +289,7 @@ class SimplexTableau implements Serializable {
      */
     private Integer getBasicRow(final int col, boolean ignoreObjectiveRows) {
         Integer row = null;
-        int start = getNumObjectiveFunctions();
+        int start = ignoreObjectiveRows ? getNumObjectiveFunctions() : 0;
         for (int i = start; i < getHeight(); i++) {
             if (MathUtils.equals(getEntry(i, col), 1.0, epsilon) && (row == null)) {
                 row = i;
@@ -338,11 +338,11 @@ class SimplexTableau implements Serializable {
      */
     protected RealPointValuePair getSolution() {
       double[] coefficients = new double[getOriginalNumDecisionVariables()];
-      Integer negativeVarBasicRow = getBasicRow(getNegativeDecisionVariableOffset());
+      Integer negativeVarBasicRow = getBasicRowForSolution(getNegativeDecisionVariableOffset());
       double mostNegative = negativeVarBasicRow == null ? 0 : getEntry(negativeVarBasicRow, getRhsOffset());
       Set<Integer> basicRows = new HashSet<Integer>();
       for (int i = 0; i < coefficients.length; i++) {
-          Integer basicRow = getBasicRow(getNumObjectiveFunctions() + i);
+          Integer basicRow = getBasicRowForSolution(getNumObjectiveFunctions() + i);
           if (basicRows.contains(basicRow)) {
               // if multiple variables can take a given value 
               // then we choose the first and set the rest equal to 0
