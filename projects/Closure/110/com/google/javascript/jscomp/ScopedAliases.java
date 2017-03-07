@@ -355,6 +355,7 @@ class ScopedAliases implements HotSwapCompilerPass {
         Node n = v.getNode();
         Node parent = n.getParent();
         boolean isVar = parent.isVar();
+        boolean isFunctionDecl = NodeUtil.isFunctionDeclaration(parent);
         if (isVar && n.getFirstChild() != null && n.getFirstChild().isQualifiedName()) {
           recordAlias(v);
         } else if (v.isBleedingFunction()) {
@@ -363,12 +364,13 @@ class ScopedAliases implements HotSwapCompilerPass {
         } else if (parent.getType() == Token.LP) {
           // Parameters of the scope function also get a BAD_PARAMETERS
           // error.
-        } else if (isVar) {
+        } else if (isVar || isFunctionDecl) {
+          boolean isHoisted = NodeUtil.isHoistedFunctionDeclaration(parent);
           Node grandparent = parent.getParent();
-          Node value = n.hasChildren() ?
-              v.getInitialValue().detachFromParent() :
+          Node value = v.getInitialValue() != null ?
+              v.getInitialValue() :
               null;
-          Node varNode = parent;
+          Node varNode = null;
 
           String name = n.getString();
           int nameCount = scopedAliasNames.count(name);
@@ -380,7 +382,9 @@ class ScopedAliases implements HotSwapCompilerPass {
 
           // First, we need to free up the function expression (EXPR)
           // to be used in another expression.
+          if (isFunctionDecl) {
             // Replace "function NAME() { ... }" with "var NAME;".
+            Node existingName = v.getNameNode();
 
             // We can't keep the local name on the function expression,
             // because IE is buggy and will leak the name into the global
@@ -389,9 +393,19 @@ class ScopedAliases implements HotSwapCompilerPass {
             //
             // This will only cause problems if this is a hoisted, recursive
             // function, and the programmer is using the hoisting.
+            Node newName = IR.name("").useSourceInfoFrom(existingName);
+            value.replaceChild(existingName, newName);
 
+            varNode = IR.var(existingName).useSourceInfoFrom(existingName);
+            grandparent.replaceChild(parent, varNode);
+          } else {
+            if (value != null) {
               // If this is a VAR, we can just detach the expression and
               // the tree will still be valid.
+              value.detachFromParent();
+            }
+            varNode = parent;
+          }
 
           // Add $jscomp.scope.name = EXPR;
           // Make sure we copy over all the jsdoc and debug info.
@@ -405,7 +419,11 @@ class ScopedAliases implements HotSwapCompilerPass {
             NodeUtil.setDebugInformation(
                 newDecl.getFirstChild().getFirstChild(), n, name);
 
+            if (isHoisted) {
+              grandparent.addChildToFront(newDecl);
+            } else {
               grandparent.addChildBefore(newDecl, varNode);
+            }
           }
 
           // Rewrite "var name = EXPR;" to "var name = $jscomp.scope.name;"
