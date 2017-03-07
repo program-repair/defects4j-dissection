@@ -49,6 +49,7 @@ public abstract class BaseSingleFieldPeriod
     /** Serialization version. */
     private static final long serialVersionUID = 9386874258972L;
     /** The start of 1972. */
+    private static final long START_1972 = 2L * 365L * 86400L * 1000L;
 
     /** The period in the units of this period. */
     private volatile int iPeriod;
@@ -101,7 +102,7 @@ public abstract class BaseSingleFieldPeriod
             throw new IllegalArgumentException("ReadablePartial objects must be contiguous");
         }
         Chronology chrono = DateTimeUtils.getChronology(start.getChronology()).withUTC();
-        int[] values = chrono.get(zeroInstance, chrono.set(start, 0L), chrono.set(end, 0L));
+        int[] values = chrono.get(zeroInstance, chrono.set(start, START_1972), chrono.set(end, START_1972));
         return values[0];
     }
 
