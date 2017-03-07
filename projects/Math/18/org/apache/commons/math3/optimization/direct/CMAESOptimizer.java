@@ -929,7 +929,7 @@ public class CMAESOptimizer
             double[] res = new double[x.length];
             for (int i = 0; i < x.length; i++) {
                 double diff = boundaries[1][i] - boundaries[0][i];
-                res[i] = (x[i] - boundaries[0][i]) / diff;
+                res[i] = x[i] / diff;
             }
             return res;
         }
@@ -955,7 +955,7 @@ public class CMAESOptimizer
             double[] res = new double[x.length];
             for (int i = 0; i < x.length; i++) {
                 double diff = boundaries[1][i] - boundaries[0][i];
-                res[i] = diff * x[i] + boundaries[0][i];
+                res[i] = diff * x[i];
             }
             return res;
         }
@@ -987,12 +987,14 @@ public class CMAESOptimizer
                 return true;
             }
 
+            final double[] bLoEnc = encode(boundaries[0]);
+            final double[] bHiEnc = encode(boundaries[1]);
 
             for (int i = 0; i < x.length; i++) {
-                if (x[i] < 0) {
+                if (x[i] < bLoEnc[i]) {
                     return false;
                 }
-                if (x[i] > 1.0) {
+                if (x[i] > bHiEnc[i]) {
                     return false;
                 }
             }
