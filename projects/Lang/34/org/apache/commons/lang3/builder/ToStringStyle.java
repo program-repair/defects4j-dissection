@@ -145,7 +145,7 @@ public abstract class ToStringStyle implements Serializable {
      * @return Set the registry of objects being traversed
      */
     static Map<Object, Object> getRegistry() {
-        return REGISTRY.get() != null ? REGISTRY.get() : Collections.<Object, Object>emptyMap();
+        return REGISTRY.get();
     }
 
     /**
@@ -161,7 +161,7 @@ public abstract class ToStringStyle implements Serializable {
      */
     static boolean isRegistered(Object value) {
         Map<Object, Object> m = getRegistry();
-        return m.containsKey(value);
+        return m != null && m.containsKey(value);
     }
 
     /**
