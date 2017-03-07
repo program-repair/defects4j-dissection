@@ -1905,7 +1905,11 @@ public final class JsDocInfoParser {
    * For expressions on the right hand side of a this: or new:
    */
   private Node parseContextTypeExpression(JsDocToken token) {
-          return parseTypeName(token);
+    if (token == JsDocToken.QMARK) {
+      return newNode(Token.QMARK);
+    } else {
+      return parseBasicTypeExpression(token);
+    }
   }
 
   /**
