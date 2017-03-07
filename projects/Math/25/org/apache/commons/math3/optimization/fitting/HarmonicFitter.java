@@ -320,8 +320,11 @@ public class HarmonicFitter extends CurveFitter<HarmonicOscillator.Parametric> {
                 }
                 a = 0.5 * (yMax - yMin);
             } else {
+                if (c2 == 0) {
                     // In some ill-conditioned cases (cf. MATH-844), the guesser
                     // procedure cannot produce sensible results.
+                    throw new MathIllegalStateException(LocalizedFormats.ZERO_DENOMINATOR);
+                }
 
                 a = FastMath.sqrt(c1 / c2);
                 omega = FastMath.sqrt(c2 / c3);
