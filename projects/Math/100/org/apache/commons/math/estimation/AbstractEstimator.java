@@ -163,7 +163,7 @@ public abstract class AbstractEstimator implements Estimator {
 
         // compute transpose(J).J, avoiding building big intermediate matrices
         final int rows = problem.getMeasurements().length;
-        final int cols = problem.getAllParameters().length;
+        final int cols = problem.getUnboundParameters().length;
         final int max  = cols * rows;
         double[][] jTj = new double[cols][cols];
         for (int i = 0; i < cols; ++i) {
@@ -199,12 +199,12 @@ public abstract class AbstractEstimator implements Estimator {
     public double[] guessParametersErrors(EstimationProblem problem)
       throws EstimationException {
         int m = problem.getMeasurements().length;
-        int p = problem.getAllParameters().length;
+        int p = problem.getUnboundParameters().length;
         if (m <= p) {
             throw new EstimationException("no degrees of freedom ({0} measurements, {1} parameters)",
                                           new Object[] { new Integer(m), new Integer(p)});
         }
-        double[] errors = new double[problem.getAllParameters().length];
+        double[] errors = new double[problem.getUnboundParameters().length];
         final double c = Math.sqrt(getChiSquare(problem) / (m - p));
         double[][] covar = getCovariances(problem);
         for (int i = 0; i < errors.length; ++i) {
