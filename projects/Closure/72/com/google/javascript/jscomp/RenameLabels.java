@@ -212,7 +212,7 @@ final class RenameLabels implements CompilerPass {
       String name = nameNode.getString();
       LabelInfo li = getLabelInfo(name);
       // This is a label...
-      if (li.referenced) {
+      if (li.referenced || !removeUnused) {
         String newName = getNameForId(li.id);
         if (!name.equals(newName)) {
           // ... and it is used, give it the short name.

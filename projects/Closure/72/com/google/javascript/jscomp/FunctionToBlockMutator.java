@@ -149,6 +149,8 @@ class FunctionToBlockMutator {
                 "inline_",
                 isCallInLoop)));
     // Make label names unique to this instance.
+    new RenameLabels(compiler, new LabelNameSupplier(idSupplier), false)
+        .process(null, fnNode);
   }
 
   static class LabelNameSupplier implements Supplier<String> {
