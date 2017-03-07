@@ -79,6 +79,7 @@ public class Complex implements FieldElement<Complex>, Serializable  {
     /** Record whether this complex number is infinite. */
     private final transient boolean isInfinite;
     /** Record whether this complex number is zero. */
+    private final transient boolean isZero;
 
     /**
      * Create a complex number given only the real part.
@@ -102,6 +103,7 @@ public class Complex implements FieldElement<Complex>, Serializable  {
         isNaN = Double.isNaN(real) || Double.isNaN(imaginary);
         isInfinite = !isNaN &&
             (Double.isInfinite(real) || Double.isInfinite(imaginary));
+        isZero = real == 0 && imaginary == 0;
     }
 
     /**
@@ -253,8 +255,8 @@ public class Complex implements FieldElement<Complex>, Serializable  {
             return NaN;
         }
 
-        if (divisor.getReal() == 0.0 && divisor.getImaginary() == 0.0) {
-            return NaN;
+        if (divisor.isZero) {
+            return isZero ? NaN : INF;
         }
 
         if (divisor.isInfinite() && !isInfinite()) {
@@ -290,7 +292,7 @@ public class Complex implements FieldElement<Complex>, Serializable  {
             return NaN;
         }
         if (divisor == 0d) {
-            return NaN;
+            return isZero ? NaN : INF;
         }
         if (Double.isInfinite(divisor)) {
             return !isInfinite() ? ZERO : NaN;
