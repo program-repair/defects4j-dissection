@@ -142,7 +142,7 @@ public class MultiplePiePlot extends Plot implements Cloneable, Serializable {
      */
     public MultiplePiePlot(CategoryDataset dataset) {
         super();
-        this.dataset = dataset;
+        setDataset(dataset);
         PiePlot piePlot = new PiePlot(null);
         this.pieChart = new JFreeChart(piePlot);
         this.pieChart.removeLegend();
