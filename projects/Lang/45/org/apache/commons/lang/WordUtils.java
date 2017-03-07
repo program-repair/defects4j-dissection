@@ -613,6 +613,9 @@ public class WordUtils {
 
         // if the lower value is greater than the length of the string,
         // set to the length of the string
+        if (lower > str.length()) {
+            lower = str.length();    
+        }
         // if the upper value is -1 (i.e. no limit) or is greater
         // than the length of the string, set to the length of the string
         if (upper == -1 || upper > str.length()) {
