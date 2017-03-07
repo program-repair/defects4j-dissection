@@ -1657,10 +1657,10 @@ public class BOBYQAOptimizer
                     final int tmp2 = jpt;
                     jpt = ipt - n;
                     ipt = tmp2;
-                    throw new PathIsExploredException(); // XXX
+//                     throw new PathIsExploredException(); // XXX
                 }
-                final int iptMinus1 = ipt;
-                final int jptMinus1 = jpt;
+                final int iptMinus1 = ipt - 1;
+                final int jptMinus1 = jpt - 1;
                 interpolationPoints.setEntry(nfm, iptMinus1, interpolationPoints.getEntry(ipt, iptMinus1));
                 interpolationPoints.setEntry(nfm, jptMinus1, interpolationPoints.getEntry(jpt, jptMinus1));
             }
@@ -1749,7 +1749,7 @@ public class BOBYQAOptimizer
                 final int ih = ipt * (ipt - 1) / 2 + jpt - 1;
                 final double tmp = interpolationPoints.getEntry(nfm, ipt - 1) * interpolationPoints.getEntry(nfm, jpt - 1);
                 modelSecondDerivativesValues.setEntry(ih, (fbeg - fAtInterpolationPoints.getEntry(ipt) - fAtInterpolationPoints.getEntry(jpt) + f) / tmp);
-                throw new PathIsExploredException(); // XXX
+//                 throw new PathIsExploredException(); // XXX
             }
         } while (getEvaluations() < npt);
     } // prelim
