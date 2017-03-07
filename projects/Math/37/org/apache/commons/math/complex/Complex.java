@@ -1015,8 +1015,14 @@ public class Complex implements FieldElement<Complex>, Serializable  {
      * @since 1.2
      */
     public Complex tan() {
-        if (isNaN) {
+        if (isNaN || Double.isInfinite(real)) {
             return NaN;
+        }
+        if (imaginary > 20.0) {
+            return createComplex(0.0, 1.0);
+        }
+        if (imaginary < -20.0) {
+            return createComplex(0.0, -1.0);
         }
 
         double real2 = 2.0 * real;
@@ -1060,8 +1066,14 @@ public class Complex implements FieldElement<Complex>, Serializable  {
      * @since 1.2
      */
     public Complex tanh() {
-        if (isNaN) {
+        if (isNaN || Double.isInfinite(imaginary)) {
             return NaN;
+        }
+        if (real > 20.0) {
+            return createComplex(1.0, 0.0);
+        }
+        if (real < -20.0) {
+            return createComplex(-1.0, 0.0);
         }
         double real2 = 2.0 * real;
         double imaginary2 = 2.0 * imaginary;
