@@ -83,7 +83,7 @@ public class StringEscapeUtils {
      * @return String with escaped values, <code>null</code> if null string input
      */
     public static String escapeJava(String str) {
-        return escapeJavaStyleString(str, false);
+        return escapeJavaStyleString(str, false, false);
     }
 
     /**
@@ -99,7 +99,7 @@ public class StringEscapeUtils {
      * @throws IOException if error occurs on underlying Writer
      */
     public static void escapeJava(Writer out, String str) throws IOException {
-        escapeJavaStyleString(out, str, false);
+        escapeJavaStyleString(out, str, false, false);
     }
 
     /**
@@ -124,7 +124,7 @@ public class StringEscapeUtils {
      * @return String with escaped values, <code>null</code> if null string input
      */
     public static String escapeJavaScript(String str) {
-        return escapeJavaStyleString(str, true);
+        return escapeJavaStyleString(str, true, true);
     }
 
     /**
@@ -140,7 +140,7 @@ public class StringEscapeUtils {
      * @throws IOException if error occurs on underlying Writer
      **/
     public static void escapeJavaScript(Writer out, String str) throws IOException {
-        escapeJavaStyleString(out, str, true);
+        escapeJavaStyleString(out, str, true, true);
     }
 
     /**
@@ -151,13 +151,13 @@ public class StringEscapeUtils {
      * @param escapeForwardSlash TODO
      * @return the escaped string
      */
-    private static String escapeJavaStyleString(String str, boolean escapeSingleQuotes) {
+    private static String escapeJavaStyleString(String str, boolean escapeSingleQuotes, boolean escapeForwardSlash) {
         if (str == null) {
             return null;
         }
         try {
             StringWriter writer = new StringWriter(str.length() * 2);
-            escapeJavaStyleString(writer, str, escapeSingleQuotes);
+            escapeJavaStyleString(writer, str, escapeSingleQuotes, escapeForwardSlash);
             return writer.toString();
         } catch (IOException ioe) {
             // this should never ever happen while writing to a StringWriter
@@ -175,7 +175,8 @@ public class StringEscapeUtils {
      * @param escapeForwardSlash TODO
      * @throws IOException if an IOException occurs
      */
-    private static void escapeJavaStyleString(Writer out, String str, boolean escapeSingleQuote) throws IOException {
+    private static void escapeJavaStyleString(Writer out, String str, boolean escapeSingleQuote,
+            boolean escapeForwardSlash) throws IOException {
         if (out == null) {
             throw new IllegalArgumentException("The Writer must not be null");
         }
@@ -241,7 +242,9 @@ public class StringEscapeUtils {
                         out.write('\\');
                         break;
                     case '/' :
+                        if (escapeForwardSlash) {
                             out.write('\\');
+                        }
                         out.write('/');
                         break;
                     default :
