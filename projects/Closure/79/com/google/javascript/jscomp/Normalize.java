@@ -119,7 +119,7 @@ class Normalize implements CompilerPass {
   public void process(Node externs, Node root) {
     new NodeTraversal(
         compiler, new NormalizeStatements(compiler, assertOnChange))
-        .traverse(root);
+        .traverseRoots(externs, root);
     if (MAKE_LOCAL_NAMES_UNIQUE) {
       MakeDeclaredNamesUnique renamer = new MakeDeclaredNamesUnique();
       NodeTraversal t = new NodeTraversal(compiler, renamer);
