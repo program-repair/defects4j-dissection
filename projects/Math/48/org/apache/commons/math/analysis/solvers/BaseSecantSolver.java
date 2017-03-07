@@ -186,6 +186,9 @@ public abstract class BaseSecantSolver
                 case REGULA_FALSI:
                     // Detect early that algorithm is stuck, instead of waiting
                     // for the maximum number of iterations to be exceeded.
+                    if (x == x1) {
+                        throw new ConvergenceException();
+                    }
                     break;
                 default:
                     // Should never happen.
