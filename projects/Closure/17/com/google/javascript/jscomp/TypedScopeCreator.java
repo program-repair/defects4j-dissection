@@ -1288,8 +1288,12 @@ final class TypedScopeCreator implements ScopeCreator {
           if (info.isConstant()) {
             JSType knownType = null;
             if (rValue != null) {
-              if (rValue.getJSType() != null && !rValue.getJSType().isUnknownType()) {
+              JSDocInfo rValueInfo = rValue.getJSDocInfo();
+              if (rValueInfo != null && rValueInfo.hasType()) {
                 // If rValue has a type-cast, we use the type in the type-cast.
+                return rValueInfo.getType().evaluate(scope, typeRegistry);
+              } else if (rValue.getJSType() != null
+                  && !rValue.getJSType().isUnknownType()) {
                 // If rValue's type was already computed during scope creation,
                 // then we can safely use that.
                 return rValue.getJSType();
