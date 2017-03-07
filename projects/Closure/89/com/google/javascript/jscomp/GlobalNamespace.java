@@ -917,7 +917,7 @@ class GlobalNamespace {
       }
 
       // If this is aliased, then its properties can't be collapsed either.
-      if (type != Type.FUNCTION && aliasingGets > 0) {
+      if (aliasingGets > 0) {
         return false;
       }
 
