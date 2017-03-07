@@ -918,7 +918,8 @@ public class CMAESOptimizer
          * @return the original objective variables, possibly repaired.
          */
         public double[] repairAndDecode(final double[] x) {
-            return
+            return boundaries != null && isRepairMode ?
+                decode(repair(x)) :
                 decode(x);
         }
 
