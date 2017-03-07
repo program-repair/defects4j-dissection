@@ -204,8 +204,8 @@ public class DefaultIntervalCategoryDataset extends AbstractSeriesDataset
 
             }
             else {
-                this.seriesKeys = null;
-                this.categoryKeys = null;
+                this.seriesKeys = new Comparable[0];
+                this.categoryKeys = new Comparable[0];
             }
         }
 
@@ -335,7 +335,7 @@ public class DefaultIntervalCategoryDataset extends AbstractSeriesDataset
         if (categoryKeys == null) {
             throw new IllegalArgumentException("Null 'categoryKeys' argument.");
         }
-        if (categoryKeys.length != this.startData[0].length) {
+        if (categoryKeys.length != getCategoryCount()) {
             throw new IllegalArgumentException(
                     "The number of categories does not match the data.");
         }
