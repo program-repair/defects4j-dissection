@@ -154,6 +154,7 @@ class InlineObjectLiterals implements CompilerPass {
      */
     private boolean isInlinableObject(List<Reference> refs) {
       boolean ret = false;
+      Set<String> validProperties = Sets.newHashSet();
       for (Reference ref : refs) {
         Node name = ref.getNode();
         Node parent = ref.getParent();
@@ -178,6 +179,14 @@ class InlineObjectLiterals implements CompilerPass {
           // We short-circuit this problem by bailing out if we see a reference
           // to a property that isn't defined on the object literal. This
           // isn't a perfect algorithm, but it should catch most cases.
+          String propName = parent.getLastChild().getString();
+          if (!validProperties.contains(propName)) {
+            if (NodeUtil.isVarOrSimpleAssignLhs(parent, gramps)) {
+              validProperties.add(propName);
+            } else {
+              return false;
+            }
+          }
           continue;
         }
 
@@ -213,6 +222,7 @@ class InlineObjectLiterals implements CompilerPass {
             return false;
           }
 
+          validProperties.add(child.getString());
 
           Node childVal = child.getFirstChild();
           // Check if childVal is the parent of any of the passed in
