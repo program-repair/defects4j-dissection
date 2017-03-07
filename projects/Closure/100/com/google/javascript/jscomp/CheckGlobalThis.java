@@ -96,6 +96,13 @@ final class CheckGlobalThis implements Callback {
       // var a = function() { }; // or
       // function a() {} // or
       // a.x = function() {};
+      int pType = parent.getType();
+      if (!(pType == Token.BLOCK ||
+            pType == Token.SCRIPT ||
+            pType == Token.NAME ||
+            pType == Token.ASSIGN)) {
+        return false;
+      }
     }
 
     if (parent != null && parent.getType() == Token.ASSIGN) {
@@ -143,7 +150,7 @@ final class CheckGlobalThis implements Callback {
     }
 
     // Also report a THIS with a property access.
-    return false;
+    return parent != null && NodeUtil.isGet(parent);
   }
 
   /**
