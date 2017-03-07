@@ -201,10 +201,14 @@ class CollapseVariableDeclarations implements CompilerPass {
       Var var = s.getVar(lhs.getString());
       return var != null
           && var.getScope() == s
+          && !isNamedParameter(var)
           && !blacklistedVars.contains(var);
     }
   }
 
+  private boolean isNamedParameter(Var v) {
+    return v.getParentNode().isParamList();
+  }
 
   private void applyCollapses() {
     for (Collapse collapse : collapses) {
