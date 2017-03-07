@@ -760,9 +760,16 @@ class DisambiguateProperties<T> implements CompilerPass {
       }
       // If the property does not exist on the referenced type but the original
       // type is an object type, see if any subtype has the property.
+      if (foundType == null) {
+        ObjectType maybeType = ObjectType.cast(
+            registry.getGreatestSubtypeWithProperty(type, field));
         // getGreatestSubtypeWithProperty does not guarantee that the property
         // is defined on the returned type, it just indicates that it might be,
         // so we have to double check.
+        if (maybeType != null && maybeType.hasOwnProperty(field)) {
+          foundType = maybeType;
+        }
+      }
       return foundType;
     }
 
