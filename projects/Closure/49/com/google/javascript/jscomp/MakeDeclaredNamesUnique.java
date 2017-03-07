@@ -88,14 +88,6 @@ class MakeDeclaredNamesUnique
       renamer = nameStack.peek().forChildScope();
     }
 
-    if (declarationRoot.getType() == Token.FUNCTION) {
-      for (Node c = declarationRoot.getFirstChild().getNext().getFirstChild(); c != null; c = c.getNext()) {
-        String name = c.getString();
-        renamer.addDeclaredName(name);
-      }
-      Node functionBody = declarationRoot.getLastChild();
-      findDeclaredNames(functionBody, null, renamer);
-    }  else 
     if (declarationRoot.getType() != Token.FUNCTION) {
       // Add the block declarations
       findDeclaredNames(declarationRoot, null, renamer);
@@ -127,11 +119,22 @@ class MakeDeclaredNamesUnique
             renamer.addDeclaredName(name);
           }
 
+          nameStack.push(renamer);
+        }
+        break;
 
+      case Token.LP: {
+          Renamer renamer = nameStack.peek().forChildScope();
 
           // Add the function parameters
+          for (Node c = n.getFirstChild(); c != null; c = c.getNext()) {
+            String name = c.getString();
+            renamer.addDeclaredName(name);
+          }
 
           // Add the function body declarations
+          Node functionBody = n.getNext();
+          findDeclaredNames(functionBody, null, renamer);
 
           nameStack.push(renamer);
         }
@@ -170,13 +173,16 @@ class MakeDeclaredNamesUnique
 
       case Token.FUNCTION:
         // Remove the function body scope
+        nameStack.pop();
         // Remove function recursive name (if any).
         nameStack.pop();
         break;
 
+      case Token.LP:
         // Note: The parameters and function body variables live in the
         // same scope, we introduce the scope when in the "shouldTraverse"
         // visit of LP, but remove it when when we exit the function above.
+        break;
 
       case Token.CATCH:
         // Remove catch except name from the stack of names.
