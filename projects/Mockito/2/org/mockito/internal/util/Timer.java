@@ -1,5 +1,6 @@
 package org.mockito.internal.util;
 
+import org.mockito.exceptions.Reporter;
 
 public class Timer {
 
@@ -7,6 +8,7 @@ public class Timer {
     private long startTime = -1;
 
     public Timer(long durationMillis) {
+        validateInput(durationMillis);
         this.durationMillis = durationMillis;
     }
 
@@ -25,4 +27,9 @@ public class Timer {
         startTime = System.currentTimeMillis();
     }
 
+    private void validateInput(long durationMillis) {
+        if (durationMillis < 0) {
+            new Reporter().cannotCreateTimerWithNegativeDurationTime(durationMillis);
+        }
+    }
 }
