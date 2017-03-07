@@ -706,7 +706,7 @@ public class DateTimeFormatter {
         chrono = selectChronology(chrono);
         
         DateTimeParserBucket bucket = new DateTimeParserBucket(
-            instantLocal, chrono, iLocale, iPivotYear, iDefaultYear);
+            instantLocal, chrono, iLocale, iPivotYear, chrono.year().get(instantLocal));
         int newPos = parser.parseInto(bucket, text, position);
         instant.setMillis(bucket.computeMillis(false, text));
         if (iOffsetParsed && bucket.getOffsetInteger() != null) {
