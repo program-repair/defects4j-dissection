@@ -216,9 +216,9 @@ public class TypeUtils {
                 toClass, typeVarAssigns);
 
         // now to check each type argument
-        for (Map.Entry<TypeVariable<?>, Type> entry : toTypeVarAssigns.entrySet()) {
-            Type toTypeArg = entry.getValue();
-            Type fromTypeArg = fromTypeVarAssigns.get(entry.getKey());
+        for (TypeVariable<?> var : toTypeVarAssigns.keySet()) {
+            Type toTypeArg = unrollVariableAssignments(var, toTypeVarAssigns);
+            Type fromTypeArg = unrollVariableAssignments(var, fromTypeVarAssigns);
 
             // parameters must either be absent from the subject type, within
             // the bounds of the wildcard type, or be an exact match to the
@@ -672,7 +672,7 @@ public class TypeUtils {
                 : new HashMap<TypeVariable<?>, Type>(subtypeVarAssigns);
 
         // has target class been reached?
-        if (cls.getTypeParameters().length > 0 || toClass.equals(cls)) {
+        if (toClass.equals(cls)) {
             return typeVarAssigns;
         }
 
