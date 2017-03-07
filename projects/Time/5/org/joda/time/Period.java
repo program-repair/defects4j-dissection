@@ -1625,13 +1625,19 @@ public final class Period
         int years = getYears();
         int months = getMonths();
         if (years != 0 || months != 0) {
-            years = FieldUtils.safeAdd(years, months / 12);
-            months = months % 12;
-            if (years != 0) {
-                result = result.withYears(years);
+            long totalMonths = years * 12L + months;
+            if (type.isSupported(DurationFieldType.YEARS_TYPE)) {
+                int normalizedYears = FieldUtils.safeToInt(totalMonths / 12);
+                result = result.withYears(normalizedYears);
+                totalMonths = totalMonths - (normalizedYears * 12);
             }
-            if (months != 0) {
-                result = result.withMonths(months);
+            if (type.isSupported(DurationFieldType.MONTHS_TYPE)) {
+                int normalizedMonths = FieldUtils.safeToInt(totalMonths);
+                result = result.withMonths(normalizedMonths);
+                totalMonths = totalMonths - normalizedMonths;
+            }
+            if (totalMonths != 0) {
+                throw new UnsupportedOperationException("Unable to normalize as PeriodType is missing either years or months but period has a month/year amount: " + toString());
             }
         }
         return result;
