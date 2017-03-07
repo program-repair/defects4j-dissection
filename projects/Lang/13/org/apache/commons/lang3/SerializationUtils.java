@@ -236,6 +236,8 @@ public class SerializationUtils {
      * class here is a workaround, see the JIRA issue LANG-626. </p>
      */
      static class ClassLoaderAwareObjectInputStream extends ObjectInputStream {
+        private static final Map<String, Class<?>> primitiveTypes = 
+                new HashMap<String, Class<?>>();
         private ClassLoader classLoader;
         
         /**
@@ -249,6 +251,15 @@ public class SerializationUtils {
             super(in);
             this.classLoader = classLoader;
 
+            primitiveTypes.put("byte", byte.class);
+            primitiveTypes.put("short", short.class);
+            primitiveTypes.put("int", int.class);
+            primitiveTypes.put("long", long.class);
+            primitiveTypes.put("float", float.class);
+            primitiveTypes.put("double", double.class);
+            primitiveTypes.put("boolean", boolean.class);
+            primitiveTypes.put("char", char.class);
+            primitiveTypes.put("void", void.class);
         }
 
         /**
@@ -265,7 +276,15 @@ public class SerializationUtils {
             try {
                 return Class.forName(name, false, classLoader);
             } catch (ClassNotFoundException ex) {
+                try {
                     return Class.forName(name, false, Thread.currentThread().getContextClassLoader());
+                } catch (ClassNotFoundException cnfe) {
+                    Class<?> cls = primitiveTypes.get(name);
+                    if (cls != null)
+                        return cls;
+                    else
+                        throw cnfe;
+                }
             }
         }
 
