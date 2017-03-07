@@ -289,6 +289,9 @@ final class FunctionTypeBuilder {
       }
 
       // Clone any remaining params that aren't in the function literal.
+      while (oldParams.hasNext()) {
+        paramBuilder.newParameterFromNode(oldParams.next());
+      }
 
       parametersNode = paramBuilder.build();
     }
@@ -480,6 +483,12 @@ final class FunctionTypeBuilder {
     }
 
     // Copy over any old parameters that aren't in the param list.
+    if (!isVarArgs) {
+      while (oldParameterType != null && !isVarArgs) {
+        builder.newParameterFromNode(oldParameterType);
+        oldParameterType = oldParameterType.getNext();
+      }
+    }
 
     if (templateTypeName != null && !foundTemplateType) {
       reportError(TEMPLATE_TYPE_EXPECTED, fnName);
