@@ -3295,7 +3295,7 @@ public class StringUtils {
             return EMPTY;
         }
         
-        StringBuilder buf = new StringBuilder((array[startIndex] == null ? 16 : array[startIndex].toString().length()) + 1);
+        StringBuilder buf = new StringBuilder(noOfItems * 16);
 
         for (int i = startIndex; i < endIndex; i++) {
             if (i > startIndex) {
@@ -3380,7 +3380,7 @@ public class StringUtils {
             return EMPTY;
         }
 
-        StringBuilder buf = new StringBuilder((array[startIndex] == null ? 16 : array[startIndex].toString().length()) + separator.length());
+        StringBuilder buf = new StringBuilder(noOfItems * 16);
 
         for (int i = startIndex; i < endIndex; i++) {
             if (i > startIndex) {
