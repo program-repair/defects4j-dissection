@@ -338,6 +338,13 @@ public class IRFactory {
     @Override
     Node processAssignment(Assignment assignmentNode) {
       Node assign = processInfixExpression(assignmentNode);
+      Node target = assign.getFirstChild();
+      if (!validAssignmentTarget(target)) {
+        errorReporter.error(
+          "invalid assignment target",
+          sourceName,
+          target.getLineno(), "", 0);
+      }
       return assign;
     }
 
@@ -794,6 +801,17 @@ public class IRFactory {
         operand.setDouble(-operand.getDouble());
         return operand;
       } else {
+        if (type == Token.INC || type == Token.DEC) {
+          if (!validAssignmentTarget(operand)) {
+            String msg = (type == Token.INC)
+                ? "invalid increment target"
+                : "invalid decrement target";
+            errorReporter.error(
+              msg,
+              sourceName,
+              operand.getLineno(), "", 0);
+          }
+        }
 
         Node node = newNode(type, operand);
         if (exprNode.isPostfix()) {
@@ -803,6 +821,15 @@ public class IRFactory {
       }
     }
 
+    private boolean validAssignmentTarget(Node target) {
+      switch (target.getType()) {
+        case Token.NAME:
+        case Token.GETPROP:
+        case Token.GETELEM:
+          return true;
+      }
+      return false;
+    }
 
     @Override
     Node processVariableDeclaration(VariableDeclaration declarationNode) {
