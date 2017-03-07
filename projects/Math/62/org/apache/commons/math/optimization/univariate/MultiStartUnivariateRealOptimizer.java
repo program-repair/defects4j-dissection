@@ -143,7 +143,7 @@ public class MultiStartUnivariateRealOptimizer<FUNC extends UnivariateRealFuncti
                                                  final GoalType goal,
                                                  final double min, final double max)
         throws FunctionEvaluationException {
-        return optimize(f, goal, min, max, 0);
+        return optimize(f, goal, min, max, min + 0.5 * (max - min));
     }
 
     /** {@inheritDoc} */
@@ -157,9 +157,8 @@ public class MultiStartUnivariateRealOptimizer<FUNC extends UnivariateRealFuncti
         // Multi-start loop.
         for (int i = 0; i < starts; ++i) {
             try {
-                final double bound1 = (i == 0) ? min : min + generator.nextDouble() * (max - min);
-                final double bound2 = (i == 0) ? max : min + generator.nextDouble() * (max - min);
-                optima[i] = optimizer.optimize(f, goal, FastMath.min(bound1, bound2), FastMath.max(bound1, bound2));
+                final double s = (i == 0) ? startValue : min + generator.nextDouble() * (max - min);
+                optima[i] = optimizer.optimize(f, goal, min, max, s);
             } catch (FunctionEvaluationException fee) {
                 optima[i] = null;
             } catch (ConvergenceException ce) {
