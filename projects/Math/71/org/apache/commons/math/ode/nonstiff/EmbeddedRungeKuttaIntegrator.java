@@ -297,6 +297,10 @@ public abstract class EmbeddedRungeKuttaIntegrator
                   // it is so small (much probably exactly 0 due to limited accuracy)
                   // that the code above would fail handling it.
                   // So we set up an artificial 0 size step by copying states
+                  interpolator.storeTime(stepStart);
+                  System.arraycopy(y, 0, yTmp, 0, y0.length);
+                  hNew     = 0;
+                  stepSize = 0;
                   loop     = false;
               } else {
                   // reject the step to match exactly the next switch time
