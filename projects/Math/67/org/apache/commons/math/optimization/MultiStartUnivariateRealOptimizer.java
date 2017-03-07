@@ -89,12 +89,12 @@ public class MultiStartUnivariateRealOptimizer implements UnivariateRealOptimize
 
     /** {@inheritDoc} */
     public double getFunctionValue() {
-        return optimizer.getFunctionValue();
+        return optimaValues[0];
     }
 
     /** {@inheritDoc} */
     public double getResult() {
-        return optimizer.getResult();
+        return optima[0];
     }
 
     /** {@inheritDoc} */
