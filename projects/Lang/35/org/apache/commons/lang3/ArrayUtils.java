@@ -3292,7 +3292,7 @@ public class ArrayUtils {
         } else if (element != null) {
             type = element.getClass();
         } else {
-            type = Object.class;
+            throw new IllegalArgumentException("Arguments cannot both be null");            
         }
         @SuppressWarnings("unchecked") // type must be T
         T[] newArray = (T[]) copyArrayGrow1(array, type);
@@ -3571,7 +3571,7 @@ public class ArrayUtils {
         } else if (element != null) {
             clss = element.getClass();
         } else {
-            return (T[]) new Object[] { null };
+            throw new IllegalArgumentException("Array and element cannot both be null");            
         }
         @SuppressWarnings("unchecked") // the add method creates an array of type clss, which is type T
         final T[] newArray = (T[]) add(array, index, element, clss);
