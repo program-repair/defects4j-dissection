@@ -729,6 +729,7 @@ class RemoveUnusedVars
             assignedToUnknownValue = true;
           }
 
+          boolean maybeEscaped = false;
           for (Assign assign : assignsByVar.get(var)) {
             if (assign.isPropertyAssign) {
               hasPropertyAssign = true;
@@ -736,9 +737,12 @@ class RemoveUnusedVars
                 assign.assignNode.getLastChild(), true)) {
               assignedToUnknownValue = true;
             }
+            if (assign.maybeAliased) {
+              maybeEscaped = true;
+            }
           }
 
-          if (assignedToUnknownValue && hasPropertyAssign) {
+          if ((assignedToUnknownValue || maybeEscaped) && hasPropertyAssign) {
             changes = markReferencedVar(var) || changes;
             maybeUnreferenced.remove(current);
             current--;
@@ -901,7 +905,7 @@ class RemoveUnusedVars
       this.nameNode = nameNode;
       this.isPropertyAssign = isPropertyAssign;
 
-      this.maybeAliased = !assignNode.getParent().isExprResult();
+      this.maybeAliased = NodeUtil.isExpressionResultUsed(assignNode);
       this.mayHaveSecondarySideEffects =
           maybeAliased ||
           NodeUtil.mayHaveSideEffects(assignNode.getFirstChild()) ||
