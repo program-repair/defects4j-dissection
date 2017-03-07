@@ -79,6 +79,7 @@ import java.io.PrintStream;
  */
 public class FastMath {
     /** StrictMath.log(Double.MAX_VALUE): {@value} */
+    private static final double LOG_MAX_VALUE = StrictMath.log(Double.MAX_VALUE);
 
     /** Archimede's constant PI, ratio of circle circumference to diameter. */
     public static final double PI = 105414357.0 / 33554432.0 + 1.984187159361080883e-9;
@@ -391,12 +392,21 @@ public class FastMath {
       // exp(-z) can be ignored in comparison with exp(z)
 
       if (x > 20) {
+          if (x >= LOG_MAX_VALUE) {
               // Avoid overflow (MATH-905).
+              final double t = exp(0.5 * x);
+              return (0.5 * t) * t;
+          } else {
               return 0.5 * exp(x);
           }
-      if (x < -20) {
+      } else if (x < -20) {
+          if (x <= -LOG_MAX_VALUE) {
               // Avoid overflow (MATH-905).
+              final double t = exp(-0.5 * x);
+              return (0.5 * t) * t;
+          } else {
               return 0.5 * exp(-x);
+          }
       }
 
       final double hiPrec[] = new double[2];
@@ -452,12 +462,21 @@ public class FastMath {
       // exp(-z) can be ignored in comparison with exp(z)
 
       if (x > 20) {
+          if (x >= LOG_MAX_VALUE) {
               // Avoid overflow (MATH-905).
+              final double t = exp(0.5 * x);
+              return (0.5 * t) * t;
+          } else {
               return 0.5 * exp(x);
           }
-      if (x < -20) {
+      } else if (x < -20) {
+          if (x <= -LOG_MAX_VALUE) {
               // Avoid overflow (MATH-905).
+              final double t = exp(-0.5 * x);
+              return (-0.5 * t) * t;
+          } else {
               return -0.5 * exp(-x);
+          }
       }
 
       if (x == 0) {
