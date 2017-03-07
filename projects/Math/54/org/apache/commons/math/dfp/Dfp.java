@@ -270,6 +270,9 @@ public class Dfp implements FieldElement<Dfp> {
             // Zero or sub-normal
             if (x == 0) {
                 // make sure 0 has the right sign
+                if ((bits & 0x8000000000000000L) != 0) {
+                    sign = -1;
+                }
                 return;
             }
 
@@ -2316,7 +2319,10 @@ public class Dfp implements FieldElement<Dfp> {
 
         Dfp y = this;
         boolean negate = false;
-        if (lessThan(getZero())) {
+        int cmp0 = compare(this, getZero());
+        if (cmp0 == 0) {
+            return sign < 0 ? -0.0 : +0.0;
+        } else if (cmp0 < 0) {
             y = negate();
             negate = true;
         }
