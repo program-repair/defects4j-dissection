@@ -1189,9 +1189,15 @@ class TypeInference
     }
 
     // Try to infer the template types
-    Map<TemplateType, JSType> inferred = 
-        inferTemplateTypesFromParameters(fnType, n);
+    Map<TemplateType, JSType> inferred = Maps.filterKeys(
+        inferTemplateTypesFromParameters(fnType, n),
+        new Predicate<TemplateType>() {
 
+          @Override
+          public boolean apply(TemplateType key) {
+            return keys.contains(key);
+          }}
+        );
 
     // Replace all template types. If we couldn't find a replacement, we
     // replace it with UNKNOWN.
