@@ -16,6 +16,7 @@
  */
 package org.apache.commons.math3.random;
 
+import java.io.Serializable;
 
 import org.apache.commons.math3.exception.NotStrictlyPositiveException;
 import org.apache.commons.math3.util.FastMath;
@@ -26,8 +27,10 @@ import org.apache.commons.math3.util.FastMath;
  * @since 2.0
  */
 public abstract class BitsStreamGenerator
-    implements RandomGenerator {
+    implements RandomGenerator,
+               Serializable {
     /** Serializable version identifier */
+    private static final long serialVersionUID = 20130104L;
     /** Next gaussian. */
     private double nextGaussian;
 
