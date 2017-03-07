@@ -94,6 +94,26 @@ public class LocaleUtils {
             throw new IllegalArgumentException("Invalid locale format: " + str);
         }
         final char ch0 = str.charAt(0);
+        if (ch0 == '_') {
+            if (len < 3) {
+                throw new IllegalArgumentException("Invalid locale format: " + str);
+            }
+            final char ch1 = str.charAt(1);
+            final char ch2 = str.charAt(2);
+            if (!Character.isUpperCase(ch1) || !Character.isUpperCase(ch2)) {
+                throw new IllegalArgumentException("Invalid locale format: " + str);
+            }
+            if (len == 3) {
+                return new Locale("", str.substring(1, 3));
+            }
+            if (len < 5) {
+                throw new IllegalArgumentException("Invalid locale format: " + str);
+            }
+            if (str.charAt(3) != '_') {
+                throw new IllegalArgumentException("Invalid locale format: " + str);
+            }
+            return new Locale("", str.substring(1, 3), str.substring(4));
+        } else {
             final char ch1 = str.charAt(1);
             if (!Character.isLowerCase(ch0) || !Character.isLowerCase(ch1)) {
                 throw new IllegalArgumentException("Invalid locale format: " + str);
@@ -125,6 +145,7 @@ public class LocaleUtils {
                 throw new IllegalArgumentException("Invalid locale format: " + str);
             }
             return new Locale(str.substring(0, 2), str.substring(3, 5), str.substring(6));
+        }
     }
 
     //-----------------------------------------------------------------------
