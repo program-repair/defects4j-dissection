@@ -575,7 +575,7 @@ final class NameAnalyzer implements CompilerPass {
           } else {
             recordDepScope(nameNode, ns);
           }
-        } else {
+        } else if (!(parent.isCall() && parent.getFirstChild() == n)) {
           // The rhs of the assignment is the caller, so it's used by the
           // context. Don't associate it w/ the lhs.
           // FYI: this fixes only the specific case where the assignment is the
