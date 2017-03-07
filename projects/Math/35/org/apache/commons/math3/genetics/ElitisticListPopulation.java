@@ -48,7 +48,7 @@ public class ElitisticListPopulation extends ListPopulation {
                                    final int populationLimit,
                                    final double elitismRate) {
         super(chromosomes, populationLimit);
-        this.elitismRate = elitismRate;
+        setElitismRate(elitismRate);
     }
 
     /**
@@ -62,7 +62,7 @@ public class ElitisticListPopulation extends ListPopulation {
      */
     public ElitisticListPopulation(final int populationLimit, final double elitismRate) {
         super(populationLimit);
-        this.elitismRate = elitismRate;
+        setElitismRate(elitismRate);
     }
 
     /**
