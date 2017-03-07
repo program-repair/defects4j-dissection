@@ -167,17 +167,23 @@ class ScopedAliases implements HotSwapCompilerPass {
 
   private class AliasedTypeNode implements AliasUsage {
     private final Node typeReference;
+    private final Node aliasDefinition;
     private final String aliasName;
 
-    AliasedTypeNode(Node typeReference,
+    AliasedTypeNode(Node typeReference, Node aliasDefinition,
         String aliasName) {
       this.typeReference = typeReference;
+      this.aliasDefinition = aliasDefinition;
       this.aliasName = aliasName;
     }
 
     @Override
     public void applyAlias() {
-      typeReference.setString(aliasName);
+      String typeName = typeReference.getString();
+      String aliasExpanded =
+          Preconditions.checkNotNull(aliasDefinition.getQualifiedName());
+      Preconditions.checkState(typeName.startsWith(aliasName));
+      typeReference.setString(typeName.replaceFirst(aliasName, aliasExpanded));
     }
   }
 
@@ -465,7 +471,7 @@ class ScopedAliases implements HotSwapCompilerPass {
         Var aliasVar = aliases.get(baseName);
         if (aliasVar != null) {
           Node aliasedNode = aliasVar.getInitialValue();
-          aliasUsages.add(new AliasedTypeNode(typeNode, aliasedNode.getQualifiedName() + name.substring(endIndex)));
+          aliasUsages.add(new AliasedTypeNode(typeNode, aliasedNode, baseName));
         }
       }
 
