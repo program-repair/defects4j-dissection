@@ -41,10 +41,10 @@ public class BrentOptimizer extends AbstractUnivariateRealOptimizer {
      * Construct a solver.
      */
     public BrentOptimizer() {
-        setMaxEvaluations(Integer.MAX_VALUE);
+        setMaxEvaluations(1000);
         setMaximalIterationCount(100);
-        setAbsoluteAccuracy(1E-10);
-        setRelativeAccuracy(1.0e-14);
+        setAbsoluteAccuracy(1e-11);
+        setRelativeAccuracy(1e-9);
     }
 
     /**
@@ -54,16 +54,9 @@ public class BrentOptimizer extends AbstractUnivariateRealOptimizer {
      */
     protected double doOptimize()
         throws MaxIterationsExceededException, FunctionEvaluationException {
-        throw new UnsupportedOperationException();
-    }
-    public double optimize(final UnivariateRealFunction f, final GoalType goalType, final double min, final double max, final double startValue) throws MaxIterationsExceededException, FunctionEvaluationException {
-        clearResult();
         return localMin(getGoalType() == GoalType.MINIMIZE,
-                        f, goalType, min, startValue, max,
+                        getMin(), getStartValue(), getMax(),
                         getRelativeAccuracy(), getAbsoluteAccuracy());
-    }
-    public double optimize(final UnivariateRealFunction f, final GoalType goalType, final double min, final double max) throws MaxIterationsExceededException, FunctionEvaluationException {
-        return optimize(f, goalType, min, max, min + GOLDEN_SECTION * (max - min));
     }
 
     /**
@@ -91,8 +84,6 @@ public class BrentOptimizer extends AbstractUnivariateRealOptimizer {
      * the function.
      */
     private double localMin(boolean isMinim,
-                            UnivariateRealFunction f,
-                            GoalType goalType,
                             double lo, double mid, double hi,
                             double eps, double t)
         throws MaxIterationsExceededException, FunctionEvaluationException {
@@ -116,15 +107,14 @@ public class BrentOptimizer extends AbstractUnivariateRealOptimizer {
         double w = x;
         double d = 0;
         double e = 0;
-        double fx = computeObjectiveValue(f, x);
-        if (goalType == GoalType.MAXIMIZE) {
+        double fx = computeObjectiveValue(x);
+        if (!isMinim) {
             fx = -fx;
         }
         double fv = fx;
         double fw = fx;
 
-        int count = 0;
-        while (count < maximalIterationCount) {
+        while (true) {
             double m = 0.5 * (a + b);
             final double tol1 = eps * Math.abs(x) + t;
             final double tol2 = 2 * tol1;
@@ -197,8 +187,8 @@ public class BrentOptimizer extends AbstractUnivariateRealOptimizer {
                     u = x + d;
                 }
 
-                double fu = computeObjectiveValue(f, u);
-                if (goalType == GoalType.MAXIMIZE) {
+                double fu = computeObjectiveValue(u);
+                if (!isMinim) {
                     fu = -fu;
                 }
 
@@ -235,11 +225,10 @@ public class BrentOptimizer extends AbstractUnivariateRealOptimizer {
                     }
                 }
             } else { // termination
-                setResult(x, (goalType == GoalType.MAXIMIZE) ? -fx : fx, count);
+                setFunctionValue(isMinim ? fx : -fx);
                 return x;
             }
-            ++count;
+            incrementIterationsCounter();
         }
-        throw new MaxIterationsExceededException(maximalIterationCount);
     }
 }
