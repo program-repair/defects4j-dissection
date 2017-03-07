@@ -421,7 +421,7 @@ public class Reporter {
         throw new NoInteractionsWanted(join(
                 "No interactions wanted here:",
                 new LocationImpl(),
-                "But found this interaction on mock '" + undesired.getMock() + "':",
+                "But found this interaction on mock '" + safelyGetMockName(undesired.getMock()) + "':",
                 undesired.getLocation(),
                 scenario
         ));
@@ -431,7 +431,7 @@ public class Reporter {
         throw new VerificationInOrderFailure(join(
                 "No interactions wanted here:",
                 new LocationImpl(),
-                "But found this interaction on mock '" + undesired.getMock() + "':",
+                "But found this interaction on mock '" + safelyGetMockName(undesired.getMock()) + "':",
                 undesired.getLocation()
         ));
     }
@@ -674,6 +674,9 @@ public class Reporter {
     }
 
     private String exceptionCauseMessageIfAvailable(Exception details) {
+        if (details.getCause() == null) {
+            return details.getMessage();
+        }
         return details.getCause().getMessage();
     }
 
