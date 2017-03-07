@@ -373,7 +373,7 @@ class PeepholeReplaceKnownMethods extends AbstractPeepholeOptimization{
 
     Node right = callTarget.getNext();
     if (right != null) {
-      if (!NodeUtil.isImmutableValue(right)) {
+      if (right.getNext() != null || !NodeUtil.isImmutableValue(right)) {
         return n;
       }
     }
@@ -386,7 +386,12 @@ class PeepholeReplaceKnownMethods extends AbstractPeepholeOptimization{
       return n;
     }
 
+    if (right != null && right.getType() == Token.STRING
+        && ",".equals(right.getString())) {
       // "," is the default, it doesn't need to be explicit
+      n.removeChild(right);
+      reportCodeChange();
+    }
 
     String joinString = (right == null) ? "," : NodeUtil.getStringValue(right);
     List<Node> arrayFoldedChildren = Lists.newLinkedList();
