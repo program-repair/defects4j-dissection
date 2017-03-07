@@ -163,6 +163,9 @@ class PrepareAst implements CompilerPass {
       Node first = n.getFirstChild();
 
       // ignore cast nodes.
+      while (first.isCast()) {
+        first = first.getFirstChild();
+      }
 
       if (!NodeUtil.isGet(first)) {
         n.putBooleanProp(Node.FREE_CALL, true);
