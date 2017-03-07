@@ -896,9 +896,16 @@ final class TypedScopeCreator implements ScopeCreator {
       // scope where the root object appears. This helps out people
       // who declare "global" names in an anonymous namespace.
       Scope scopeToDeclareIn = scope;
+      if (n.getType() == Token.GETPROP && !scope.isGlobal() &&
+          isQnameRootedInGlobalScope(n)) {
+        Scope globalScope = scope.getGlobalScope();
 
         // don't try to declare in the global scope if there's
         // already a symbol there with this name.
+        if (!globalScope.isDeclared(variableName, false)) {
+          scopeToDeclareIn = scope.getGlobalScope();
+        }
+      }
 
       // declared in closest scope?
       if (scopeToDeclareIn.isDeclared(variableName, false)) {
