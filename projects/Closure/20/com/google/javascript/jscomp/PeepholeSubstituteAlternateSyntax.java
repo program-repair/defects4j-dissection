@@ -217,7 +217,8 @@ class PeepholeSubstituteAlternateSyntax
       // slightly different semantics than '' + (a). See
       // http://code.google.com/p/closure-compiler/issues/detail?id=759
       Node value = callTarget.getNext();
-      if (value != null) {
+      if (value != null && value.getNext() == null &&
+          NodeUtil.isImmutableValue(value)) {
         Node addition = IR.add(
             IR.string("").srcref(callTarget),
             value.detachFromParent());
