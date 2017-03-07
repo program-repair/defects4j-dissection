@@ -242,12 +242,15 @@ public abstract class EmbeddedRungeKuttaIntegrator
         }
 
         if (firstTime) {
-          final double[] scale;
+          final double[] scale = new double[y0.length];
           if (vecAbsoluteTolerance == null) {
-              scale = new double[y0.length];
-              java.util.Arrays.fill(scale, scalAbsoluteTolerance);
+              for (int i = 0; i < scale.length; ++i) {
+                scale[i] = scalAbsoluteTolerance + scalRelativeTolerance * Math.abs(y[i]);
+              }
             } else {
-              scale = vecAbsoluteTolerance;
+              for (int i = 0; i < scale.length; ++i) {
+                scale[i] = vecAbsoluteTolerance[i] + vecRelativeTolerance[i] * Math.abs(y[i]);
+              }
             }
           hNew = initializeStep(equations, forward, getOrder(), scale,
                                 stepStart, y, yDotK[0], yTmp, yDotK[1]);
