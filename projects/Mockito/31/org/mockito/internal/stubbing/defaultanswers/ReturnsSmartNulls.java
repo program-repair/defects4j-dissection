@@ -6,6 +6,7 @@ package org.mockito.internal.stubbing.defaultanswers;
 
 import java.io.Serializable;
 import java.lang.reflect.Method;
+import java.util.Arrays;
 
 import org.mockito.Mockito;
 import org.mockito.cglib.proxy.MethodInterceptor;
@@ -57,7 +58,8 @@ public class ReturnsSmartNulls implements Answer<Object>, Serializable {
         }
 
 		private String formatMethodCall() {
-			return invocation.getMethod().getName() + "()";
+			String args = Arrays.toString(invocation.getArguments());
+			return invocation.getMethod().getName() + "(" + args.substring(1, args.length() - 1) +	")";
 		}
     }
 
