@@ -417,6 +417,7 @@ final class TypedScopeCreator implements ScopeCreator {
      * For more information, see
      * http://code.google.com/p/closure-compiler/issues/detail?id=314
      */
+    private List<Node> lentObjectLiterals = null;
 
     /**
      * Type-less stubs.
@@ -544,6 +545,13 @@ final class TypedScopeCreator implements ScopeCreator {
       }
 
       // Analyze any @lends object literals in this statement.
+      if (n.getParent() != null && NodeUtil.isStatement(n) &&
+          lentObjectLiterals != null) {
+        for (Node objLit : lentObjectLiterals) {
+          defineObjectLiteral(objLit);
+        }
+        lentObjectLiterals.clear();
+      }
     }
 
     private void attachLiteralTypes(NodeTraversal t, Node n) {
@@ -577,7 +585,16 @@ final class TypedScopeCreator implements ScopeCreator {
           break;
 
         case Token.OBJECTLIT:
+          JSDocInfo info = n.getJSDocInfo();
+          if (info != null &&
+              info.getLendsName() != null) {
+            if (lentObjectLiterals == null) {
+              lentObjectLiterals = Lists.newArrayList();
+            }
+            lentObjectLiterals.add(n);
+          } else {
             defineObjectLiteral(n);
+          }
           break;
 
           // NOTE(nicksantos): If we ever support Array tuples,
