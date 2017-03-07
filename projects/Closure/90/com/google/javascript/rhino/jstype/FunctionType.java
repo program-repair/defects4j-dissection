@@ -877,6 +877,9 @@ public class FunctionType extends PrototypeObjectType {
     // mean "nullable Foo". For certain tags (like @extends) we de-nullify
     // the name for them.
     JSType maybeTypeOfThis = safeResolve(typeOfThis, t, scope);
+    if (maybeTypeOfThis != null) {
+      maybeTypeOfThis = maybeTypeOfThis.restrictByNotNullOrUndefined();
+    }
     if (maybeTypeOfThis instanceof ObjectType) {
       typeOfThis = (ObjectType) maybeTypeOfThis;
     }
