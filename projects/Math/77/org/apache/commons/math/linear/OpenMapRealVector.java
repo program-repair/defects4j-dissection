@@ -495,15 +495,6 @@ public class OpenMapRealVector extends AbstractRealVector implements SparseRealV
         return max;
     }
 
-    public double getLInfNorm() {
-        double max = 0;
-        Iterator iter = entries.iterator();
-        while (iter.hasNext()) {
-            iter.advance();
-            max += iter.value();
-        }
-        return max;
-    }
     /**
      * Optimized method to compute LInfDistance.
      * @param v The vector to compute from
