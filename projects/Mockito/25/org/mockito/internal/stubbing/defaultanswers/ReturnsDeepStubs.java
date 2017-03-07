@@ -4,6 +4,7 @@
  */
 package org.mockito.internal.stubbing.defaultanswers;
 
+import org.mockito.MockSettings;
 import org.mockito.internal.InternalMockHandler;
 import org.mockito.internal.creation.settings.CreationSettings;
 import org.mockito.internal.stubbing.InvocationContainerImpl;
@@ -16,6 +17,8 @@ import org.mockito.stubbing.Answer;
 
 import java.io.Serializable;
 
+import static org.mockito.Mockito.mock;
+import static org.mockito.Mockito.withSettings;
 
 /**
  * Returning deep stub implementation.
@@ -50,10 +53,10 @@ public class ReturnsDeepStubs implements Answer<Object>, Serializable {
             return delegate.returnValueFor(rawType);
         }
 
-        return getMock(invocation);
+        return getMock(invocation, returnTypeGenericMetadata);
     }
 
-    private Object getMock(InvocationOnMock invocation) throws Throwable {
+    private Object getMock(InvocationOnMock invocation, GenericMetadataSupport returnTypeGenericMetadata) throws Throwable {
     	InternalMockHandler<Object> handler = new MockUtil().getMockHandler(invocation.getMock());
     	InvocationContainerImpl container = (InvocationContainerImpl) handler.getInvocationContainer();
 
@@ -65,7 +68,7 @@ public class ReturnsDeepStubs implements Answer<Object>, Serializable {
 		}
 
         // deep stub
-        return recordDeepStubMock(invocation, container);
+        return recordDeepStubMock(createNewDeepStubMock(returnTypeGenericMetadata), container);
     }
 
     /**
@@ -74,13 +77,33 @@ public class ReturnsDeepStubs implements Answer<Object>, Serializable {
      * @param returnTypeGenericMetadata The metadata to use to create the new mock.
      * @return The mock
      */
+    private Object createNewDeepStubMock(GenericMetadataSupport returnTypeGenericMetadata) {
+        return mock(
+                returnTypeGenericMetadata.rawType(),
+                withSettingsUsing(returnTypeGenericMetadata)
+        );
+    }
 
+    private MockSettings withSettingsUsing(GenericMetadataSupport returnTypeGenericMetadata) {
+        MockSettings mockSettings =
+                returnTypeGenericMetadata.rawExtraInterfaces().length > 0 ?
+                withSettings().extraInterfaces(returnTypeGenericMetadata.rawExtraInterfaces())
+                : withSettings();
 
+        return mockSettings
+                .defaultAnswer(returnsDeepStubsAnswerUsing(returnTypeGenericMetadata));
+    }
 
+    private ReturnsDeepStubs returnsDeepStubsAnswerUsing(final GenericMetadataSupport returnTypeGenericMetadata) {
+        return new ReturnsDeepStubs() {
+            @Override
+            protected GenericMetadataSupport actualParameterizedType(Object mock) {
+                return returnTypeGenericMetadata;
+            }
+        };
+    }
 
-    private Object recordDeepStubMock(InvocationOnMock invocation, InvocationContainerImpl container) {
-        Class<?> clz = invocation.getMethod().getReturnType();
-        final Object mock = org.mockito.Mockito.mock(clz, this);
+    private Object recordDeepStubMock(final Object mock, InvocationContainerImpl container) throws Throwable {
 
         container.addAnswer(new Answer<Object>() {
             public Object answer(InvocationOnMock invocation) throws Throwable {
