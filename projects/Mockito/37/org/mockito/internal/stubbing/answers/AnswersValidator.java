@@ -25,8 +25,16 @@ public class AnswersValidator {
             validateDoNothing((DoesNothing) answer, invocation);
         }
         
+        if (answer instanceof CallsRealMethods) {
+            validateMockingConcreteClass((CallsRealMethods) answer, invocation);
+        }
     }
 
+    private void validateMockingConcreteClass(CallsRealMethods answer, Invocation invocation) {
+        if (invocation.getMethod().getDeclaringClass().isInterface()) {
+            reporter.cannotCallRealMethodOnInterface();
+        }
+    }
 
     private void validateDoNothing(DoesNothing answer, Invocation invocation) {
         if (!invocation.isVoid()) {
