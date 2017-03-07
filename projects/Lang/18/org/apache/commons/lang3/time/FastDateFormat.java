@@ -492,10 +492,10 @@ public class FastDateFormat extends Format {
                 rule = new TextField(Calendar.ERA, ERAs);
                 break;
             case 'y': // year (number)
-                if (tokenLen >= 4) {
-                    rule = selectNumberRule(Calendar.YEAR, tokenLen);
-                } else {
+                if (tokenLen == 2) {
                     rule = TwoDigitYearField.INSTANCE;
+                } else {
+                    rule = selectNumberRule(Calendar.YEAR, tokenLen < 4 ? 4 : tokenLen);
                 }
                 break;
             case 'M': // month in year (text and number)
