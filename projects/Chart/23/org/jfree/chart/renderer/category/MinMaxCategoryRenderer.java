@@ -432,6 +432,25 @@ public class MinMaxCategoryRenderer extends AbstractCategoryItemRenderer {
      *
      * @since 1.0.7
      */
+    public boolean equals(Object obj) {
+        if (obj == this) {
+            return true;
+        }
+        if (!(obj instanceof MinMaxCategoryRenderer)) {
+            return false;
+        }
+        MinMaxCategoryRenderer that = (MinMaxCategoryRenderer) obj;
+        if (this.plotLines != that.plotLines) {
+            return false;
+        }
+        if (!PaintUtilities.equal(this.groupPaint, that.groupPaint)) {
+            return false;
+        }
+        if (!this.groupStroke.equals(that.groupStroke)) {
+            return false;
+        }
+        return super.equals(obj);
+    }
 
     /**
      * Returns an icon.
