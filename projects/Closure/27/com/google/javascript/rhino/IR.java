@@ -108,6 +108,9 @@ public class IR {
     return block;
   }
 
+  private static Node blockUnchecked(Node stmt) {
+    return new Node(Token.BLOCK, stmt);
+  }
 
   public static Node script(Node ... stmts) {
     // TODO(johnlenz): finish setting up the SCRIPT node
@@ -221,8 +224,8 @@ public class IR {
   }
 
   public static Node tryFinally(Node tryBody, Node finallyBody) {
-    Preconditions.checkState(tryBody.isLabelName());
-    Preconditions.checkState(finallyBody.isLabelName());
+    Preconditions.checkState(tryBody.isBlock());
+    Preconditions.checkState(finallyBody.isBlock());
     Node catchBody = block().copyInformationFrom(tryBody);
     return new Node(Token.TRY, tryBody, catchBody, finallyBody);
   }
@@ -230,7 +233,7 @@ public class IR {
   public static Node tryCatch(Node tryBody, Node catchNode) {
     Preconditions.checkState(tryBody.isBlock());
     Preconditions.checkState(catchNode.isCatch());
-    Node catchBody = block(catchNode).copyInformationFrom(catchNode);
+    Node catchBody = blockUnchecked(catchNode).copyInformationFrom(catchNode);
     return new Node(Token.TRY, tryBody, catchBody);
   }
 
