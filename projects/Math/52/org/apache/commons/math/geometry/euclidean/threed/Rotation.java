@@ -341,7 +341,8 @@ public class Rotation implements Serializable {
   Vector3D k     = v1Su1.crossProduct(v2Su2);
   Vector3D u3    = u1.crossProduct(u2);
   double c       = k.dotProduct(u3);
-  if (c == 0) {
+  final double inPlaneThreshold = 0.001;
+  if (c <= inPlaneThreshold * k.getNorm() * u3.getNorm()) {
     // the (q1, q2, q3) vector is close to the (u1, u2) plane
     // we try other vectors
     Vector3D v3 = Vector3D.crossProduct(v1, v2);
@@ -350,13 +351,13 @@ public class Rotation implements Serializable {
     Vector3D u2Prime = u1.crossProduct(u3);
     c = k.dotProduct(u2Prime);
 
-    if (c == 0) {
+    if (c <= inPlaneThreshold * k.getNorm() * u2Prime.getNorm()) {
       // the (q1, q2, q3) vector is also close to the (u1, u3) plane,
       // it is almost aligned with u1: we try (u2, u3) and (v2, v3)
       k = v2Su2.crossProduct(v3Su3);;
       c = k.dotProduct(u2.crossProduct(u3));;
 
-      if (c == 0) {
+      if (c <= 0) {
         // the (q1, q2, q3) vector is aligned with everything
         // this is really the identity rotation
         q0 = 1.0;
