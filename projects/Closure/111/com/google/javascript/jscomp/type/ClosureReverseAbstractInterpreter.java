@@ -51,7 +51,8 @@ public class ClosureReverseAbstractInterpreter
       new RestrictByTrueTypeOfResultVisitor() {
         @Override
         protected JSType caseTopType(JSType topType) {
-          return topType;
+          return topType.isAllType() ?
+              getNativeType(ARRAY_TYPE) : topType;
         }
 
         @Override
