@@ -148,6 +148,7 @@ public class BrentOptimizer extends BaseAbstractUnivariateOptimizer {
         UnivariatePointValuePair current
             = new UnivariatePointValuePair(x, isMinim ? fx : -fx);
         // Best point encountered so far (which is the initial guess).
+        UnivariatePointValuePair best = current;
 
         int iter = 0;
         while (true) {
@@ -231,10 +232,15 @@ public class BrentOptimizer extends BaseAbstractUnivariateOptimizer {
                 // User-defined convergence checker.
                 previous = current;
                 current = new UnivariatePointValuePair(u, isMinim ? fu : -fu);
+                best = best(best,
+                            best(current,
+                                 previous,
+                                 isMinim),
+                            isMinim);
 
                 if (checker != null) {
                     if (checker.converged(iter, previous, current)) {
-                        return best(current, previous, isMinim);
+                        return best;
                     }
                 }
 
@@ -271,9 +277,10 @@ public class BrentOptimizer extends BaseAbstractUnivariateOptimizer {
                     }
                 }
             } else { // Default termination (Brent's criterion).
-                return
+                return best(best,
                             best(current,
                                  previous,
+                                 isMinim),
                             isMinim);
             }
             ++iter;
