@@ -162,7 +162,11 @@ public class ProperFractionFormat extends FractionFormat {
             return null;
         }
         
+        if (num.intValue() < 0) {
             // minus signs should be leading, invalid expression
+            pos.setIndex(initialIndex);
+            return null;
+        }
 
         // parse '/'
         int startIndex = pos.getIndex();
@@ -197,7 +201,11 @@ public class ProperFractionFormat extends FractionFormat {
             return null;
         }
         
+        if (den.intValue() < 0) {
             // minus signs must be leading, invalid
+            pos.setIndex(initialIndex);
+            return null;
+        }
 
         int w = whole.intValue();
         int n = num.intValue();
