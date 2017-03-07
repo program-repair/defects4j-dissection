@@ -163,6 +163,7 @@ public class LevenbergMarquardtOptimizer extends AbstractLeastSquaresOptimizer {
         setMaxIterations(1000);
 
         // default values for the tuning parameters
+        setConvergenceChecker(null);
         setInitialStepBoundFactor(100.0);
         setCostRelativeTolerance(1.0e-10);
         setParRelativeTolerance(1.0e-10);
@@ -244,11 +245,13 @@ public class LevenbergMarquardtOptimizer extends AbstractLeastSquaresOptimizer {
         // outer loop
         lmPar = 0;
         boolean firstIteration = true;
+        VectorialPointValuePair current = new VectorialPointValuePair(point, objective);
         while (true) {
 
             incrementIterationsCounter();
 
             // compute the Q.R. decomposition of the jacobian matrix
+            VectorialPointValuePair previous = current;
             updateJacobian();
             qrDecomposition();
 
@@ -300,7 +303,7 @@ public class LevenbergMarquardtOptimizer extends AbstractLeastSquaresOptimizer {
             }
             if (maxCosine <= orthoTolerance) {
                 // convergence has been reached
-                return new VectorialPointValuePair(point, objective);
+                return current;
             }
 
             // rescale if necessary
@@ -342,6 +345,7 @@ public class LevenbergMarquardtOptimizer extends AbstractLeastSquaresOptimizer {
 
                 // evaluate the function at x + p and calculate its norm
                 updateResidualsAndCost();
+                current = new VectorialPointValuePair(point, objective);
 
                 // compute the scaled actual reduction
                 double actRed = -1.0;
@@ -410,14 +414,20 @@ public class LevenbergMarquardtOptimizer extends AbstractLeastSquaresOptimizer {
                 }
 
                 // tests for convergence.
+                if (checker != null) {
                     // we use the vectorial convergence checker
+                    if (checker.converged(getIterations(), previous, current)) {
+                        return current;                        
+                    }
+                } else {
                     // we use the Levenberg-Marquardt specific convergence parameters
                     if (((Math.abs(actRed) <= costRelativeTolerance) &&
                          (preRed <= costRelativeTolerance) &&
                          (ratio <= 2.0)) ||
                         (delta <= parRelativeTolerance * xNorm)) {
-                        return new VectorialPointValuePair(point, objective);
+                        return current;
                     }
+                }
 
                 // tests for termination and stringent tolerances
                 // (2.2204e-16 is the machine epsilon for IEEE754)
