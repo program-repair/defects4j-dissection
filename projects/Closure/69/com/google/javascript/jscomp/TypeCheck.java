@@ -1577,6 +1577,13 @@ public class TypeCheck implements NodeTraversal.Callback, CompilerPass {
 
       // Functions with explcit 'this' types must be called in a GETPROP
       // or GETELEM.
+      if (functionType.isOrdinaryFunction() &&
+          !functionType.getTypeOfThis().isUnknownType() &&
+          !functionType.getTypeOfThis().isNativeObjectType() &&
+          !(child.getType() == Token.GETELEM ||
+            child.getType() == Token.GETPROP)) {
+        report(t, n, EXPECTED_THIS_TYPE, functionType.toString());
+      }
 
       visitParameterList(t, n, functionType);
       ensureTyped(t, n, functionType.getReturnType());
