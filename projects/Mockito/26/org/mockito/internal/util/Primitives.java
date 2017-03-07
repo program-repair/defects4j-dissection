@@ -63,6 +63,6 @@ public class Primitives {
         primitiveValues.put(int.class, 0);
         primitiveValues.put(long.class, 0L);
         primitiveValues.put(float.class, 0F);
-        primitiveValues.put(double.class, 0);
+        primitiveValues.put(double.class, 0D);
     }
 }
