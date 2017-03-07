@@ -17,6 +17,7 @@ import org.mockito.internal.stubbing.InvocationContainerImpl;
 import org.mockito.internal.stubbing.OngoingStubbingImpl;
 import org.mockito.internal.stubbing.StubbedInvocationMatcher;
 import org.mockito.internal.stubbing.VoidMethodStubbableImpl;
+import org.mockito.internal.verification.MockAwareVerificationMode;
 import org.mockito.internal.verification.VerificationDataImpl;
 import org.mockito.stubbing.Answer;
 import org.mockito.stubbing.VoidMethodStubbable;
@@ -73,9 +74,11 @@ public class MockHandler<T> implements MockitoInvocationHandler, MockHandlerInte
         if (verificationMode != null) {
             //We need to check if verification was started on the correct mock 
             // - see VerifyingWithAnExtraCallToADifferentMockTest
+            if (verificationMode instanceof MockAwareVerificationMode && ((MockAwareVerificationMode) verificationMode).getMock() == invocation.getMock()) {
                 VerificationDataImpl data = new VerificationDataImpl(invocationContainerImpl.getInvocations(), invocationMatcher);            
                 verificationMode.verify(data);
                 return null;
+            }
         }
         
         invocationContainerImpl.setInvocationForPotentialStubbing(invocationMatcher);
