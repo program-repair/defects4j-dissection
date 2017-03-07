@@ -854,7 +854,8 @@ public class TimeSeries extends Series implements Cloneable, Serializable {
      *         subclasses may differ.
      */
     public Object clone() throws CloneNotSupportedException {
-        Object clone = createCopy(0, getItemCount() - 1);
+        TimeSeries clone = (TimeSeries) super.clone();
+        clone.data = (List) ObjectUtilities.deepClone(this.data);
         return clone;
     }
 
