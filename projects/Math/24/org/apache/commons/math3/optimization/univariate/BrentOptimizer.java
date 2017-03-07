@@ -227,7 +227,7 @@ public class BrentOptimizer extends BaseAbstractUnivariateOptimizer {
 
                 if (checker != null) {
                     if (checker.converged(iter, previous, current)) {
-                        return current;
+                        return best(current, previous, isMinim);
                     }
                 }
 
@@ -264,7 +264,7 @@ public class BrentOptimizer extends BaseAbstractUnivariateOptimizer {
                     }
                 }
             } else { // Default termination (Brent's criterion).
-                return current;
+                return best(current, previous, isMinim);
             }
             ++iter;
         }
