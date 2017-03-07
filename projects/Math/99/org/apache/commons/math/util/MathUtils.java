@@ -540,6 +540,11 @@ public final class MathUtils {
         int u = p;
         int v = q;
         if ((u == 0) || (v == 0)) {
+            if ((u == Integer.MIN_VALUE) || (v == Integer.MIN_VALUE)) {
+                throw MathRuntimeException.createArithmeticException(
+                        "overflow: gcd({0}, {1}) is 2^31",
+                        new Object[] { p, q });
+            }
             return (Math.abs(u) + Math.abs(v));
         }
         // keep u and v negative, as negative integers range down to
@@ -711,6 +716,9 @@ public final class MathUtils {
             return 0;
         }
         int lcm = Math.abs(mulAndCheck(a / gcd(a, b), b));
+        if (lcm == Integer.MIN_VALUE){
+            throw new ArithmeticException("overflow: lcm is 2^31");
+        }
         return lcm;
     }
 
