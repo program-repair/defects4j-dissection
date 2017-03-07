@@ -352,6 +352,11 @@ public class DateTimeParserBucket {
             for (int i = 0; i < count; i++) {
                 millis = savedFields[i].set(millis, resetFields);
             }
+            if (resetFields) {
+                for (int i = 0; i < count; i++) {
+                    millis = savedFields[i].set(millis, i == (count - 1));
+                }
+            }
         } catch (IllegalFieldValueException e) {
             if (text != null) {
                 e.prependMessage("Cannot parse \"" + text + '"');
