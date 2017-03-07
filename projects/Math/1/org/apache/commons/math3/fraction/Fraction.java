@@ -212,6 +212,9 @@ public class Fraction
             if ((FastMath.abs(p2) > overflow) || (FastMath.abs(q2) > overflow)) {
                 // in maxDenominator mode, if the last fraction was very close to the actual value
                 // q2 may overflow in the next iteration; in this case return the last one.
+                if (epsilon == 0.0 && FastMath.abs(q1) < maxDenominator) {
+                    break;
+                }
                 throw new FractionConversionException(value, p2, q2);
             }
 
