@@ -346,10 +346,9 @@ public class OpenMapRealVector extends SparseRealVector
          * this only. Indeed, if this[i] = 0d and v[i] = 0d, then
          * this[i] / v[i] = NaN, and not 0d.
          */
-        Iterator iter = entries.iterator();
-        while (iter.hasNext()) {
-            iter.advance();
-            res.setEntry(iter.key(), iter.value() / v.getEntry(iter.key()));
+        final int n = getDimension();
+        for (int i = 0; i < n; i++) {
+            res.setEntry(i, this.getEntry(i) / v.getEntry(i));
         }
         return res;
     }
@@ -371,6 +370,18 @@ public class OpenMapRealVector extends SparseRealVector
          *
          * These special cases are handled below.
          */
+        if (v.isNaN() || v.isInfinite()) {
+            final int n = getDimension();
+            for (int i = 0; i < n; i++) {
+                final double y = v.getEntry(i);
+                if (Double.isNaN(y)) {
+                    res.setEntry(i, Double.NaN);
+                } else if (Double.isInfinite(y)) {
+                    final double x = this.getEntry(i);
+                    res.setEntry(i, x * y);
+                }
+            }
+        }
         return res;
     }
 
