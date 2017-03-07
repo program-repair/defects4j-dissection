@@ -84,7 +84,8 @@ public class Line implements Embedding<Euclidean3D, Euclidean1D> {
      * @return a new instance, with reversed direction
      */
     public Line revert() {
-        final Line reverted = new Line(zero, zero.subtract(direction));
+        final Line reverted = new Line(this);
+        reverted.direction = reverted.direction.negate();
         return reverted;
     }
 
