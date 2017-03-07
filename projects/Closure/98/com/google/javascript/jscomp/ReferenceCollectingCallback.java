@@ -358,6 +358,14 @@ class ReferenceCollectingCallback implements ScopedCallback, CompilerPass {
       }
 
       // Make sure this assignment is not in a loop.
+      for (BasicBlock block = ref.getBasicBlock();
+           block != null; block = block.getParent()) {
+        if (block.isFunction) {
+          break;
+        } else if (block.isLoop) {
+          return false;
+        }
+      }
 
       return true;
     }
@@ -542,10 +550,12 @@ class ReferenceCollectingCallback implements ScopedCallback, CompilerPass {
     /**
      * Whether this block denotes a function scope.
      */
+    private final boolean isFunction;
 
     /**
      * Whether this block denotes a loop.
      */
+    private final boolean isLoop;
 
     /**
      * Creates a new block.
@@ -558,7 +568,16 @@ class ReferenceCollectingCallback implements ScopedCallback, CompilerPass {
       // only named functions may be hoisted.
       this.isHoisted = NodeUtil.isHoistedFunctionDeclaration(root);
 
+      this.isFunction = root.getType() == Token.FUNCTION;
 
+      if (root.getParent() != null) {
+        int pType = root.getParent().getType();
+        this.isLoop = pType == Token.DO ||
+            pType == Token.WHILE ||
+            pType == Token.FOR;
+      } else {
+        this.isLoop = false;
+      }
     }
 
     BasicBlock getParent() {
