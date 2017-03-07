@@ -152,7 +152,7 @@ class FlowSensitiveInlineVariables extends AbstractPostOrderCallback
     reachingUses = new MaybeReachingVariableUse(cfg, t.getScope(), compiler);
     reachingUses.analyze();
     for (Candidate c : candidates) {
-      if (c.canInline()) {
+      if (c.canInline(t.getScope())) {
         c.inlineVariable();
 
         // If definition c has dependencies, then inlining it may have
@@ -277,7 +277,7 @@ class FlowSensitiveInlineVariables extends AbstractPostOrderCallback
       return defMetadata.node;
     }
 
-    private boolean canInline() {
+    private boolean canInline(final Scope scope) {
       // Cannot inline a parameter.
       if (getDefCfgNode().isFunction()) {
         return false;
@@ -372,6 +372,12 @@ class FlowSensitiveInlineVariables extends AbstractPostOrderCallback
                   case Token.REGEXP:
                   case Token.NEW:
                     return true;
+                  case Token.NAME:
+                    Var var = scope.getOwnSlot(input.getString());
+                    if (var != null
+                        && var.getParentNode().isCatch()) {
+                      return true;
+                    }
                 }
                 return false;
               }
