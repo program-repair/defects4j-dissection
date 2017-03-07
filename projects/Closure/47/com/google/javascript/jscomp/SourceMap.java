@@ -135,10 +135,15 @@ public class SourceMap {
     // zero based.
     // We don't change this for the v1 or v2 source maps but for
     // v3 we make them both 0 based.
+    int lineBaseOffset = 1;
+    if (generator instanceof SourceMapGeneratorV1
+        || generator instanceof SourceMapGeneratorV2) {
+      lineBaseOffset = 0;
+    }
 
     generator.addMapping(
         sourceFile, originalName,
-        new FilePosition(node.getLineno(), node.getCharno()),
+        new FilePosition(node.getLineno() - lineBaseOffset, node.getCharno()),
         outputStartPosition, outputEndPosition);
   }
 
