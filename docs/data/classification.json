@@ -95,22 +95,22 @@
 			"name": "condExpRed"
 		},
 		"condExpExpand": {
-			"name": "condExpExpand"
+			"name": "Expand condition"
 		},
 		"condExpMod": {
-			"name": "condExpMod"
+			"name": "Modify condition"
 		},
 		"condBranIfAdd": {
-			"name": "condBranIfAdd"
+			"name": "Add if branch"
 		},
 		"condBranIfElseAdd": {
-			"name": "condBranIfElseAdd"
+			"name": "Add else if branch"
 		},
 		"condBranElseAdd": {
-			"name": "condBranElseAdd"
+			"name": "Add else branch"
 		},
 		"condBranRem": {
-			"name": "condBranRem"
+			"name": "Remove branch"
 		}
 	},
 	"Assignment": {
@@ -121,7 +121,7 @@
 			"name": "Remove"
 		},
 		"assignExpChange": {
-			"name": "assignExpChange"
+			"name": "Change assignment"
 		}
 	},
 	"Loop": {
@@ -132,18 +132,18 @@
 			"name": "Remove"
 		},
 		"loopCondChange": {
-			"name": "loopCondChange"
+			"name": "Change loop condition"
 		},
 		"loopInitVector": {
-			"name": "loopInitVector"
+			"name": "Change loop init vector"
 		},
 		"loopInitChange": {
-			"name": "loopInitChange"
+			"name": "Change loop initial value"
 		}
 	},
 	"Type": {
 		"tyChange": {
-			"name": "tyChange"
+			"name": "Change variable type"
 		},
 		"dsInitValChange": {
 			"name": "dsInitValChange"
@@ -158,44 +158,44 @@
 			"name": "typObj2Met"
 		},
 		"tyAdd": {
-			"name": "tyAdd"
+			"name": "Create type"
 		},
 		"typImpInterf": {
-			"name": "typImpInterf"
+			"name": "Change implemented interface"
 		}
 	},
 	"Return": {
 		"retExpChange": {
-			"name": "retExpChange"
+			"name": "Change return value"
 		},
 		"retBranchAdd": {
-			"name": "retBranchAdd"
+			"name": "Add a return branch"
 		},
 		"retRem": {
-			"name": "retRem"
+			"name": "Remove return"
 		}
 	},
 	"Patterns": {
 		"wrapsIf": {
-			"name": "wrapsIf"
+			"name": "Wrap with a if"
 		},
 		"wrapsIfElse": {
-			"name": "wrapsIfElse"
+			"name": "Wrap with an else/if"
 		},
 		"wrapsElse": {
-			"name": "wrapsElse"
+			"name": "Wrap with an else"
 		},
 		"wrapsTryCatch": {
-			"name": "wrapsTryCatch"
+			"name": "Wrap with a try/catch"
 		},
 		"wrapsMethod": {
-			"name": "wrapsMethod"
+			"name": "Wrap with a method"
 		},
 		"wrapsLoop": {
-			"name": "wrapsLoop"
+			"name": "Wrap with a loop"
 		},
 		"unwrap": {
-			"name": "unwrap"
+			"name": "Unwrap"
 		},
 		"condBlockExcAdd": {
 			"name": "condBlockExcAdd"
@@ -210,7 +210,7 @@
 			"name": "condBlockRem"
 		},
 		"copyPaste": {
-			"name": "copyPaste"
+			"name": "Copy/past"
 		},
 		"missNullCheckP": {
 			"name": "missNullCheckP"
@@ -231,19 +231,19 @@
 			"name": "expArithMod"
 		},
 		"initFix": {
-			"name": "initFix"
+			"name": "Fix Initialisation"
 		},
 		"codeMove": {
-			"name": "codeMove"
+			"name": "Move code"
 		},
 		"wrongRef": {
-			"name": "wrongRef"
+			"name": "Wrong Reference"
 		},
 		"singleLine": {
-			"name": "singleLine"
+			"name": "Single line"
 		},
 		"notClassified": {
-			"name": "notClassified"
+			"name": "Not classified"
 		}
 	},
 	"Repair": {
