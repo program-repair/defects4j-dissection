@@ -1,0 +1,123 @@
+<!-- index.html -->
+<!DOCTYPE html>
+<html lang="en" ng-app="defects4j-website" ng-controller="mainController">
+	<head>
+		<meta charset="UTF-8">
+		<title>Defects4j-website</title>
+
+		<!-- CSS -->
+		<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css" integrity="sha384-BVYiiSIFeK1dGmJRAkycuHAHRg32OmUcww7on3RYdg4Va+PmSTsz/K68vbdEjh4u" crossorigin="anonymous">
+
+		<!-- Optional theme -->
+		<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap-theme.min.css" integrity="sha384-rHyoN1iRsVXV4nD0JutlnGaslCJuC7uwjduW9SVrLvRYooPp2bWYgmgJQIXwl/Sp" crossorigin="anonymous">
+
+		<link rel="stylesheet" href="http://maxcdn.bootstrapcdn.com/font-awesome/4.3.0/css/font-awesome.min.css">
+		<link rel="stylesheet" href="style/style.css">
+
+
+		<!-- JS -->
+		<script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.6.6/angular.min.js"></script>
+		<script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.6.6/angular-animate.min.js"></script>
+		<script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.6.6/angular-touch.min.js"></script>
+		<script src="https://angular-ui.github.io/bootstrap/ui-bootstrap-tpls-2.5.0.min.js"></script>
+		<script src="https://cdn.jsdelivr.net/npm/angu-fixed-header-table@1.2.1/angu-fixed-header-table.min.js"></script>
+		
+
+		<script src="js/app.js"></script>
+	</head>
+	<body>
+		<div id="throbber" style="display:none; min-height:120px;"></div>
+		<div id="noty-holder"></div>
+		<div id="wrapper">
+			<!-- Navigation -->
+			<nav class="navbar navbar-inverse navbar-fixed-top" role="navigation">
+				<!-- Brand and toggle get grouped for better mobile display -->
+				<div class="navbar-header">
+					<button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".navbar-ex1-collapse">
+						<span class="sr-only">Toggle navigation</span>
+						<span class="icon-bar"></span>
+						<span class="icon-bar"></span>
+						<span class="icon-bar"></span>
+					</button>
+					<a class="navbar-brand" href="http://cijulenlinea.ucr.ac.cr/dev-users/">
+						<img src="http://placehold.it/200x50&text=LOGO" alt="LOGO"">
+					</a>
+				</div>
+				<!-- Sidebar Menu Items - These collapse to the responsive navigation menu on small screens -->
+				<div class="collapse navbar-collapse navbar-ex1-collapse">
+					<ul id="menu" class="nav navbar-nav side-nav">
+						<li ng-repeat="(key, values) in classifications">
+							<a href="#" ng-click="submenu1 = !submenu1">
+							<i class="fa fa-fw fa-search"></i> {{ key }} <i class="fa fa-fw fa-angle-down pull-right"></i></a>
+							<ul class="collapse" uib-collapse="!submenu1">
+								<li ng-repeat="(vKey,value) in values">
+									<label for="{{ vKey }}"><input type="checkbox" id="{{ vKey }}" ng-model="filter[vKey]">{{value.name}} ({{ countBugs(vKey) }})</label>
+								</li>
+							</ul>
+						</li>
+					</ul>
+				</div>
+				<!-- /.navbar-collapse -->
+			</nav>
+
+			<div id="page-wrapper">
+				<div class="container-fluid">
+					<div class="row" id="main" >
+						<h2> Showing {{filteredBug.length}} Bugs</h2>
+						<table fixed-header id="mainTable" class="table table-striped">
+							<thead>
+								<tr>
+									<th>
+										<a href="#" ng-click="sortType = 'bugId'">
+											Bug Id
+											<span ng-show="sortType == 'bugId'" class="fa fa-caret-down"></span>
+										</a>
+									</th>
+									<th>	
+										<a href="#" ng-click="sortType = 'nbFile'">
+											# File
+											<span ng-show="sortType == 'nbFile'" class="fa fa-caret-down"></span>
+										</a>
+									</th>
+									<th>	
+										<a href="#" ng-click="sortType = 'sizeInLines'">
+											# Line
+											<span ng-show="sortType == 'sizeInLines'" class="fa fa-caret-down"></span>
+										</a>
+									</th>
+									<th>	
+										<a href="#" ng-click="sortType = 'activeSynStruct'">
+											# active Syn Structure
+											<span ng-show="sortType == 'activeSynStruct'" class="fa fa-caret-down"></span>
+										</a>
+									</th>
+									<th>	
+										# Added/Removed/Modified Line
+									</th>
+									<th>	
+										<a href="#" ng-click="sortType = 'chunks'">
+											# Chunks
+											<span ng-show="sortType == 'chunks'" class="fa fa-caret-down"></span>
+										</a>
+									</th>
+								</tr>
+							</thead>
+							<tbody>
+								<tr ng-repeat="bug in bugs| filter:bugsFilter as filteredBug">
+								  <td>{{ bug.project }} {{ bug.bugId }}</td>
+								  <td>{{ bug.files }}</td>
+								  <td>{{ bug.sizeInLines }}</td>
+								  <td>{{ bug.activeSynStruct }}</td>
+								  <td>{{ bug.linesAdd }} {{ bug.linesRem}}  {{ bug.linesMod}}</td>
+								  <td>{{ bug.chunks }}</td>
+								</tr>
+							</tbody>
+						</table>
+					</div>
+				</div>
+				<!-- /.container-fluid -->
+			</div>
+			<!-- /#page-wrapper -->
+		</div><!-- /#wrapper -->
+	</body>
+</html>
