@@ -1,6 +1,14 @@
 angular.module('defects4j-website', ['ui.bootstrap', 'anguFixedHeaderTable'])
-	.controller('mainController', function($scope, $http) {
-		$scope.sortType     = 'name'; // set the default sort type
+	.controller('bugController', function($uibModalInstance, bug, classifications) {
+		var $ctrl = this;
+		$ctrl.bug = bug
+		$ctrl.classifications = classifications;
+		$ctrl.ok = function () {
+			$uibModalInstance.close();
+		};
+	})
+	.controller('mainController', function($scope, $http, $uibModal) {
+		$scope.sortType     = ['project', 'bugId']; // set the default sort type
 		$scope.sortReverse  = false;  // set the default sort order
 		$scope.filter   = {};
 
@@ -20,6 +28,22 @@ angular.module('defects4j-website', ['ui.bootstrap', 'anguFixedHeaderTable'])
 		$http.get("data/classification.json").then(function (response) {
 			$scope.classifications = response.data;
 		});
+
+		$scope.openBug = function (bug) {
+			var modalInstance = $uibModal.open({
+				animation: true,
+				ariaLabelledBy: 'modal-title',
+				ariaDescribedBy: 'modal-body',
+				templateUrl: 'modelBug.html',
+				controller: 'bugController',
+				controllerAs: '$ctrl',
+				size: "800px",
+				resolve: {
+					bug: bug,
+					classifications: $scope.classifications
+				}
+			});
+		};
 
 		$scope.countBugs = function (key) {
 			var count = 0;

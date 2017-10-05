@@ -68,9 +68,9 @@
 							<thead>
 								<tr>
 									<th>
-										<a href="#" ng-click="sortType = 'bugId'">
+										<a href="#" ng-click="sortType = ['project', 'bugId']">
 											Bug Id
-											<span ng-show="sortType == 'bugId'" class="fa fa-caret-down"></span>
+											<span ng-show="sortType == ['project', 'bugId']" class="fa fa-caret-down"></span>
 										</a>
 									</th>
 									<th>	
@@ -100,16 +100,27 @@
 											<span ng-show="sortType == 'chunks'" class="fa fa-caret-down"></span>
 										</a>
 									</th>
+									<th>	
+										<a href="#" ng-click="sortType = 'failingTests'">
+											# Failing Test
+											<span ng-show="sortType == 'failingTests'" class="fa fa-caret-down"></span>
+										</a>
+									</th>
+									<th>	
+										First error
+									</th>
 								</tr>
 							</thead>
 							<tbody>
-								<tr ng-repeat="bug in bugs| filter:bugsFilter as filteredBug">
+								<tr ng-repeat="bug in bugs| orderBy:sortType:reverse| filter:bugsFilter as filteredBug" ng-click="openBug(bug)">
 								  <td>{{ bug.project }} {{ bug.bugId }}</td>
 								  <td>{{ bug.files }}</td>
 								  <td>{{ bug.sizeInLines }}</td>
 								  <td>{{ bug.activeSynStruct }}</td>
 								  <td>{{ bug.linesAdd }} {{ bug.linesRem}}  {{ bug.linesMod}}</td>
 								  <td>{{ bug.chunks }}</td>
+								  <td>{{ bug.failingTests.length }}</td>
+								  <td>{{ bug.failingTests[0].error }}</td>
 								</tr>
 							</tbody>
 						</table>
@@ -120,4 +131,23 @@
 			<!-- /#page-wrapper -->
 		</div><!-- /#wrapper -->
 	</body>
+	<script type="text/ng-template" id="modelBug.html">
+        <div class="modal-header">
+            <h3 class="modal-title" id="modal-title">{{ $ctrl.bug.project }} {{ $ctrl.bug.bugId }}</h3>
+        </div>
+        <div class="modal-body" id="modal-body">
+        	<h3>Patterns</h3>
+        	<span ng-repeat="(key,value) in $ctrl.bug" ng-if="$ctrl.classifications.Patterns[key]!=null">{{$ctrl.classifications.Patterns[key].name}} </span>
+        	<h3>Human Patch</h3>
+        	<pre>{{ $ctrl.bug.diff }}</pre>
+            <h3>Failing Test</h3>
+            <section ng-repeat="test in $ctrl.bug.failingTests">
+                <h4>{{test.className}}:{{test.methodName}}</h4>
+                <span>{{test.error}}: {{test.message}}</span><br>
+            </section>
+        </div>
+        <div class="modal-footer">
+            <button class="btn btn-primary" type="button" ng-click="$ctrl.ok()">OK</button>
+        </div>
+    </script>
 </html>
