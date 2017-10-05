@@ -107,10 +107,13 @@
 
 .side-nav>li>ul>li>label {
     display: block;
-    padding: 10px 15px 10px 38px;
+    padding: 3px 4px 3px 18px;
     text-decoration: none;
-    /*color: #999;*/
-    color: #fff;    
+    color: #d4d4d4;
+    cursor: pointer;
+}
+.side-nav>li>ul>li>label>input {
+	margin-right: 3px;
 }
 
 .side-nav>li>ul>li>label:hover {
@@ -149,4 +152,12 @@
 }
 table {
 	border: 0;
+}
+
+table tr {
+	cursor: pointer;
+}
+
+table tr:hover {
+	background: #DDD!important;
 }
