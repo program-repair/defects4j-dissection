@@ -12,6 +12,8 @@
 		<link rel="stylesheet" href="//maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap-theme.min.css" integrity="sha384-rHyoN1iRsVXV4nD0JutlnGaslCJuC7uwjduW9SVrLvRYooPp2bWYgmgJQIXwl/Sp" crossorigin="anonymous">
 
 		<link rel="stylesheet" href="//maxcdn.bootstrapcdn.com/font-awesome/4.3.0/css/font-awesome.min.css">
+		<link rel="stylesheet" href="//cdnjs.cloudflare.com/ajax/libs/highlight.js/9.12.0/styles/github.min.css">
+		<link rel="stylesheet" href="//cdnjs.cloudflare.com/ajax/libs/diff2html/2.3.1/diff2html.min.css">
 		<link rel="stylesheet" href="style/style.css">
 
 
@@ -21,6 +23,11 @@
 		<script src="//ajax.googleapis.com/ajax/libs/angularjs/1.6.6/angular-touch.min.js"></script>
 		<script src="//angular-ui.github.io/bootstrap/ui-bootstrap-tpls-2.5.0.min.js"></script>
 		<script src="//cdn.jsdelivr.net/npm/angu-fixed-header-table@1.2.1/angu-fixed-header-table.min.js"></script>
+		<script src="//cdnjs.cloudflare.com/ajax/libs/jquery/2.2.3/jquery.js"></script>
+		<script src="//cdnjs.cloudflare.com/ajax/libs/highlight.js/9.12.0/highlight.min.js"></script>
+		<script src="//cdnjs.cloudflare.com/ajax/libs/highlight.js/9.12.0/languages/java.min.js"></script>
+		<script src="//cdnjs.cloudflare.com/ajax/libs/diff2html/2.3.1/diff2html.min.js"></script>
+		<script src="//cdnjs.cloudflare.com/ajax/libs/diff2html/2.3.1/diff2html-ui.min.js"></script>
 		
 
 		<script src="js/app.js"></script>
@@ -30,28 +37,24 @@
 		<div id="noty-holder"></div>
 		<div id="wrapper">
 			<!-- Navigation -->
-			<nav class="navbar navbar-inverse navbar-fixed-top" role="navigation">
-				<!-- Brand and toggle get grouped for better mobile display -->
-				<div class="navbar-header">
-					<button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".navbar-ex1-collapse">
-						<span class="sr-only">Toggle navigation</span>
-						<span class="icon-bar"></span>
-						<span class="icon-bar"></span>
-						<span class="icon-bar"></span>
-					</button>
-					<a class="navbar-brand" href="http://cijulenlinea.ucr.ac.cr/dev-users/">
-						<img src="http://placehold.it/200x50&text=LOGO" alt="LOGO"">
-					</a>
-				</div>
+			<nav class="navbar navbar-fixed-top" role="navigation">
 				<!-- Sidebar Menu Items - These collapse to the responsive navigation menu on small screens -->
 				<div class="collapse navbar-collapse navbar-ex1-collapse">
 					<ul id="menu" class="nav navbar-nav side-nav">
-						<li ng-repeat="(key, values) in classifications">
-							<a href="#" ng-click="submenu1 = !submenu1">
-							<i class="fa fa-fw fa-search"></i> {{ key }} <i class="fa fa-fw fa-angle-down pull-right"></i></a>
-							<ul class="collapse" uib-collapse="!submenu1">
-								<li ng-repeat="(vKey,value) in values">
-									<label for="{{ vKey }}"><input type="checkbox" id="{{ vKey }}" ng-model="filter[vKey]">{{value.name}} ({{ countBugs(vKey) }})</label>
+						<li>
+							Match <input type="radio" name="match" value="any" ng-model="match"> Any <input type="radio" name="match" value="all" ng-model="match"> All
+						</li>
+						<li ng-repeat="(topFilter, filters) in classifications">
+							<a>{{ topFilter }}</a>
+							<ul class="nav">
+								<li ng-repeat="(key,values) in filters">
+									<a href="#" ng-click="submenu1 = !submenu1">
+									<i class="fa fa-fw fa-search"></i> {{ key }} <i class="fa fa-fw fa-angle-down pull-right"></i></a>
+									<ul class="collapse" uib-collapse="!submenu1">
+										<li ng-repeat="(vKey,value) in values">
+											<label for="{{ vKey }}"><input type="checkbox" id="{{ vKey }}" ng-model="filter[vKey]">{{value.name}} ({{ countBugs(vKey, value) }})</label>
+										</li>
+									</ul>
 								</li>
 							</ul>
 						</li>
@@ -68,40 +71,49 @@
 							<thead>
 								<tr>
 									<th>
-										<a href="#" ng-click="sortType = ['project', 'bugId']">
+										<a href="#" ng-click="sort(['project', 'bugId'])">
 											Bug Id
-											<span ng-show="sortType == ['project', 'bugId']" class="fa fa-caret-down"></span>
+											<span ng-show="sortType[0] == 'project'" class="fa fa-caret-down"></span>
 										</a>
 									</th>
 									<th>	
-										<a href="#" ng-click="sortType = 'nbFile'">
+										<a href="#" ng-click="sort('files')">
 											# File
-											<span ng-show="sortType == 'nbFile'" class="fa fa-caret-down"></span>
+											<span ng-show="sortType == 'files'" class="fa fa-caret-down"></span>
 										</a>
 									</th>
 									<th>	
-										<a href="#" ng-click="sortType = 'sizeInLines'">
+										<a href="#" ng-click="sort('sizeInLines')">
 											# Line
 											<span ng-show="sortType == 'sizeInLines'" class="fa fa-caret-down"></span>
 										</a>
 									</th>
-									<th>	
-										<a href="#" ng-click="sortType = 'activeSynStruct'">
-											# active Syn Structure
-											<span ng-show="sortType == 'activeSynStruct'" class="fa fa-caret-down"></span>
+									<th>
+										<a href="#" ng-click="sort('linesAdd')">
+											# Add
+											<span ng-show="sortType == 'linesAdd'" class="fa fa-caret-down"></span>
+										</a>
+									</th>
+									<th>
+										<a href="#" ng-click="sort('linesRem')">
+											# Rem
+											<span ng-show="sortType == 'linesRem'" class="fa fa-caret-down"></span>
+										</a>
+									</th>
+									<th>
+										<a href="#" ng-click="sort('linesMod')">
+											# Mod
+											<span ng-show="sortType == 'linesMod'" class="fa fa-caret-down"></span>
 										</a>
 									</th>
 									<th>	
-										# Added/Removed/Modified Line
-									</th>
-									<th>	
-										<a href="#" ng-click="sortType = 'chunks'">
-											# Chunks
+										<a href="#" ng-click="sort('chunks')">
+											# Hunks
 											<span ng-show="sortType == 'chunks'" class="fa fa-caret-down"></span>
 										</a>
 									</th>
 									<th>	
-										<a href="#" ng-click="sortType = 'failingTests'">
+										<a href="#" ng-click="sort('failingTests')">
 											# Failing Test
 											<span ng-show="sortType == 'failingTests'" class="fa fa-caret-down"></span>
 										</a>
@@ -112,12 +124,13 @@
 								</tr>
 							</thead>
 							<tbody>
-								<tr ng-repeat="bug in bugs| orderBy:sortType:reverse| filter:bugsFilter as filteredBug" ng-click="openBug(bug)">
+								<tr ng-repeat="bug in bugs| orderBy:sortType:sortReverse| filter:bugsFilter as filteredBug" ng-click="openBug(bug)">
 								  <td>{{ bug.project }} {{ bug.bugId }}</td>
 								  <td>{{ bug.files }}</td>
 								  <td>{{ bug.sizeInLines }}</td>
-								  <td>{{ bug.activeSynStruct }}</td>
-								  <td>Add: {{ bug.linesAdd }} Rem:{{ bug.linesRem}} Mod: {{ bug.linesMod}}</td>
+								  <td>{{ bug.linesAdd }}</td>
+								  <td>{{ bug.linesRem}}</td>
+								  <td>{{ bug.linesMod}}</td>
 								  <td>{{ bug.chunks }}</td>
 								  <td>{{ bug.failingTests.length }}</td>
 								  <td>{{ bug.failingTests[0].error.substring(bug.failingTests[0].error.lastIndexOf(".") + 1) }}</td>
@@ -137,7 +150,7 @@
         </div>
         <div class="modal-body" id="modal-body">
         	<h3>Patterns</h3>
-        	<span ng-repeat="(key,value) in $ctrl.bug" ng-if="$ctrl.classifications.Patterns[key]!=null">{{$ctrl.classifications.Patterns[key].name}} </span>
+        	<span ng-repeat="(key,value) in $ctrl.bug" ng-if="$ctrl.patternName(key) != null">{{$ctrl.patternName(key)}} </span>
         	<h3>Human Patch</h3>
         	<pre>{{ $ctrl.bug.diff }}</pre>
             <h3>Failing Test</h3>

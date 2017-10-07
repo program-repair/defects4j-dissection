@@ -1,269 +1,283 @@
-{	
-	"Method Definition": {
-		"mdAdd": {
-			"name": "Add"
+{
+	"Repair Actions": {
+		"Method Definition": {
+			"mdAdd": {
+				"name": "Add"
+			},
+			"mdRem": {
+				"name": "Remove"
+			},
+			"mdRen": {
+				"name": "Rename"
+			},
+			"mdParAdd": {
+				"name": "Add Parameters"
+			},
+			"mdParRem": {
+				"name": "Remove Parameters"
+			},
+			"mdRetTyChange": {
+				"name": "Change Return Type"
+			},
+			"mdParTyChange": {
+				"name": "Change Parameters Type"
+			},
+			"mdModChange": {
+				"name": "Modifier"
+			},
+			"mdOverride": {
+				"name": "Override"
+			}
 		},
-		"mdRem": {
-			"name": "Remove"
+		"Method Call": {
+			"mcAdd": {
+				"name": "Add"
+			},
+			"mcRem": {
+				"name": "Remove"
+			},
+			"mcRepl": {
+				"name": "Replace"
+			},
+			"mcParSwap": {
+				"name": "Swap Parameters"
+			},
+			"mcParAdd": {
+				"name": "Add Parameters"
+			},
+			"mcParRem": {
+				"name": "Remove Parameters"
+			},
+			"mcParValChange": {
+				"name": "Change Parameters Values"
+			},
+			"mcMove": {
+				"name": "Move"
+			}
 		},
-		"mdRen": {
-			"name": "Rename"
+		"Object Instantiation": {
+			"objInstAdd": {
+				"name": "Add"
+			},
+			"objInstRem": {
+				"name": "Remove"
+			},
+			"objInstMod": {
+				"name": "Modify"
+			}
 		},
-		"mdParAdd": {
-			"name": "Add Parameters"
+		"Variable": {
+			"varAdd": {
+				"name": "Add"
+			},
+			"varRem": {
+				"name": "Remove"
+			},
+			"varRepl": {
+				"name": "Replace"
+			}
 		},
-		"mdParRem": {
-			"name": "Remove Parameters"
+		"Exception": {
+			"exTryCatchAdd": {
+				"name": "Add Try Catch"
+			},
+			"exTryCatchRem": {
+				"name": "Remove Try Catch"
+			},
+			"exThrowsAdd": {
+				"name": "Add Throws"
+			},
+			"exThrowsRem": {
+				"name": "Remove Throws"
+			}
 		},
-		"mdRetTyChange": {
-			"name": "Change Return Type"
+		"If": {
+			"condExpRed": {
+				"name": "condExpRed"
+			},
+			"condExpExpand": {
+				"name": "Expand condition"
+			},
+			"condExpMod": {
+				"name": "Modify condition"
+			},
+			"condBranIfAdd": {
+				"name": "Add if branch"
+			},
+			"condBranIfElseAdd": {
+				"name": "Add else if branch"
+			},
+			"condBranElseAdd": {
+				"name": "Add else branch"
+			},
+			"condBranRem": {
+				"name": "Remove branch"
+			}
 		},
-		"mdParTyChange": {
-			"name": "Change Parameters Type"
+		"Assignment": {
+			"assignAdd": {
+				"name": "Add"
+			},
+			"assignRem": {
+				"name": "Remove"
+			},
+			"assignExpChange": {
+				"name": "Change assignment"
+			}
 		},
-		"mdModChange": {
-			"name": "Modifier"
+		"Loop": {
+			"loopAdd": {
+				"name": "Add"
+			},
+			"loopRem": {
+				"name": "Remove"
+			},
+			"loopCondChange": {
+				"name": "Change loop condition"
+			},
+			"loopInitVector": {
+				"name": "Change loop init vector"
+			},
+			"loopInitChange": {
+				"name": "Change loop initial value"
+			}
 		},
-		"mdOverride": {
-			"name": "Override"
+		"Type": {
+			"tyChange": {
+				"name": "Change variable type"
+			},
+			"dsInitValChange": {
+				"name": "dsInitValChange"
+			},
+			"tyModChange": {
+				"name": "tyModChange"
+			},
+			"dsDimChange": {
+				"name": "dsDimChange"
+			},
+			"typObj2Met": {
+				"name": "typObj2Met"
+			},
+			"tyAdd": {
+				"name": "Create type"
+			},
+			"typImpInterf": {
+				"name": "Change implemented interface"
+			}
+		},
+		"Return": {
+			"retExpChange": {
+				"name": "Change return value"
+			},
+			"retBranchAdd": {
+				"name": "Add a return branch"
+			},
+			"retRem": {
+				"name": "Remove return"
+			}
 		}
 	},
-	"Method Call": {
-		"mcAdd": {
-			"name": "Add"
+	"Repair Patterns": {
+		"Wrap with": {
+			"wrapsIf": {
+				"name": "If"
+			},
+			"wrapsIfElse": {
+				"name": "Else/if"
+			},
+			"wrapsElse": {
+				"name": "Else"
+			},
+			"wrapsTryCatch": {
+				"name": "Try/catch"
+			},
+			"wrapsMethod": {
+				"name": "Method invocation"
+			},
+			"wrapsLoop": {
+				"name": "Loop"
+			},
+			"unwrap": {
+				"name": "Unwrap"
+			}
 		},
-		"mcRem": {
-			"name": "Remove"
+		"Conditional Block": {
+			"condBlockExcAdd": {
+				"name": "condBlockExcAdd"
+			},
+			"condBlockRetAdd": {
+				"name": "condBlockRetAdd"
+			},
+			"condBlockOthersAdd": {
+				"name": "condBlockOthersAdd"
+			},
+			"condBlockRem": {
+				"name": "condBlockRem"
+			}
 		},
-		"mcRepl": {
-			"name": "Replace"
+		"Missing Null Check": {
+			"missNullCheckP": {
+				"name": "Null (== null)"
+			},
+			"missNullCheckN": {
+				"name": "Not Null (!= null)"
+			}
 		},
-		"mcParSwap": {
-			"name": "Swap Parameters"
+		"Expression": {
+			"expLogicExpand": {
+				"name": "Expand Logic Exp."
+			},
+			"expLogicReduce": {
+				"name": "Reduce Logic Exp."
+			},
+			"expLogicMod": {
+				"name": "Modify Logic Exp."
+			},
+			"expArithMod": {
+				"name": "Modify Arithmetic Exp."
+			}
 		},
-		"mcParAdd": {
-			"name": "Add Parameters"
-		},
-		"mcParRem": {
-			"name": "Remove Parameters"
-		},
-		"mcParValChange": {
-			"name": "Change Parameters Values"
-		},
-		"mcMove": {
-			"name": "Move"
+		"Other": {
+			"initFix": {
+				"name": "Fix Initialisation"
+			},
+			"codeMove": {
+				"name": "Move code"
+			},
+			"wrongRef": {
+				"name": "Wrong Reference"
+			},
+			"singleLine": {
+				"name": "Single line"
+			},
+			"notClassified": {
+				"name": "Not classified"
+			},
+			"copyPaste": {
+				"name": "Copy/past"
+			}
 		}
 	},
-	"Object Instantiation": {
-		"objInstAdd": {
-			"name": "Add"
-		},
-		"objInstRem": {
-			"name": "Remove"
-		},
-		"objInstMod": {
-			"name": "Modify"
-		}
-	},
-	"Variable": {
-		"varAdd": {
-			"name": "Add"
-		},
-		"varRem": {
-			"name": "Remove"
-		},
-		"varRepl": {
-			"name": "Replace"
-		}
-	},
-	"Exception": {
-		"exTryCatchAdd": {
-			"name": "Add Try Catch"
-		},
-		"exTryCatchRem": {
-			"name": "Remove Try Catch"
-		},
-		"exThrowsAdd": {
-			"name": "Add Throws"
-		},
-		"exThrowsRem": {
-			"name": "Remove Throws"
-		}
-	},
-	"If": {
-		"condExpRed": {
-			"name": "condExpRed"
-		},
-		"condExpExpand": {
-			"name": "Expand condition"
-		},
-		"condExpMod": {
-			"name": "Modify condition"
-		},
-		"condBranIfAdd": {
-			"name": "Add if branch"
-		},
-		"condBranIfElseAdd": {
-			"name": "Add else if branch"
-		},
-		"condBranElseAdd": {
-			"name": "Add else branch"
-		},
-		"condBranRem": {
-			"name": "Remove branch"
-		}
-	},
-	"Assignment": {
-		"assignAdd": {
-			"name": "Add"
-		},
-		"assignRem": {
-			"name": "Remove"
-		},
-		"assignExpChange": {
-			"name": "Change assignment"
-		}
-	},
-	"Loop": {
-		"loopAdd": {
-			"name": "Add"
-		},
-		"loopRem": {
-			"name": "Remove"
-		},
-		"loopCondChange": {
-			"name": "Change loop condition"
-		},
-		"loopInitVector": {
-			"name": "Change loop init vector"
-		},
-		"loopInitChange": {
-			"name": "Change loop initial value"
-		}
-	},
-	"Type": {
-		"tyChange": {
-			"name": "Change variable type"
-		},
-		"dsInitValChange": {
-			"name": "dsInitValChange"
-		},
-		"tyModChange": {
-			"name": "tyModChange"
-		},
-		"dsDimChange": {
-			"name": "dsDimChange"
-		},
-		"typObj2Met": {
-			"name": "typObj2Met"
-		},
-		"tyAdd": {
-			"name": "Create type"
-		},
-		"typImpInterf": {
-			"name": "Change implemented interface"
-		}
-	},
-	"Return": {
-		"retExpChange": {
-			"name": "Change return value"
-		},
-		"retBranchAdd": {
-			"name": "Add a return branch"
-		},
-		"retRem": {
-			"name": "Remove return"
-		}
-	},
-	"Patterns": {
-		"wrapsIf": {
-			"name": "Wrap with a if"
-		},
-		"wrapsIfElse": {
-			"name": "Wrap with an else/if"
-		},
-		"wrapsElse": {
-			"name": "Wrap with an else"
-		},
-		"wrapsTryCatch": {
-			"name": "Wrap with a try/catch"
-		},
-		"wrapsMethod": {
-			"name": "Wrap with a method"
-		},
-		"wrapsLoop": {
-			"name": "Wrap with a loop"
-		},
-		"unwrap": {
-			"name": "Unwrap"
-		},
-		"condBlockExcAdd": {
-			"name": "condBlockExcAdd"
-		},
-		"condBlockRetAdd": {
-			"name": "condBlockRetAdd"
-		},
-		"condBlockOthersAdd": {
-			"name": "condBlockOthersAdd"
-		},
-		"condBlockRem": {
-			"name": "condBlockRem"
-		},
-		"copyPaste": {
-			"name": "Copy/past"
-		},
-		"missNullCheckP": {
-			"name": "missNullCheckP"
-		},
-		"missNullCheckN": {
-			"name": "missNullCheckN"
-		},
-		"expLogicExpand": {
-			"name": "expLogicExpand"
-		},
-		"expLogicReduce": {
-			"name": "expLogicReduce"
-		},
-		"expLogicMod": {
-			"name": "expLogicMod"
-		},
-		"expArithMod": {
-			"name": "expArithMod"
-		},
-		"initFix": {
-			"name": "Fix Initialisation"
-		},
-		"codeMove": {
-			"name": "Move code"
-		},
-		"wrongRef": {
-			"name": "Wrong Reference"
-		},
-		"singleLine": {
-			"name": "Single line"
-		},
-		"notClassified": {
-			"name": "Not classified"
-		}
-	},
-	"Repair": {
-		"rtAcs": {
-			"name": "ACS"
-		},
-		"rtAstor": {
-			"name": "Astor"
-		},
-		"rtDynaMoth": {
-			"name": "DynaMoth"
-		},
-		"rtGenProg": {
-			"name": "GenProg"
-		},
-		"rtHDRepair": {
-			"name": "HDRepair"
-		},
-		"rtNopol": {
-			"name": "Nopol"
+	"Runtime Information": {
+		"Automatic Repair Systems": {
+			"rtAcs": {
+				"name": "ACS"
+			},
+			"rtAstor": {
+				"name": "Astor"
+			},
+			"rtDynaMoth": {
+				"name": "DynaMoth"
+			},
+			"rtGenProg": {
+				"name": "GenProg"
+			},
+			"rtHDRepair": {
+				"name": "HDRepair"
+			},
+			"rtNopol": {
+				"name": "Nopol"
+			}
 		}
 	}
 }

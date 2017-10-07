@@ -3,13 +3,24 @@ angular.module('defects4j-website', ['ui.bootstrap', 'anguFixedHeaderTable'])
 		var $ctrl = this;
 		$ctrl.bug = bug
 		$ctrl.classifications = classifications;
+
+		$ctrl.patternName = function (key) {
+			for(var i in $ctrl.classifications['Repair Patterns']) {
+				if ($ctrl.classifications['Repair Patterns'][i][key] != null) {
+					return $ctrl.classifications['Repair Patterns'][i][key].name;
+				}
+			}
+			return null;
+		};
+
 		$ctrl.ok = function () {
 			$uibModalInstance.close();
 		};
 	})
 	.controller('mainController', function($scope, $http, $uibModal) {
 		$scope.sortType     = ['project', 'bugId']; // set the default sort type
-		$scope.sortReverse  = false;  // set the default sort order
+		$scope.sortReverse  = false;
+		$scope.match  = "any";
 		$scope.filter   = {};
 
 		// create the list of sushi rolls 
@@ -45,13 +56,27 @@ angular.module('defects4j-website', ['ui.bootstrap', 'anguFixedHeaderTable'])
 			});
 		};
 
-		$scope.countBugs = function (key) {
+		$scope.sort = function (sort) {
+			if (sort == $scope.sortType || (sort[0] == 'project' && $scope.sortType[0] == 'project')) {
+				$scope.sortReverse = !$scope.sortReverse; 
+			} else {
+				$scope.sortType = sort;
+				$scope.sortReverse = false; 
+			}
+			return false;
+		}
+
+		$scope.countBugs = function (key, filter) {
+			if (filter.count) {
+				return filter.count;
+			}
 			var count = 0;
 			for(var i = 0; i < $scope.bugs.length; i++) {
 				if ($scope.bugs[i][key] === true) {
 					count++;
 				}
 			}
+			filter.count = count;
 			return count;
 		};
 
@@ -66,11 +91,22 @@ angular.module('defects4j-website', ['ui.bootstrap', 'anguFixedHeaderTable'])
 			if (allFalse) {
 				return true;
 			}
+
 			for (var i in $scope.filter) {
-				if ($scope.filter[i] === true && value[i] === true) {
-					return true;
+				if ($scope.filter[i] === true) {
+					if (value[i] === true) {
+						if ($scope.match=="any") {
+							return true;
+						}
+					} else if ($scope.match=="all"){
+						return false;
+					}
 				}
 			}
-			return false;
+			if ($scope.match=="any") {
+				return false;
+			} else {
+				return true;
+			}
 		};
 	});
