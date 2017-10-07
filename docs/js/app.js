@@ -13,7 +13,18 @@ angular.module('defects4j-website', ['ui.bootstrap', 'anguFixedHeaderTable'])
 				}
 			};
 		}
-	])
+	]).directive('diff', ['$http', function ($http) {
+		return {
+			restrict: 'A',
+			link: function (scope, elem, attrs) {
+				scope.$watch("$ctrl.bug.diff", function () {
+					var diff2htmlUi = new Diff2HtmlUI({ diff: scope["$ctrl"].bug.diff });
+					diff2htmlUi.draw($(elem), {inputFormat: 'java', showFiles: false, matching: 'lines'});
+					diff2htmlUi.highlightCode($(elem));
+				});
+			}
+		}
+	  }])
 	.controller('bugController', function($rootScope, $uibModalInstance, bugs, index, classifications) {
 		var $ctrl = this;
 		$ctrl.index = index;

@@ -153,7 +153,7 @@
         	<h3>Patterns</h3>
         	<span ng-repeat="(key,value) in $ctrl.bug" ng-if="$ctrl.patternName(key) != null">{{$ctrl.patternName(key)}} </span>
         	<h3>Human Patch</h3>
-        	<pre>{{ $ctrl.bug.diff }}</pre>
+        	<div diff></div>
             <h3>Failing Test</h3>
             <section ng-repeat="test in $ctrl.bug.failingTests">
                 <h4>{{test.className}}:{{test.methodName}}</h4>
