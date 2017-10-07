@@ -79,7 +79,15 @@ function parseDefects4jInfo(strInfo, record) {
 }
 
 function cleanDiff(diff, projectPath) {
-  return diff.replace(new RegExp(defects4jBuggyProjectsPath  + projectPath, 'g'), "").replace(new RegExp(defects4jFixedProjectsPath  + projectPath, 'g'), "")
+  var indexBegin = diff.indexOf("diff --git ");
+  var endHeader = diff.indexOf("---", indexBegin);
+  while (indexBegin != -1) {
+    diff = diff.replace(diff.substring(indexBegin, endHeader), "");
+    indexBegin = diff.indexOf("diff --git ");
+    endHeader = diff.indexOf("---", indexBegin);
+  }
+  diff = diff.replace(new RegExp(defects4jBuggyProjectsPath  + projectPath, 'g'), "").replace(new RegExp(defects4jFixedProjectsPath  + projectPath, 'g'), "");
+  return diff;
 }
 
 var defects4jInfoFunc = function(record, callback) {
@@ -94,11 +102,11 @@ var defects4jInfoFunc = function(record, callback) {
       if (stderr != '') {
         cmd = 'git diff ' + defects4jBuggyProjectsPath  + projectPath + '/source ' + defects4jFixedProjectsPath + projectPath + '/source';
         exec(cmd, function(error, stdout, stderr) {
-          record['diff'] = cleanDiff(stdout);
+          record['diff'] = cleanDiff(stdout, projectPath);
           callback(null, record)
         });
       } else {
-        record['diff'] = cleanDiff(stdout);
+        record['diff'] = cleanDiff(stdout, projectPath);
         callback(null, record)
       }
     });
@@ -106,7 +114,6 @@ var defects4jInfoFunc = function(record, callback) {
 }
 
 var defects4jInfo = transform(defects4jInfoFunc, {parallel: 10});
-
 
 output = []
 input.pipe(parser).pipe(transformer).pipe(defects4jInfo).pipe(transform(function (record, callback) {
