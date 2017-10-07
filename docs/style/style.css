@@ -85,6 +85,14 @@ a {
   top: 10px;
 }
 
+.modal-dialog{
+	width:80%;
+}
+.modal-content {
+	border-radius: 0;
+	border: 0;
+}
+
 table {
 	border: 0;
 }

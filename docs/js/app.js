@@ -1,7 +1,23 @@
 angular.module('defects4j-website', ['ui.bootstrap', 'anguFixedHeaderTable'])
-	.controller('bugController', function($uibModalInstance, bug, classifications) {
+	.directive('keypressEvents', [
+		'$document',
+		'$rootScope',
+		function($document, $rootScope) {
+			return {
+				restrict: 'A',
+				link: function() {
+					$document.bind('keydown', function(e) {
+						$rootScope.$broadcast('keypress', e);
+						$rootScope.$broadcast('keypress:' + e.which, e);
+					});
+				}
+			};
+		}
+	])
+	.controller('bugController', function($rootScope, $uibModalInstance, bugs, index, classifications) {
 		var $ctrl = this;
-		$ctrl.bug = bug
+		$ctrl.index = index;
+		$ctrl.bug = bugs[index];
 		$ctrl.classifications = classifications;
 
 		$ctrl.patternName = function (key) {
@@ -12,12 +28,37 @@ angular.module('defects4j-website', ['ui.bootstrap', 'anguFixedHeaderTable'])
 			}
 			return null;
 		};
-
+		$rootScope.$on('keypress:39', function(onEvent, keypressEvent) {
+			$rootScope.$apply(function () {
+				$ctrl.next();
+			});
+		});
+		$rootScope.$on('keypress:37', function(onEvent, keypressEvent) {
+			$rootScope.$apply(function () {
+				$ctrl.previous();
+			});
+		});
+		$ctrl.next = function () {
+			$ctrl.index++;
+			if ($ctrl.index == bugs.length)  {
+				$ctrl.index = 0;
+			}
+			$ctrl.bug = bugs[$ctrl.index];
+			return false;
+		};
+		$ctrl.previous = function () {
+			$ctrl.index--;
+			if ($ctrl.index < 0) {
+				$ctrl.index = bugs.length -1;
+			}
+			$ctrl.bug = bugs[$ctrl.index];
+			return false;
+		};
 		$ctrl.ok = function () {
 			$uibModalInstance.close();
 		};
 	})
-	.controller('mainController', function($scope, $http, $uibModal) {
+	.controller('mainController', function($scope,$rootScope, $http, $uibModal) {
 		$scope.sortType     = ['project', 'bugId']; // set the default sort type
 		$scope.sortReverse  = false;
 		$scope.match  = "any";
@@ -48,9 +89,10 @@ angular.module('defects4j-website', ['ui.bootstrap', 'anguFixedHeaderTable'])
 				templateUrl: 'modelBug.html',
 				controller: 'bugController',
 				controllerAs: '$ctrl',
-				size: "800px",
+				size: "lg",
 				resolve: {
-					bug: bug,
+					bugs: function () {return $scope.filteredBug;},
+					index: $scope.filteredBug.indexOf(bug),
 					classifications: $scope.classifications
 				}
 			});

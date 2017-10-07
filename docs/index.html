@@ -32,7 +32,7 @@
 
 		<script src="js/app.js"></script>
 	</head>
-	<body>
+	<body keypress-events>
 		<div id="throbber" style="display:none; min-height:120px;"></div>
 		<div id="noty-holder"></div>
 		<div id="wrapper">
@@ -147,6 +147,7 @@
 	<script type="text/ng-template" id="modelBug.html">
         <div class="modal-header">
             <h3 class="modal-title" id="modal-title">{{ $ctrl.bug.project }} {{ $ctrl.bug.bugId }}</h3>
+            <a ng-click="$ctrl.previous()"><i class="fa fa-arrow-left" aria-hidden="true"></i> Previous Bug</a> | <a ng-click="$ctrl.next()">Next Bug <i class="fa fa-arrow-right" aria-hidden="true"></i></a> 
         </div>
         <div class="modal-body" id="modal-body">
         	<h3>Patterns</h3>
