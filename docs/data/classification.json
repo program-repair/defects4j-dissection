@@ -2,68 +2,80 @@
 	"Repair Actions": {
 		"Method Definition": {
 			"mdAdd": {
-				"name": "Add"
+				"name": "Add",
+				"fullnale": "Add method"
 			},
 			"mdRem": {
-				"name": "Remove"
+				"name": "Remove",
+				"fullnale": "Remove method"
 			},
 			"mdRen": {
-				"name": "Rename"
+				"name": "Rename",
+				"fullnale": "Rename method"
 			},
 			"mdParAdd": {
-				"name": "Add Parameters"
+				"name": "Add Parameter",
+				"fullnale": "Add method parameter"
 			},
 			"mdParRem": {
-				"name": "Remove Parameters"
+				"name": "Remove Parameter",
+				"fullnale": "Remove method parameter"
 			},
 			"mdRetTyChange": {
-				"name": "Change Return Type"
+				"name": "Change Return Type",
+				"fullnale": "Change method return type"
 			},
 			"mdParTyChange": {
-				"name": "Change Parameters Type"
-			},
-			"mdModChange": {
-				"name": "Modifier"
-			},
-			"mdOverride": {
-				"name": "Override"
+				"name": "Change Parameters Type",
+				"fullnale": "Change method parameter type"
 			}
 		},
 		"Method Call": {
 			"mcAdd": {
-				"name": "Add"
+				"name": "Add",
+				"fullnale": "Add method call"
 			},
 			"mcRem": {
-				"name": "Remove"
+				"name": "Remove",
+				"fullnale": "REmove method call"
 			},
 			"mcRepl": {
-				"name": "Replace"
+				"name": "Replace",
+				"fullnale": "Replace method call"
 			},
 			"mcParSwap": {
-				"name": "Swap Parameters"
+				"name": "Swap Argument",
+				"fullnale": "Swap method call argument"
 			},
 			"mcParAdd": {
-				"name": "Add Parameters"
+				"name": "Add Argument",
+				"fullnale": "Add method call argument"
 			},
 			"mcParRem": {
-				"name": "Remove Parameters"
+				"name": "Remove Parameters",
+				"fullnale": "Change method call argument"
 			},
 			"mcParValChange": {
-				"name": "Change Parameters Values"
+				"name": "Change Argument Value",
+				"fullnale": "Change mothod call argument value"
 			},
 			"mcMove": {
-				"name": "Move"
+				"name": "Move",
+				"fullnale": "Move method call"
 			}
 		},
 		"Object Instantiation": {
 			"objInstAdd": {
-				"name": "Add"
+				"name": "Add",
+				"fullnale": "Add object instantiation"
 			},
 			"objInstRem": {
-				"name": "Remove"
+				"name": "Remove",
+				"fullnale": "Remove object instantiation"
 			},
 			"objInstMod": {
-				"name": "Modify"
+				"name": "Modify",
+				"fullnale": "Modify object instantiation"
 			}
 		},
 		"Variable": {
@@ -259,18 +271,18 @@
 		}
 	},
 	"Runtime Information": {
-		"Automatic Repair Systems": {
+		"Automatic Repair": {
 			"rtAcs": {
 				"name": "ACS"
 			},
 			"rtAstor": {
-				"name": "Astor"
+				"name": "jKali"
 			},
 			"rtDynaMoth": {
 				"name": "DynaMoth"
 			},
 			"rtGenProg": {
-				"name": "GenProg"
+				"name": "jGenProg"
 			},
 			"rtHDRepair": {
 				"name": "HDRepair"
