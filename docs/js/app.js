@@ -79,17 +79,33 @@ angular.module('defects4j-website', ['ui.bootstrap', 'anguFixedHeaderTable'])
 		$scope.bugs = [];
 		$scope.classifications = [];
 
+		$http.get("data/classification.json").then(function (response) {
+			$scope.classifications = response.data;
+		});
+
 		$http.get("data/bugs.json").then(function (response) {
 			$scope.bugs = response.data;
+
+			var exceptions = {};
+			$scope.classifications["Runtime Information"]["Exceptions"] = exceptions;
+
+			for (var i = 0; i < $scope.bugs.length; i++) {
+				for (var j = 0; j < $scope.bugs[i].failingTests.length; j++) {
+					var exception = $scope.bugs[i].failingTests[j].error.substring($scope.bugs[i].failingTests[j].error.lastIndexOf(".") + 1)
+					if (exceptions[exception] == null) {
+						exceptions[exception] = {
+							"name": exception,
+							"fullname": exception
+						}
+					}
+					$scope.bugs[i][exception] = true;
+				}
+			}
 
 			var element = angular.element(document.querySelector('#menu')); 
 			var height = element[0].offsetHeight;
 
 			angular.element(document.querySelector('#mainTable')).css('height', (height-160)+'px');
-		});
-
-		$http.get("data/classification.json").then(function (response) {
-			$scope.classifications = response.data;
 		});
 
 		$scope.openBug = function (bug) {
