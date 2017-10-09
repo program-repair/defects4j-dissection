@@ -80,13 +80,16 @@
 		},
 		"Variable": {
 			"varAdd": {
-				"name": "Add"
+				"name": "Add",
+				"fullname": "Add a variable"
 			},
 			"varRem": {
-				"name": "Remove"
+				"name": "Remove",
+				"fullname": "Remove a variable"
 			},
 			"varRepl": {
-				"name": "Replace"
+				"name": "Replace",
+				"fullname": "Replace a variable"
 			}
 		},
 		"Exception": {
@@ -128,21 +131,26 @@
 		},
 		"Assignment": {
 			"assignAdd": {
-				"name": "Add"
+				"name": "Add",
+				"fullname": "Add an assignment"
 			},
 			"assignRem": {
-				"name": "Remove"
+				"name": "Remove",
+				"fullname": "Remove an assignment"
 			},
 			"assignExpChange": {
-				"name": "Change assignment"
+				"name": "Change assignment",
+				"fullname": "Change an assignment"
 			}
 		},
 		"Loop": {
 			"loopAdd": {
-				"name": "Add"
+				"name": "Add",
+				"fullname": "Add a loop"
 			},
 			"loopRem": {
-				"name": "Remove"
+				"name": "Remove",
+				"fullname": "Remove a loop"
 			},
 			"loopCondChange": {
 				"name": "Change loop condition"
@@ -179,38 +187,45 @@
 		},
 		"Return": {
 			"retExpChange": {
-				"name": "Change return value"
+				"name": "Change the return value"
 			},
 			"retBranchAdd": {
 				"name": "Add a return branch"
 			},
 			"retRem": {
-				"name": "Remove return"
+				"name": "Remove a return"
 			}
 		}
 	},
 	"Repair Patterns": {
 		"Wrap with": {
 			"wrapsIf": {
-				"name": "If"
+				"name": "If",
+				"fullname": "Wrap with an if"
 			},
 			"wrapsIfElse": {
-				"name": "Else/if"
+				"name": "Else/if",
+				"fullname": "Wrap with an else/if"
 			},
 			"wrapsElse": {
-				"name": "Else"
+				"name": "Else",
+				"fullname": "Wrap with an else"
 			},
 			"wrapsTryCatch": {
-				"name": "Try/catch"
+				"name": "Try/catch",
+				"fullname": "Wrap with a try/catch"
 			},
 			"wrapsMethod": {
-				"name": "Method invocation"
+				"name": "Method invocation",
+				"fullname": "Wrap with a method"
 			},
 			"wrapsLoop": {
-				"name": "Loop"
+				"name": "Loop",
+				"fullname": "Wrap with a loop"
 			},
 			"unwrap": {
-				"name": "Unwrap"
+				"name": "Unwrap",
+				"fullname": "Unwrap"
 			}
 		},
 		"Conditional Block": {
@@ -229,10 +244,12 @@
 		},
 		"Missing Null Check": {
 			"missNullCheckP": {
-				"name": "Null (== null)"
+				"name": "Null (== null)",
+				"fullname": "Add a missing null check"
 			},
 			"missNullCheckN": {
-				"name": "Not Null (!= null)"
+				"name": "Not Null (!= null)",
+				"fullname": "Add a missing not null check"
 			}
 		},
 		"Expression": {
@@ -273,22 +290,28 @@
 	"Runtime Information": {
 		"Automatic Repair": {
 			"rtAcs": {
-				"name": "ACS"
+				"name": "ACS",
+				"fullname": "Fix with ACS"
 			},
 			"rtAstor": {
-				"name": "jKali"
+				"name": "jKali",
+				"fullname": "Fix with jKali"
 			},
 			"rtDynaMoth": {
-				"name": "DynaMoth"
+				"name": "DynaMoth",
+				"fullname": "Fix with DynaMoth"
 			},
 			"rtGenProg": {
-				"name": "jGenProg"
+				"name": "jGenProg",
+				"fullname": "Fix with jGenProg"
 			},
 			"rtHDRepair": {
-				"name": "HDRepair"
+				"name": "HDRepair",
+				"fullname": "Fix with HDRepair"
 			},
 			"rtNopol": {
-				"name": "Nopol"
+				"name": "Nopol",
+				"fullname": "Fix with Nopol"
 			}
 		}
 	}
