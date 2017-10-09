@@ -65,6 +65,10 @@
 				<div class="container-fluid">
 					<div class="row" id="main" >
 						<h2> Showing {{filteredBug.length}} Bugs</h2>
+						<section class="filters" ng-show="filteredBug.length != bugs.length">
+							Match {{match}} of these filter(s):
+							<span class="filter" ng-repeat="(k,v) in filter" ng-if="v" ng-click="filter[k]=false">{{filterName(k)}} <i class="fa fa-fw fa-times"></i></span>
+						</section>
 						<table fixed-header id="mainTable" class="table table-striped">
 							<thead>
 								<tr>
@@ -157,7 +161,9 @@
         </div>
         <div class="modal-body" id="modal-body">
         	<h3>Patterns</h3>
-        	<span ng-repeat="(key,value) in $ctrl.bug" ng-if="$ctrl.patternName(key) != null">{{$ctrl.patternName(key)}} </span>
+        	<section class="filters">
+        		<span class="filter" ng-repeat="(key,value) in $ctrl.bug" ng-if="$ctrl.patternName(key) != null">{{$ctrl.patternName(key)}} </span>
+        	</section>
         	<h3>Human Patch</h3>
         	<div diff></div>
             <h3>Failing Test</h3>

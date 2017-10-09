@@ -3,79 +3,79 @@
 		"Method Definition": {
 			"mdAdd": {
 				"name": "Add",
-				"fullnale": "Add method"
+				"fullname": "Add method"
 			},
 			"mdRem": {
 				"name": "Remove",
-				"fullnale": "Remove method"
+				"fullname": "Remove method"
 			},
 			"mdRen": {
 				"name": "Rename",
-				"fullnale": "Rename method"
+				"fullname": "Rename method"
 			},
 			"mdParAdd": {
 				"name": "Add Parameter",
-				"fullnale": "Add method parameter"
+				"fullname": "Add method parameter"
 			},
 			"mdParRem": {
 				"name": "Remove Parameter",
-				"fullnale": "Remove method parameter"
+				"fullname": "Remove method parameter"
 			},
 			"mdRetTyChange": {
 				"name": "Change Return Type",
-				"fullnale": "Change method return type"
+				"fullname": "Change method return type"
 			},
 			"mdParTyChange": {
 				"name": "Change Parameters Type",
-				"fullnale": "Change method parameter type"
+				"fullname": "Change method parameter type"
 			}
 		},
 		"Method Call": {
 			"mcAdd": {
 				"name": "Add",
-				"fullnale": "Add method call"
+				"fullname": "Add method call"
 			},
 			"mcRem": {
 				"name": "Remove",
-				"fullnale": "REmove method call"
+				"fullname": "Remove method call"
 			},
 			"mcRepl": {
 				"name": "Replace",
-				"fullnale": "Replace method call"
+				"fullname": "Replace method call"
 			},
 			"mcParSwap": {
 				"name": "Swap Argument",
-				"fullnale": "Swap method call argument"
+				"fullname": "Swap method call argument"
 			},
 			"mcParAdd": {
 				"name": "Add Argument",
-				"fullnale": "Add method call argument"
+				"fullname": "Add method call argument"
 			},
 			"mcParRem": {
 				"name": "Remove Parameters",
-				"fullnale": "Change method call argument"
+				"fullname": "Change method call argument"
 			},
 			"mcParValChange": {
 				"name": "Change Argument Value",
-				"fullnale": "Change mothod call argument value"
+				"fullname": "Change mothod call argument value"
 			},
 			"mcMove": {
 				"name": "Move",
-				"fullnale": "Move method call"
+				"fullname": "Move method call"
 			}
 		},
 		"Object Instantiation": {
 			"objInstAdd": {
 				"name": "Add",
-				"fullnale": "Add object instantiation"
+				"fullname": "Add object instantiation"
 			},
 			"objInstRem": {
 				"name": "Remove",
-				"fullnale": "Remove object instantiation"
+				"fullname": "Remove object instantiation"
 			},
 			"objInstMod": {
 				"name": "Modify",
-				"fullnale": "Modify object instantiation"
+				"fullname": "Modify object instantiation"
 			}
 		},
 		"Variable": {

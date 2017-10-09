@@ -34,6 +34,9 @@ angular.module('defects4j-website', ['ui.bootstrap', 'anguFixedHeaderTable'])
 		$ctrl.patternName = function (key) {
 			for(var i in $ctrl.classifications['Repair Patterns']) {
 				if ($ctrl.classifications['Repair Patterns'][i][key] != null) {
+					if ($ctrl.classifications['Repair Patterns'][i][key].fullname) {
+						return $ctrl.classifications['Repair Patterns'][i][key].fullname;
+					}
 					return $ctrl.classifications['Repair Patterns'][i][key].name;
 				}
 			}
@@ -107,6 +110,20 @@ angular.module('defects4j-website', ['ui.bootstrap', 'anguFixedHeaderTable'])
 
 			angular.element(document.querySelector('#mainTable')).css('height', (height-160)+'px');
 		});
+
+		$scope.filterName = function (filterKey) {
+			for (var j in $scope.classifications) {
+				for(var i in $scope.classifications[j]) {
+					if ($scope.classifications[j][i][filterKey] != null) {
+						if ($scope.classifications[j][i][filterKey].fullname) {
+							return $scope.classifications[j][i][filterKey].fullname;
+						}
+						return $scope.classifications[j][i][filterKey].name;
+					}
+				}
+			}
+			return filterKey;
+		}
 
 		$scope.openBug = function (bug) {
 			var modalInstance = $uibModal.open({
