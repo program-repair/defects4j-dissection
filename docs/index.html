@@ -40,10 +40,18 @@
 				<div class="collapse navbar-collapse navbar-ex1-collapse">
 					<ul id="menu" class="nav navbar-nav side-nav">
 						<li>
-							Match <input type="radio" name="match" value="any" ng-model="match"> Any <input type="radio" name="match" value="all" ng-model="match"> All
+							<h3>Filters</h3>
+						</li>
+						<li>
+							<div>
+							Match 
+							<label><input type="radio" name="match" value="any" ng-model="match"> Any</label>
+							<label><input type="radio" name="match" value="all" ng-model="match"> All</label> 
+							filters
+							</div>
 						</li>
 						<li ng-repeat="(topFilter, filters) in classifications">
-							<a>{{ topFilter }}</a>
+							<h4>> {{ topFilter }}</h4>
 							<ul class="nav">
 								<li ng-repeat="(key,values) in filters">
 									<a href="#" ng-click="submenu1 = !submenu1">

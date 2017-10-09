@@ -42,14 +42,14 @@ a {
         padding-bottom: 0px;
     }
 
-    .side-nav>li label {
+    .side-nav>li ul li label {
         width: 300px;
         border-bottom: 1px rgba(0,0,0,.3) solid;
     }
 
-    .side-nav li label.actived,
-    .side-nav li label:hover,
-    .side-nav li label:focus {
+    .side-nav li ul li label.actived,
+    .side-nav li ul li label:hover,
+    .side-nav li ul li label:focus {
         outline: none;
         background-color: #4d5c6b !important;
     }
@@ -67,6 +67,11 @@ a {
 }
 .side-nav li {
 	float: none;
+}
+
+.side-nav li h2, .side-nav li h3, .side-nav li h4, .side-nav li div {
+	padding: 3px 4px 3px 18px;
+	margin: 0;
 }
 
 .side-nav>li>ul>li label {
