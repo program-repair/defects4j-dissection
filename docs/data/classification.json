@@ -57,7 +57,7 @@
 			},
 			"mcParValChange": {
 				"name": "Change Argument Value",
-				"fullname": "Change mothod call argument value"
+				"fullname": "Change method call argument value"
 			},
 			"mcMove": {
 				"name": "Move",
@@ -81,15 +81,15 @@
 		"Variable": {
 			"varAdd": {
 				"name": "Add",
-				"fullname": "Add a variable"
+				"fullname": "Add variable"
 			},
 			"varRem": {
 				"name": "Remove",
-				"fullname": "Remove a variable"
+				"fullname": "Remove variable"
 			},
 			"varRepl": {
 				"name": "Replace",
-				"fullname": "Replace a variable"
+				"fullname": "Replace variable"
 			}
 		},
 		"Exception": {
@@ -106,94 +106,114 @@
 				"name": "Remove Throws"
 			}
 		},
-		"If": {
+		"Conditionals": {
 			"condExpRed": {
-				"name": "condExpRed"
+				"name": "Reduce Expression"
+				"fullname": "Reduce conditional expression"
 			},
 			"condExpExpand": {
-				"name": "Expand condition"
+				"name": "Expand Expression"
+				"fullname": "Expand conditional expression"
 			},
 			"condExpMod": {
-				"name": "Modify condition"
+				"name": "Modify Expression"
+				"fullname": "Modify conditional expression"
 			},
 			"condBranIfAdd": {
 				"name": "Add if branch"
+				"fullname": "Add conditional (if) branch"
 			},
 			"condBranIfElseAdd": {
-				"name": "Add else if branch"
+				"name": "Add if-else branches"
+				"fullname": "Add conditional (if-else) branches"
 			},
 			"condBranElseAdd": {
 				"name": "Add else branch"
+				"fullname": "Add conditional (else) branch"	
 			},
 			"condBranRem": {
 				"name": "Remove branch"
+				"fullname": "Remove conditional (if or else) branch"		
 			}
 		},
 		"Assignment": {
 			"assignAdd": {
 				"name": "Add",
-				"fullname": "Add an assignment"
+				"fullname": "Add assignment"
 			},
 			"assignRem": {
 				"name": "Remove",
-				"fullname": "Remove an assignment"
+				"fullname": "Remove assignment"
 			},
 			"assignExpChange": {
-				"name": "Change assignment",
-				"fullname": "Change an assignment"
+				"name": "Change expression",
+				"fullname": "Change assignment expression"
 			}
 		},
 		"Loop": {
 			"loopAdd": {
 				"name": "Add",
-				"fullname": "Add a loop"
+				"fullname": "Add loop"
 			},
 			"loopRem": {
 				"name": "Remove",
-				"fullname": "Remove a loop"
+				"fullname": "Remove loop"
 			},
 			"loopCondChange": {
-				"name": "Change loop condition"
+				"name": "Change Loop Condition"
+				"fullname": "Change loop conditional expression"
 			},
 			"loopInitVector": {
-				"name": "Change loop init vector"
+				"name": "Change Vector Initialisation"
+				"fullname": "Add, remove or modify a vector initialisation in a loop"
 			},
 			"loopInitChange": {
-				"name": "Change loop initial value"
+				"name": "Change Loop Initialisation"
+				"fullname": "Change loop Initialisation fields"
 			}
 		},
 		"Type": {
 			"tyChange": {
-				"name": "Change variable type"
+				"name": "Change type"
+				"fullname": "Change variable type"
 			},
 			"dsInitValChange": {
-				"name": "dsInitValChange"
+				"name": "Change Initialisation"
+				"fullname": "Change initialisation of a data structure (object, vector or variable)"
 			},
 			"tyModChange": {
-				"name": "tyModChange"
+				"name": "Change Modifier"
+				"fullname": "Change type modifier"
 			},
 			"dsDimChange": {
-				"name": "dsDimChange"
+				"name": "Change Dimension"
+				"fullname": "Change dimension of a data structure"
 			},
 			"typObj2Met": {
-				"name": "typObj2Met"
+				"name": "Replace Direct Reference"
+				"fullname": "Replace direct reference to an object by a method call"
 			},
 			"tyAdd": {
 				"name": "Create type"
+				"fullname": "Create a new type"
 			},
 			"typImpInterf": {
-				"name": "Change implemented interface"
+				"name": "Change Implemented Interface"
+				"fullname": "Change impelmented interface in type"
 			}
 		},
 		"Return": {
 			"retExpChange": {
-				"name": "Change the return value"
+				"name": "Change Value"
+				"fullname": "Change returned value, modifying expression"
 			},
 			"retBranchAdd": {
-				"name": "Add a return branch"
+				"name": "Add"
+				"fullname": "Add return statement"
 			},
 			"retRem": {
-				"name": "Remove a return"
+				"name": "Remove"
+				"fullname": "Remove return statement"
 			}
 		}
 	},
@@ -216,8 +236,8 @@
 				"fullname": "Wrap with a try/catch"
 			},
 			"wrapsMethod": {
-				"name": "Method invocation",
-				"fullname": "Wrap with a method"
+				"name": "Method",
+				"fullname": "Wrap with a method invocation"
 			},
 			"wrapsLoop": {
 				"name": "Loop",
@@ -230,16 +250,21 @@
 		},
 		"Conditional Block": {
 			"condBlockExcAdd": {
-				"name": "condBlockExcAdd"
+				"name": "Add Exception Throws"
+				"fullname": "Add conditional block with Exception Throws statement"
 			},
 			"condBlockRetAdd": {
-				"name": "condBlockRetAdd"
+				"name": "Add Return Branch"
+				"fullname": "Add conditional block with return statement"
+
 			},
 			"condBlockOthersAdd": {
-				"name": "condBlockOthersAdd"
+				"name": "Add Other Blocks"
+				"fullname": "Add other kind of conditional blocks"
 			},
 			"condBlockRem": {
-				"name": "condBlockRem"
+				"name": "Remove Conditional Block"
+				"fullname": "Remove conditional block"
 			}
 		},
 		"Missing Null Check": {
@@ -255,15 +280,19 @@
 		"Expression": {
 			"expLogicExpand": {
 				"name": "Expand Logic Exp."
+				"fullname": "Expand logic expression"
 			},
 			"expLogicReduce": {
 				"name": "Reduce Logic Exp."
+				"fullname": "Reduce Logic expression"
 			},
 			"expLogicMod": {
 				"name": "Modify Logic Exp."
+				"fullname": "Modify logic expression"
 			},
 			"expArithMod": {
 				"name": "Modify Arithmetic Exp."
+				"fullname": "Expand arithmetic expression"
 			}
 		},
 		"Other": {
@@ -283,7 +312,7 @@
 				"name": "Not classified"
 			},
 			"copyPaste": {
-				"name": "Copy/past"
+				"name": "Copy/Paste"
 			}
 		}
 	},
