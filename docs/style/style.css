@@ -16,7 +16,7 @@ a {
 
 @media(min-width:768px) {
     #wrapper {
-        padding-left: 250px;
+        padding-left: 300px;
     }
 
     #page-wrapper {
@@ -30,9 +30,9 @@ a {
     .side-nav {
         position: fixed;
         top: 0px;
-        left: 250px;
-        width: 250px;
-        margin-left: -250px;
+        left: 300px;
+        width: 300px;
+        margin-left: -300px;
         border: none;
         border-radius: 0;
         overflow-y: auto;
@@ -43,10 +43,11 @@ a {
     }
 
     .side-nav>li label {
-        width: 225px;
+        width: 300px;
         border-bottom: 1px rgba(0,0,0,.3) solid;
     }
 
+    .side-nav li label.actived,
     .side-nav li label:hover,
     .side-nav li label:focus {
         outline: none;
@@ -75,6 +76,7 @@ a {
     color: #d4d4d4;
     margin: 0;
     cursor: pointer;
+    word-wrap: break-word;
 }
 .side-nav>li>ul>li label>input {
 	margin-right: 3px;

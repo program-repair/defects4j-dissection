@@ -50,7 +50,7 @@
 									<i class="fa fa-fw fa-search"></i> {{ key }} <i class="fa fa-fw fa-angle-down pull-right"></i></a>
 									<ul class="collapse" uib-collapse="!submenu1">
 										<li ng-repeat="(vKey,value) in values">
-											<label for="{{ vKey }}"><input type="checkbox" id="{{ vKey }}" ng-model="filter[vKey]">{{value.name}} ({{ countBugs(vKey, value) }})</label>
+											<label for="{{ vKey }}" ng-class="{'actived': filter[vKey]}"><input type="checkbox" id="{{ vKey }}" ng-model="filter[vKey]">{{value.name}} ({{ countBugs(vKey, value) }})</label>
 										</li>
 									</ul>
 								</li>
@@ -71,49 +71,57 @@
 									<th>
 										<a href="#" ng-click="sort(['project', 'bugId'])">
 											Bug Id
-											<span ng-show="sortType[0] == 'project'" class="fa fa-caret-down"></span>
+											<span ng-show="sortType[0] == 'project' && sortReverse" class="fa fa-caret-down"></span>
+											<span ng-show="sortType[0] == 'project' && !sortReverse" class="fa fa-caret-up"></span>
 										</a>
 									</th>
 									<th>	
 										<a href="#" ng-click="sort('files')">
 											# File
-											<span ng-show="sortType == 'files'" class="fa fa-caret-down"></span>
+											<span ng-show="sortType == 'files' && sortReverse" class="fa fa-caret-down"></span>
+											<span ng-show="sortType == 'files' && !sortReverse" class="fa fa-caret-up"></span>
 										</a>
 									</th>
 									<th>	
 										<a href="#" ng-click="sort('sizeInLines')">
 											# Line
-											<span ng-show="sortType == 'sizeInLines'" class="fa fa-caret-down"></span>
+											<span ng-show="sortType == 'sizeInLines' && sortReverse" class="fa fa-caret-down"></span>
+											<span ng-show="sortType == 'sizeInLines' && !sortReverse" class="fa fa-caret-up"></span>
 										</a>
 									</th>
 									<th>
 										<a href="#" ng-click="sort('linesAdd')">
 											# Add
-											<span ng-show="sortType == 'linesAdd'" class="fa fa-caret-down"></span>
+											<span ng-show="sortType == 'linesAdd' && sortReverse" class="fa fa-caret-down"></span>
+											<span ng-show="sortType == 'linesAdd' && !sortReverse" class="fa fa-caret-up"></span>
 										</a>
 									</th>
 									<th>
 										<a href="#" ng-click="sort('linesRem')">
 											# Rem
-											<span ng-show="sortType == 'linesRem'" class="fa fa-caret-down"></span>
+											<span ng-show="sortType == 'linesRem' && sortReverse" class="fa fa-caret-down"></span>
+											<span ng-show="sortType == 'linesRem' && !sortReverse" class="fa fa-caret-up"></span>
 										</a>
 									</th>
 									<th>
 										<a href="#" ng-click="sort('linesMod')">
 											# Mod
-											<span ng-show="sortType == 'linesMod'" class="fa fa-caret-down"></span>
+											<span ng-show="sortType == 'linesMod' && sortReverse" class="fa fa-caret-down"></span>
+											<span ng-show="sortType == 'linesMod' && !sortReverse" class="fa fa-caret-up"></span>
 										</a>
 									</th>
 									<th>	
 										<a href="#" ng-click="sort('chunks')">
 											# Hunks
-											<span ng-show="sortType == 'chunks'" class="fa fa-caret-down"></span>
+											<span ng-show="sortType == 'chunks' && sortReverse" class="fa fa-caret-down"></span>
+											<span ng-show="sortType == 'chunks' && !sortReverse" class="fa fa-caret-up"></span>
 										</a>
 									</th>
 									<th>	
 										<a href="#" ng-click="sort('failingTests')">
 											# Failing Test
-											<span ng-show="sortType == 'failingTests'" class="fa fa-caret-down"></span>
+											<span ng-show="sortType == 'failingTests' && sortReverse" class="fa fa-caret-down"></span>
+											<span ng-show="sortType == 'failingTests' && !sortReverse" class="fa fa-caret-up"></span>
 										</a>
 									</th>
 									<th>	
