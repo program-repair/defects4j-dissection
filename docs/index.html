@@ -163,25 +163,37 @@
 		</div><!-- /#wrapper -->
 	</body>
 	<script type="text/ng-template" id="modelBug.html">
-        <div class="modal-header">
-            <h3 class="modal-title" id="modal-title">{{ $ctrl.bug.project }} {{ $ctrl.bug.bugId }}</h3>
-            <a ng-click="$ctrl.previous()"><i class="fa fa-arrow-left" aria-hidden="true"></i> Previous Bug</a> | <a ng-click="$ctrl.next()">Next Bug <i class="fa fa-arrow-right" aria-hidden="true"></i></a> 
-        </div>
-        <div class="modal-body" id="modal-body">
-        	<h3>Patterns</h3>
-        	<section class="filters">
-        		<span class="filter" ng-repeat="(key,value) in $ctrl.bug" ng-if="$ctrl.patternName(key) != null">{{$ctrl.patternName(key)}} </span>
-        	</section>
-        	<h3>Human Patch</h3>
-        	<div diff></div>
-            <h3>Failing Test</h3>
-            <section ng-repeat="test in $ctrl.bug.failingTests">
-                <h4>{{test.className}}:{{test.methodName}}</h4>
-                <span>{{test.error}}: {{test.message}}</span><br>
-            </section>
-        </div>
-        <div class="modal-footer">
-            <button class="btn btn-primary" type="button" ng-click="$ctrl.ok()">OK</button>
-        </div>
-    </script>
+		<div class="modal-header">
+			<h3 class="modal-title" id="modal-title">{{ $ctrl.bug.project }} {{ $ctrl.bug.bugId }}</h3>
+			<a ng-click="$ctrl.previous()"><i class="fa fa-arrow-left" aria-hidden="true"></i> Previous Bug</a> | <a ng-click="$ctrl.next()">Next Bug <i class="fa fa-arrow-right" aria-hidden="true"></i></a> 
+		</div>
+		<div class="modal-body" id="modal-body">
+			<section ng-show="$ctrl.bug.Observations">
+				<h3>Comments</h3>
+				{{$ctrl.bug.Observations}}
+			</section>
+			<section ng-if="$ctrl.bug.repairTools">
+				<h3>Repaired with</h3>
+				<section class="filters">
+					<span class="filter" ng-repeat="(key,value) in $ctrl.bug" ng-if="$ctrl.repairName(key) != null">{{$ctrl.repairName(key)}} </span>
+				</section>
+			</section>
+			<section>
+				<h3>Patterns</h3>
+				<section class="filters">
+					<span class="filter" ng-repeat="(key,value) in $ctrl.bug" ng-if="$ctrl.patternName(key) != null">{{$ctrl.patternName(key)}} </span>
+				</section>
+			</section>
+			<h3>Human Patch</h3>
+			<div diff></div>
+			<h3>Failing Test</h3>
+			<section ng-repeat="test in $ctrl.bug.failingTests">
+				<h4>{{test.className}}:{{test.methodName}}</h4>
+				<span>{{test.error}}: {{test.message}}</span><br>
+			</section>
+		</div>
+		<div class="modal-footer">
+			<button class="btn btn-primary" type="button" ng-click="$ctrl.ok()">OK</button>
+		</div>
+	</script>
 </html>

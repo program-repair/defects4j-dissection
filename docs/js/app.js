@@ -42,6 +42,16 @@ angular.module('defects4j-website', ['ui.bootstrap', 'anguFixedHeaderTable'])
 			}
 			return null;
 		};
+		$ctrl.repairName = function (key) {
+			var repairNames = $ctrl.classifications['Runtime Information']["Automatic Repair"];
+			if (repairNames[key] != null) {
+				if (repairNames[key].fullname) {
+					return repairNames[key].fullname;
+				}
+				return repairNames[key].name;
+			}
+			return null;
+		};
 		$rootScope.$on('keypress:39', function(onEvent, keypressEvent) {
 			$rootScope.$apply(function () {
 				$ctrl.next();
