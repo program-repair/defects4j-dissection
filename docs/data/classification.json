@@ -108,31 +108,31 @@
 		},
 		"Conditionals": {
 			"condExpRed": {
-				"name": "Reduce Expression"
+				"name": "Reduce Expression",
 				"fullname": "Reduce conditional expression"
 			},
 			"condExpExpand": {
-				"name": "Expand Expression"
+				"name": "Expand Expression",
 				"fullname": "Expand conditional expression"
 			},
 			"condExpMod": {
-				"name": "Modify Expression"
+				"name": "Modify Expression",
 				"fullname": "Modify conditional expression"
 			},
 			"condBranIfAdd": {
-				"name": "Add if branch"
+				"name": "Add if branch",
 				"fullname": "Add conditional (if) branch"
 			},
 			"condBranIfElseAdd": {
-				"name": "Add if-else branches"
+				"name": "Add if-else branches",
 				"fullname": "Add conditional (if-else) branches"
 			},
 			"condBranElseAdd": {
-				"name": "Add else branch"
+				"name": "Add else branch",
 				"fullname": "Add conditional (else) branch"	
 			},
 			"condBranRem": {
-				"name": "Remove branch"
+				"name": "Remove branch",
 				"fullname": "Remove conditional (if or else) branch"		
 			}
 		},
@@ -160,59 +160,59 @@
 				"fullname": "Remove loop"
 			},
 			"loopCondChange": {
-				"name": "Change Loop Condition"
+				"name": "Change Loop Condition",
 				"fullname": "Change loop conditional expression"
 			},
 			"loopInitVector": {
-				"name": "Change Vector Initialisation"
+				"name": "Change Vector Initialisation",
 				"fullname": "Add, remove or modify a vector initialisation in a loop"
 			},
 			"loopInitChange": {
-				"name": "Change Loop Initialisation"
+				"name": "Change Loop Initialisation",
 				"fullname": "Change loop Initialisation fields"
 			}
 		},
 		"Type": {
 			"tyChange": {
-				"name": "Change type"
+				"name": "Change type",
 				"fullname": "Change variable type"
 			},
 			"dsInitValChange": {
-				"name": "Change Initialisation"
+				"name": "Change Initialisation",
 				"fullname": "Change initialisation of a data structure (object, vector or variable)"
 			},
 			"tyModChange": {
-				"name": "Change Modifier"
+				"name": "Change Modifier",
 				"fullname": "Change type modifier"
 			},
 			"dsDimChange": {
-				"name": "Change Dimension"
+				"name": "Change Dimension",
 				"fullname": "Change dimension of a data structure"
 			},
 			"typObj2Met": {
-				"name": "Replace Direct Reference"
+				"name": "Replace Direct Reference",
 				"fullname": "Replace direct reference to an object by a method call"
 			},
 			"tyAdd": {
-				"name": "Create type"
+				"name": "Create type",
 				"fullname": "Create a new type"
 			},
 			"typImpInterf": {
-				"name": "Change Implemented Interface"
+				"name": "Change Implemented Interface",
 				"fullname": "Change impelmented interface in type"
 			}
 		},
 		"Return": {
 			"retExpChange": {
-				"name": "Change Value"
+				"name": "Change Value",
 				"fullname": "Change returned value, modifying expression"
 			},
 			"retBranchAdd": {
-				"name": "Add"
+				"name": "Add",
 				"fullname": "Add return statement"
 			},
 			"retRem": {
-				"name": "Remove"
+				"name": "Remove",
 				"fullname": "Remove return statement"
 			}
 		}
@@ -250,20 +250,20 @@
 		},
 		"Conditional Block": {
 			"condBlockExcAdd": {
-				"name": "Add Exception Throws"
+				"name": "Add Exception Throws",
 				"fullname": "Add conditional block with Exception Throws statement"
 			},
 			"condBlockRetAdd": {
-				"name": "Add Return Branch"
+				"name": "Add Return Branch",
 				"fullname": "Add conditional block with return statement"
 
 			},
 			"condBlockOthersAdd": {
-				"name": "Add Other Blocks"
+				"name": "Add Other Blocks",
 				"fullname": "Add other kind of conditional blocks"
 			},
 			"condBlockRem": {
-				"name": "Remove Conditional Block"
+				"name": "Remove Conditional Block",
 				"fullname": "Remove conditional block"
 			}
 		},
@@ -279,19 +279,19 @@
 		},
 		"Expression": {
 			"expLogicExpand": {
-				"name": "Expand Logic Exp."
+				"name": "Expand Logic Exp.",
 				"fullname": "Expand logic expression"
 			},
 			"expLogicReduce": {
-				"name": "Reduce Logic Exp."
+				"name": "Reduce Logic Exp.",
 				"fullname": "Reduce Logic expression"
 			},
 			"expLogicMod": {
-				"name": "Modify Logic Exp."
+				"name": "Modify Logic Exp.",
 				"fullname": "Modify logic expression"
 			},
 			"expArithMod": {
-				"name": "Modify Arithmetic Exp."
+				"name": "Modify Arithmetic Exp.",
 				"fullname": "Expand arithmetic expression"
 			}
 		},
