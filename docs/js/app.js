@@ -85,7 +85,7 @@ angular.module('defects4j-website', ['ui.bootstrap', 'anguFixedHeaderTable'])
 	.controller('mainController', function($scope,$rootScope, $http, $uibModal) {
 		$scope.sortType     = ['project', 'bugId']; // set the default sort type
 		$scope.sortReverse  = false;
-		$scope.match  = "any";
+		$scope.match  = "all";
 		$scope.filter   = {};
 
 		// create the list of sushi rolls 
