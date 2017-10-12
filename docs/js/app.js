@@ -135,6 +135,25 @@ angular.module('defects4j-website', ['ui.bootstrap', 'anguFixedHeaderTable'])
 			return filterKey;
 		}
 
+		$scope.openWelcome = function () {
+			var modalInstance = $uibModal.open({
+				animation: true,
+				ariaLabelledBy: 'modal-title',
+				ariaDescribedBy: 'modal-body',
+				templateUrl: 'welcome.html',
+				controller: 'bugController',
+				controllerAs: '$ctrl',
+				size: "lg",
+				resolve: {
+					bugs: {},
+					index: {},
+					classifications: {}
+				}
+			});
+		};
+		$scope.openWelcome();
+
+
 		$scope.openBug = function (bug) {
 			var modalInstance = $uibModal.open({
 				animation: true,

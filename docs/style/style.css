@@ -9,9 +9,10 @@ a {
 }
 
 #page-wrapper {
-    width: 100%;        
+    width: 100%;
     padding: 0;
     background-color: #fff;
+    margin-top: 40px;
 }
 
 @media(min-width:768px) {
@@ -125,4 +126,18 @@ table tr {
 
 table tr:hover {
 	background: #DDD!important;
+}
+
+.navbar-header {
+	position: absolute;
+	display: block;
+	background: #5a6b7d;
+	left: 300px;
+	right:0;
+	color: white;
+	padding: 4px;
+}
+
+.navbar-header a {
+	color: #FFF;
 }
