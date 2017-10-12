@@ -11,7 +11,7 @@ var defects4jPath = "/home/thomas/git/defects4j/framework/bin/defects4j";
 var defects4jBuggyProjectsPath = "/mnt/secondary/projects/";
 var defects4jFixedProjectsPath = "/mnt/secondary/projects_fix/";
 
-var input = fs.createReadStream('./data.csv');
+var input = fs.createReadStream(__dirname + '/../datadefects4j-bugs.csv');
 
 var template = null;
 // Create the parser
@@ -120,5 +120,6 @@ input.pipe(parser).pipe(transformer).pipe(defects4jInfo).pipe(transform(function
   output.push(record);
   callback(null, null);
 })).on('finish', function () {  // finished
-  fs.writeFile('docs/data/bugs.json', JSON.stringify(output), 'utf8', function(err) {});
+  fs.writeFile(__dirname + '/../datadefects4j-bugs.json', JSON.stringify(output), 'utf8', function(err) {});
+  fs.writeFile(__dirname + '/../docs/data/datadefects4j-bugs.json', JSON.stringify(output), 'utf8', function(err) {});
 });
