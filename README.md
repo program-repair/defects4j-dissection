@@ -1,17 +1,17 @@
-# Defects4J Dessection
+# Defects4J Dissection
 
 Defects4J Dissection presents data to help researches and practitioners to better understand Defects4J bug dataset. 
 It was first designed to compile and complement the work in paper "Dissection of a bug dataset: anatomy of 395 patches from Defects4J".
 
 ```bibtex
-@inproceedings{defects4J-dessection,
+@inproceedings{defects4J-dissection,
     title = {{Dissection of a bug dataset: anatomy of 395 patches from Defects4J}},
     author = {Sobreira, Victor and Durieux, Thomas and Madeiral, Fernanda and Monperrus, Martin and Maia, Marcelo A.}
 }
 ```
 
 The file `defects4j-bugs.json` contains all the extracted information used in the paper.
-And the website: https://durieux.me/defects4j-dessection is an user interface that presents this information.
+And the website: https://durieux.me/defects4j-dissection is an user interface that presents this information.
 
 ## defects4j-bugs.json format
 
