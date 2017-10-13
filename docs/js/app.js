@@ -94,19 +94,6 @@ angular.module('defects4j-website', ['ui.bootstrap', 'anguFixedHeaderTable'])
 
 		$http.get("data/classification.json").then(function (response) {
 			$scope.classifications = response.data;
-
-			for (var i in $scope.classifications) {
-				for (var j in $scope.classifications[i]) {
-					for (var k in $scope.classifications[i][j]) {
-						var operation = $scope.classifications[i][j][k];
-						var text = operation.name;
-						if (operation.fullname) {
-							text = operation.fullname;
-						}
-						console.log (" * " + k + ": " + text);
-					}
-				}
-			}
 		});
 
 		$http.get("data/defects4j-bugs.json").then(function (response) {
