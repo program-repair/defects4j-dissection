@@ -109,7 +109,7 @@ angular.module('defects4j-website', ['ui.bootstrap', 'anguFixedHeaderTable'])
 			}
 		});
 
-		$http.get("data/datadefects4j-bugs.json").then(function (response) {
+		$http.get("data/defects4j-bugs.json").then(function (response) {
 			$scope.bugs = response.data;
 
 			var exceptions = {};
