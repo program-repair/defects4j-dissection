@@ -11,7 +11,7 @@ It was first designed to compile and complement the work in paper "Dissection of
 ```
 
 The file `defects4j-bugs.json` contains all the extracted information used in the paper.
-And the website: https://durieux.me/defects4j-dissection is an user interface that presents this information.
+And the website: http://program-repair.github.io/defects4j-dissection/ is an user interface that presents this information.
 
 ## defects4j-bugs.json format
 
