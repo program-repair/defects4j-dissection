@@ -1,7 +1,7 @@
 # Defects4J Dissection
 
-Defects4J Dissection presents data to help researches and practitioners to better understand Defects4J bug dataset. 
-It was first designed to compile and complement the work in paper "Dissection of a bug dataset: anatomy of 395 patches from Defects4J".
+Defects4J Dissection presents data to help researches and practitioners to better understand the Defects4J bug dataset. 
+It is the open-science appendix of "Dissection of a bug dataset: anatomy of 395 patches from Defects4J".
 
 ```bibtex
 @inproceedings{defects4J-dissection,
@@ -10,8 +10,11 @@ It was first designed to compile and complement the work in paper "Dissection of
 }
 ```
 
-The file `defects4j-bugs.json` contains all the extracted information used in the paper.
-And the website: http://program-repair.github.io/defects4j-dissection/ is an user interface that presents this information.
+Main files:
+
+* The file `defects4j-bugs.json` contains all the extracted information.
+* The file [defects4j-patch.md](https://github.com/program-repair/defects4j-dissection/blob/master/defects4j-patch.md) gives link to the buggy and patched version as well as the diff
+* The website: http://program-repair.github.io/defects4j-dissection/ is a user interface that presents this information in a user-friendly manner.
 
 ## defects4j-bugs.json format
 
