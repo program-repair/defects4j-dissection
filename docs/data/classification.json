@@ -218,6 +218,43 @@
 		}
 	},
 	"Repair Patterns": {
+		"Conditional Block": {
+			"condBlockOthersAdd": {
+				"name": "Add Simple Branch",
+				"fullname": "Add other kinds of simple conditional block"
+			},
+			"condBlockRetAdd": {
+				"name": "Add Return Branch",
+				"fullname": "Add conditional block with return statement"
+
+			},
+			"condBlockExcAdd": {
+				"name": "Add Exception Throwing",
+				"fullname": "Add conditional block with Exception Throws statement"
+			},
+			"condBlockRem": {
+				"name": "Remove Conditional Block",
+				"fullname": "Remove conditional block"
+			}
+		},
+		"Expression": {
+			"expLogicExpand": {
+				"name": "Expand Logic Exp.",
+				"fullname": "Expand logic expression"
+			},
+			"expLogicReduce": {
+				"name": "Reduce Logic Exp.",
+				"fullname": "Reduce Logic expression"
+			},
+			"expLogicMod": {
+				"name": "Modify Logic Exp.",
+				"fullname": "Modify logic expression"
+			},
+			"expArithMod": {
+				"name": "Modify Arithmetic Exp.",
+				"fullname": "Expand arithmetic expression"
+			}
+		},
 		"Wrap with": {
 			"wrapsIf": {
 				"name": "If",
@@ -248,25 +285,6 @@
 				"fullname": "Unwrap"
 			}
 		},
-		"Conditional Block": {
-			"condBlockExcAdd": {
-				"name": "Add Exception Throws",
-				"fullname": "Add conditional block with Exception Throws statement"
-			},
-			"condBlockRetAdd": {
-				"name": "Add Return Branch",
-				"fullname": "Add conditional block with return statement"
-
-			},
-			"condBlockOthersAdd": {
-				"name": "Add Other Blocks",
-				"fullname": "Add other kind of conditional blocks"
-			},
-			"condBlockRem": {
-				"name": "Remove Conditional Block",
-				"fullname": "Remove conditional block"
-			}
-		},
 		"Missing Null Check": {
 			"missNullCheckP": {
 				"name": "Null (== null)",
@@ -275,24 +293,6 @@
 			"missNullCheckN": {
 				"name": "Not Null (!= null)",
 				"fullname": "Add a missing not null check"
-			}
-		},
-		"Expression": {
-			"expLogicExpand": {
-				"name": "Expand Logic Exp.",
-				"fullname": "Expand logic expression"
-			},
-			"expLogicReduce": {
-				"name": "Reduce Logic Exp.",
-				"fullname": "Reduce Logic expression"
-			},
-			"expLogicMod": {
-				"name": "Modify Logic Exp.",
-				"fullname": "Modify logic expression"
-			},
-			"expArithMod": {
-				"name": "Modify Arithmetic Exp.",
-				"fullname": "Expand arithmetic expression"
 			}
 		},
 		"Other": {
