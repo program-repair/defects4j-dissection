@@ -120,6 +120,6 @@ input.pipe(parser).pipe(transformer).pipe(defects4jInfo).pipe(transform(function
   output.push(record);
   callback(null, null);
 })).on('finish', function () {  // finished
-  fs.writeFile(__dirname + '/../datadefects4j-bugs.json', JSON.stringify(output), 'utf8', function(err) {});
-  fs.writeFile(__dirname + '/../docs/data/datadefects4j-bugs.json', JSON.stringify(output), 'utf8', function(err) {});
+  fs.writeFile(__dirname + '/../defects4j-bugs.json', JSON.stringify(output), 'utf8', function(err) {});
+  fs.writeFile(__dirname + '/../docs/data/defects4j-bugs.json', JSON.stringify(output), 'utf8', function(err) {});
 });

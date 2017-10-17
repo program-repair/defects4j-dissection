@@ -13,9 +13,9 @@ config.set('path', 'checkout', os.path.expanduser("/mnt/scondary/projects"))
 config.set('path', 'fix_checkout', os.path.expanduser("/mnt/scondary/projects_fix"))
 
 config.add_section('git')
-config.set('git', 'url', 'https://github.com/Spirals-Team/defects4j-presentation-urls')
+config.set('git', 'url', 'https://github.com/program-repair/defects4j-dissection')
 
-path_config_file = os.path.join(config.get('path', 'root'), 'config.cfg')
+path_config_file = os.path.join(config.get('path', 'root'), 'script', 'config.cfg')
 
 if os.path.isfile(path_config_file):
     with open(path_config_file, 'r') as configfile:
