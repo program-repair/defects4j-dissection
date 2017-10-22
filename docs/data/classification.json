@@ -1,33 +1,83 @@
 {
 	"Repair Actions": {
-		"Method Definition": {
-			"mdAdd": {
+		"Assignment": {
+			"assignAdd": {
 				"name": "Add",
-				"fullname": "Add method"
+				"fullname": "Add assignment"
 			},
-			"mdRem": {
+			"assignRem": {
 				"name": "Remove",
-				"fullname": "Remove method"
+				"fullname": "Remove assignment"
 			},
-			"mdRen": {
-				"name": "Rename",
-				"fullname": "Rename method"
+			"assignExpChange": {
+				"name": "Change expression",
+				"fullname": "Change assignment expression"
+			}
+		},
+		"Conditionals": {
+			"condExpRed": {
+				"name": "Reduce Expression",
+				"fullname": "Reduce conditional expression"
 			},
-			"mdParAdd": {
-				"name": "Add Parameter",
-				"fullname": "Add method parameter"
+			"condExpExpand": {
+				"name": "Expand Expression",
+				"fullname": "Expand conditional expression"
 			},
-			"mdParRem": {
-				"name": "Remove Parameter",
-				"fullname": "Remove method parameter"
+			"condExpMod": {
+				"name": "Modify Expression",
+				"fullname": "Modify conditional expression"
 			},
-			"mdRetTyChange": {
-				"name": "Change Return Type",
-				"fullname": "Change method return type"
+			"condBranIfAdd": {
+				"name": "Add if branch",
+				"fullname": "Add conditional (if) branch"
 			},
-			"mdParTyChange": {
-				"name": "Change Parameters Type",
-				"fullname": "Change method parameter type"
+			"condBranIfElseAdd": {
+				"name": "Add if-else branches",
+				"fullname": "Add conditional (if-else) branches"
+			},
+			"condBranElseAdd": {
+				"name": "Add else branch",
+				"fullname": "Add conditional (else) branch"	
+			},
+			"condBranRem": {
+				"name": "Remove branch",
+				"fullname": "Remove conditional (if or else) branch"		
+			}
+		},
+		"Exception": {
+			"exTryCatchAdd": {
+				"name": "Add Try Catch"
+			},
+			"exTryCatchRem": {
+				"name": "Remove Try Catch"
+			},
+			"exThrowsAdd": {
+				"name": "Add Throws"
+			},
+			"exThrowsRem": {
+				"name": "Remove Throws"
+			}
+		},
+		"Loop": {
+			"loopAdd": {
+				"name": "Add",
+				"fullname": "Add loop"
+			},
+			"loopRem": {
+				"name": "Remove",
+				"fullname": "Remove loop"
+			},
+			"loopCondChange": {
+				"name": "Change Loop Condition",
+				"fullname": "Change loop conditional expression"
+			},
+			"loopInitVector": {
+				"name": "Change Vector Initialisation",
+				"fullname": "Add, remove or modify a vector initialisation in a loop"
+			},
+			"loopInitChange": {
+				"name": "Change Loop Initialisation",
+				"fullname": "Change loop Initialisation fields"
 			}
 		},
 		"Method Call": {
@@ -64,6 +114,36 @@
 				"fullname": "Move method call"
 			}
 		},
+		"Method Definition": {
+			"mdAdd": {
+				"name": "Add",
+				"fullname": "Add method"
+			},
+			"mdRem": {
+				"name": "Remove",
+				"fullname": "Remove method"
+			},
+			"mdRen": {
+				"name": "Rename",
+				"fullname": "Rename method"
+			},
+			"mdParAdd": {
+				"name": "Add Parameter",
+				"fullname": "Add method parameter"
+			},
+			"mdParRem": {
+				"name": "Remove Parameter",
+				"fullname": "Remove method parameter"
+			},
+			"mdRetTyChange": {
+				"name": "Change Return Type",
+				"fullname": "Change method return type"
+			},
+			"mdParTyChange": {
+				"name": "Change Parameters Type",
+				"fullname": "Change method parameter type"
+			}
+		},
 		"Object Instantiation": {
 			"objInstAdd": {
 				"name": "Add",
@@ -78,98 +158,18 @@
 				"fullname": "Modify object instantiation"
 			}
 		},
-		"Variable": {
-			"varAdd": {
+		"Return": {
+			"retExpChange": {
+				"name": "Change Value",
+				"fullname": "Change returned value, modifying expression"
+			},
+			"retBranchAdd": {
 				"name": "Add",
-				"fullname": "Add variable"
+				"fullname": "Add return statement"
 			},
-			"varRem": {
+			"retRem": {
 				"name": "Remove",
-				"fullname": "Remove variable"
-			},
-			"varRepl": {
-				"name": "Replace",
-				"fullname": "Replace variable"
-			}
-		},
-		"Exception": {
-			"exTryCatchAdd": {
-				"name": "Add Try Catch"
-			},
-			"exTryCatchRem": {
-				"name": "Remove Try Catch"
-			},
-			"exThrowsAdd": {
-				"name": "Add Throws"
-			},
-			"exThrowsRem": {
-				"name": "Remove Throws"
-			}
-		},
-		"Conditionals": {
-			"condExpRed": {
-				"name": "Reduce Expression",
-				"fullname": "Reduce conditional expression"
-			},
-			"condExpExpand": {
-				"name": "Expand Expression",
-				"fullname": "Expand conditional expression"
-			},
-			"condExpMod": {
-				"name": "Modify Expression",
-				"fullname": "Modify conditional expression"
-			},
-			"condBranIfAdd": {
-				"name": "Add if branch",
-				"fullname": "Add conditional (if) branch"
-			},
-			"condBranIfElseAdd": {
-				"name": "Add if-else branches",
-				"fullname": "Add conditional (if-else) branches"
-			},
-			"condBranElseAdd": {
-				"name": "Add else branch",
-				"fullname": "Add conditional (else) branch"	
-			},
-			"condBranRem": {
-				"name": "Remove branch",
-				"fullname": "Remove conditional (if or else) branch"		
-			}
-		},
-		"Assignment": {
-			"assignAdd": {
-				"name": "Add",
-				"fullname": "Add assignment"
-			},
-			"assignRem": {
-				"name": "Remove",
-				"fullname": "Remove assignment"
-			},
-			"assignExpChange": {
-				"name": "Change expression",
-				"fullname": "Change assignment expression"
-			}
-		},
-		"Loop": {
-			"loopAdd": {
-				"name": "Add",
-				"fullname": "Add loop"
-			},
-			"loopRem": {
-				"name": "Remove",
-				"fullname": "Remove loop"
-			},
-			"loopCondChange": {
-				"name": "Change Loop Condition",
-				"fullname": "Change loop conditional expression"
-			},
-			"loopInitVector": {
-				"name": "Change Vector Initialisation",
-				"fullname": "Add, remove or modify a vector initialisation in a loop"
-			},
-			"loopInitChange": {
-				"name": "Change Loop Initialisation",
-				"fullname": "Change loop Initialisation fields"
+				"fullname": "Remove return statement"
 			}
 		},
 		"Type": {
@@ -202,18 +202,18 @@
 				"fullname": "Change impelmented interface in type"
 			}
 		},
-		"Return": {
-			"retExpChange": {
-				"name": "Change Value",
-				"fullname": "Change returned value, modifying expression"
-			},
-			"retBranchAdd": {
+		"Variable": {
+			"varAdd": {
 				"name": "Add",
-				"fullname": "Add return statement"
+				"fullname": "Add variable"
 			},
-			"retRem": {
+			"varRem": {
 				"name": "Remove",
-				"fullname": "Remove return statement"
+				"fullname": "Remove variable"
+			},
+			"varRepl": {
+				"name": "Replace",
+				"fullname": "Replace variable"
 			}
 		}
 	},
