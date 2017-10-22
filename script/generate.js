@@ -11,7 +11,7 @@ var defects4jPath = "/home/thomas/git/defects4j/framework/bin/defects4j";
 var defects4jBuggyProjectsPath = "/mnt/secondary/projects/";
 var defects4jFixedProjectsPath = "/mnt/secondary/projects_fix/";
 
-var input = fs.createReadStream(__dirname + '/../datadefects4j-bugs.csv');
+var input = fs.createReadStream(__dirname + '/defects4j-bugs.csv');
 
 var template = null;
 // Create the parser
@@ -97,19 +97,24 @@ var defects4jInfoFunc = function(record, callback) {
     record = parseDefects4jInfo(stdout, record);
 
     var projectPath =  record['project'].toLowerCase() + '/' + record['project'].toLowerCase() + '_' + record['bugId'];
-    cmd = 'git diff ' + defects4jBuggyProjectsPath  + projectPath + '/src ' + defects4jFixedProjectsPath + projectPath + '/src';
-    exec(cmd, function(error, stdout, stderr) {
-      if (stderr != '') {
-        cmd = 'git diff ' + defects4jBuggyProjectsPath  + projectPath + '/source ' + defects4jFixedProjectsPath + projectPath + '/source';
+
+    var sources = ["src/java", "src/main/java", "src", "source"]
+    for (var i = 0; i < sources.length; i++) {
+      if(fs.existsSync(defects4jBuggyProjectsPath  + projectPath + "/" + sources[i])) {
+        cmd = 'git diff ' + defects4jBuggyProjectsPath  + projectPath  + "/" + sources[i] + ' ' + defects4jFixedProjectsPath + projectPath + '/' + sources[i];
+        console.log(cmd)
         exec(cmd, function(error, stdout, stderr) {
-          record['diff'] = cleanDiff(stdout, projectPath);
-          callback(null, record)
+          if (stderr == '' || stderr.indexOf("warning") != -1) {
+            record['diff'] = cleanDiff(stdout, projectPath);
+            callback(null, record)
+          } else {
+            console.log(error)
+            callback(error, record)
+          }
         });
-      } else {
-        record['diff'] = cleanDiff(stdout, projectPath);
-        callback(null, record)
+        break;
       }
-    });
+    }
   });
 }
 
@@ -122,4 +127,6 @@ input.pipe(parser).pipe(transformer).pipe(defects4jInfo).pipe(transform(function
 })).on('finish', function () {  // finished
   fs.writeFile(__dirname + '/../defects4j-bugs.json', JSON.stringify(output), 'utf8', function(err) {});
   fs.writeFile(__dirname + '/../docs/data/defects4j-bugs.json', JSON.stringify(output), 'utf8', function(err) {});
-});
+}).on('end', function (err) {
+  console.log(err)
+})
