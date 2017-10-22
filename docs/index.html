@@ -90,42 +90,42 @@
 								<tr>
 									<th>
 										<a href="#" ng-click="sort(['project', 'bugId'])">
-											Bug Id
+											Bug id
 											<span ng-show="sortType[0] == 'project' && sortReverse" class="fa fa-caret-down"></span>
 											<span ng-show="sortType[0] == 'project' && !sortReverse" class="fa fa-caret-up"></span>
 										</a>
 									</th>
 									<th>	
 										<a href="#" ng-click="sort('files')">
-											# File
+											# Files
 											<span ng-show="sortType == 'files' && sortReverse" class="fa fa-caret-down"></span>
 											<span ng-show="sortType == 'files' && !sortReverse" class="fa fa-caret-up"></span>
 										</a>
 									</th>
 									<th>	
 										<a href="#" ng-click="sort('sizeInLines')">
-											# Line
+											# Lines
 											<span ng-show="sortType == 'sizeInLines' && sortReverse" class="fa fa-caret-down"></span>
 											<span ng-show="sortType == 'sizeInLines' && !sortReverse" class="fa fa-caret-up"></span>
 										</a>
 									</th>
 									<th>
 										<a href="#" ng-click="sort('linesAdd')">
-											# Add
+											# Added
 											<span ng-show="sortType == 'linesAdd' && sortReverse" class="fa fa-caret-down"></span>
 											<span ng-show="sortType == 'linesAdd' && !sortReverse" class="fa fa-caret-up"></span>
 										</a>
 									</th>
 									<th>
 										<a href="#" ng-click="sort('linesRem')">
-											# Rem
+											# Removed
 											<span ng-show="sortType == 'linesRem' && sortReverse" class="fa fa-caret-down"></span>
 											<span ng-show="sortType == 'linesRem' && !sortReverse" class="fa fa-caret-up"></span>
 										</a>
 									</th>
 									<th>
 										<a href="#" ng-click="sort('linesMod')">
-											# Mod
+											# Modified
 											<span ng-show="sortType == 'linesMod' && sortReverse" class="fa fa-caret-down"></span>
 											<span ng-show="sortType == 'linesMod' && !sortReverse" class="fa fa-caret-up"></span>
 										</a>
@@ -139,13 +139,13 @@
 									</th>
 									<th>	
 										<a href="#" ng-click="sort('failingTests')">
-											# Failing Test
+											# Failing tests
 											<span ng-show="sortType == 'failingTests' && sortReverse" class="fa fa-caret-down"></span>
 											<span ng-show="sortType == 'failingTests' && !sortReverse" class="fa fa-caret-up"></span>
 										</a>
 									</th>
 									<th>	
-										First error
+										First exception
 									</th>
 								</tr>
 							</thead>
