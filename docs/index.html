@@ -103,6 +103,20 @@
 										</a>
 									</th>
 									<th>	
+										<a href="#" ng-click="sort('classes')">
+											# Class
+											<span ng-show="sortType == 'classes' && sortReverse" class="fa fa-caret-down"></span>
+											<span ng-show="sortType == 'classes' && !sortReverse" class="fa fa-caret-up"></span>
+										</a>
+									</th>
+									<th>	
+										<a href="#" ng-click="sort('methods')">
+											# Methods
+											<span ng-show="sortType == 'methods' && sortReverse" class="fa fa-caret-down"></span>
+											<span ng-show="sortType == 'methods' && !sortReverse" class="fa fa-caret-up"></span>
+										</a>
+									</th>
+									<th>	
 										<a href="#" ng-click="sort('sizeInLines')">
 											# Lines
 											<span ng-show="sortType == 'sizeInLines' && sortReverse" class="fa fa-caret-down"></span>
@@ -153,6 +167,8 @@
 								<tr ng-repeat="bug in bugs| orderBy:sortType:sortReverse| filter:bugsFilter as filteredBug" ng-click="openBug(bug)">
 								  <td>{{ bug.project }} {{ bug.bugId }}</td>
 								  <td>{{ bug.files }}</td>
+								  <td>{{ bug.classes }}</td>
+								  <td>{{ bug.methods }}</td>
 								  <td>{{ bug.sizeInLines }}</td>
 								  <td>{{ bug.linesAdd }}</td>
 								  <td>{{ bug.linesRem}}</td>
@@ -190,6 +206,8 @@
 				<ul>
 				  <li>Bug id: bug identifier composed of project and bug number.</li>
 				  <li># Files: number of files changed in the patch.</li>
+				  <li># Classes: number of classes changed in the patch.</li>
+				  <li># Methods: number of methods changed in the patch.</li>
 				  <li># Lines: number of lines changed in the patch (# Added + # Removed + # Modified).</li>
 				  <li># Added: number of lines added in the patch.</li>
 				  <li># Removed: number of lines removed from the patch.</li>
