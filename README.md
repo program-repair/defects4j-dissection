@@ -13,8 +13,8 @@ It is the open-science appendix of "Dissection of a bug dataset: anatomy of 395 
 Main files:
 
 * The file `defects4j-bugs.json` contains all the extracted information.
-* The file [defects4j-patch.md](https://github.com/program-repair/defects4j-dissection/blob/master/defects4j-patch.md) gives link to the buggy and patched version as well as the diff
-* The website: http://program-repair.github.io/defects4j-dissection/ is a user interface that presents this information in a user-friendly manner.
+* The file [defects4j-patch.md](https://github.com/program-repair/defects4j-dissection/blob/master/defects4j-patch.md) gives link to the buggy and patched version as well as the diff.
+* The website http://program-repair.github.io/defects4j-dissection/ is a user interface that presents the information contained in `defects4j-bugs.json` in a user-friendly manner.
 
 ## defects4j-bugs.json format
 
@@ -53,9 +53,9 @@ Main files:
 ]
 ```
 
-## Repair operations
+## defects4j-bugs.json acronyms
 
- |Repair Operations | Description  |
+ |Acronym | Description  |
 |--------------|--------------|
 mdAdd | Add method
 mdRem | Remove method
@@ -136,10 +136,3 @@ rtDynaMoth | Fix with DynaMoth
 rtGenProg | Fix with jGenProg
 rtHDRepair | Fix with HDRepair
 rtNopol | Fix with Nopol
-
-## Repository structure
-
-The `docs` folder contains the representation website for the `defects4j-bugs.json` file.
-
-The `src` folder the scripts used to generate the `defects4j-bugs.json` file from the `defects4j-bugs.csv` and additional data
-
