@@ -248,6 +248,12 @@
 				</section>
 			</section>
 			<section>
+				<h3>Actions</h3>
+				<section class="filters">
+					<span class="filter" ng-repeat="(key,value) in $ctrl.bug" ng-if="$ctrl.actionName(key) != null">{{$ctrl.actionName(key)}} </span>
+				</section>
+			</section>
+			<section>
 				<h3>Patterns</h3>
 				<section class="filters">
 					<span class="filter" ng-repeat="(key,value) in $ctrl.bug" ng-if="$ctrl.patternName(key) != null">{{$ctrl.patternName(key)}} </span>

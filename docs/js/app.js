@@ -31,6 +31,17 @@ angular.module('defects4j-website', ['ui.bootstrap', 'anguFixedHeaderTable'])
 		$ctrl.bug = bugs[index];
 		$ctrl.classifications = classifications;
 
+		$ctrl.actionName = function (key) {
+                for(var i in $ctrl.classifications['Repair Actions']) {
+                    if ($ctrl.classifications['Repair Actions'][i][key] != null) {
+                        if ($ctrl.classifications['Repair Actions'][i][key].fullname) {
+                            return $ctrl.classifications['Repair Actions'][i][key].fullname;
+                        }
+                        return $ctrl.classifications['Repair Actions'][i][key].name;
+                    }
+                }
+                return null;
+            };
 		$ctrl.patternName = function (key) {
 			for(var i in $ctrl.classifications['Repair Patterns']) {
 				if ($ctrl.classifications['Repair Patterns'][i][key] != null) {
