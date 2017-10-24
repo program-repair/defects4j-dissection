@@ -220,99 +220,99 @@
 	"Repair Patterns": {
 		"Conditional Block": {
 			"condBlockOthersAdd": {
-				"name": "Add Simple Branch",
-				"fullname": "Add other kinds of simple conditional block"
+				"name": "Simple branch addition",
+				"fullname": "Simple conditional block addition"
 			},
 			"condBlockRetAdd": {
-				"name": "Add Return Branch",
-				"fullname": "Add conditional block with return statement"
+				"name": "Return statement addition",
+				"fullname": "Conditional block addition with return statement"
 
 			},
 			"condBlockExcAdd": {
-				"name": "Add Exception Throwing",
-				"fullname": "Add conditional block with Exception Throws statement"
+				"name": "Exception throwing addition",
+				"fullname": "Conditional block addition with exception throwing"
 			},
 			"condBlockRem": {
-				"name": "Remove Conditional Block",
-				"fullname": "Remove conditional block"
+				"name": "Conditional block removal",
+				"fullname": "Conditional block removal"
 			}
 		},
-		"Expression": {
+		"Expression Fix": {
 			"expLogicExpand": {
-				"name": "Expand Logic Exp.",
-				"fullname": "Expand logic expression"
+				"name": "Logic expression expansion",
+				"fullname": "Logic expression expansion"
 			},
 			"expLogicReduce": {
-				"name": "Reduce Logic Exp.",
-				"fullname": "Reduce Logic expression"
+				"name": "Logic expression reduction",
+				"fullname": "Logic expression reduction"
 			},
 			"expLogicMod": {
-				"name": "Modify Logic Exp.",
-				"fullname": "Modify logic expression"
+				"name": "Logic expression modification",
+				"fullname": "Logic expression modification"
 			},
 			"expArithMod": {
-				"name": "Modify Arithmetic Exp.",
-				"fullname": "Expand arithmetic expression"
+				"name": "Arithmetic expression modification",
+				"fullname": "Arithmetic expression modification"
 			}
 		},
-		"Wrap with": {
+		"Wrap-with": {
 			"wrapsIf": {
-				"name": "If",
-				"fullname": "Wrap with an if"
+				"name": "if statement",
+				"fullname": "Wrap with if statement"
 			},
 			"wrapsIfElse": {
-				"name": "Else/if",
-				"fullname": "Wrap with an else/if"
+				"name": "if-else statement",
+				"fullname": "Wrap with if-else statement"
 			},
 			"wrapsElse": {
-				"name": "Else",
-				"fullname": "Wrap with an else"
+				"name": "else statement",
+				"fullname": "Wrap with else statement"
 			},
 			"wrapsTryCatch": {
-				"name": "Try/catch",
-				"fullname": "Wrap with a try/catch"
+				"name": "try-catch block",
+				"fullname": "Wrap with try-catch block"
 			},
 			"wrapsMethod": {
-				"name": "Method",
-				"fullname": "Wrap with a method invocation"
+				"name": "Method call",
+				"fullname": "Wrap with method call"
 			},
 			"wrapsLoop": {
 				"name": "Loop",
-				"fullname": "Wrap with a loop"
+				"fullname": "Wrap with loop"
 			},
 			"unwrap": {
 				"name": "Unwrap",
 				"fullname": "Unwrap"
 			}
 		},
-		"Missing Null Check": {
+		"Missing Null-Check": {
 			"missNullCheckP": {
-				"name": "Null (== null)",
-				"fullname": "Add a missing null check"
+				"name": "Missing null check",
+				"fullname": "Missing null check addition"
 			},
 			"missNullCheckN": {
-				"name": "Not Null (!= null)",
-				"fullname": "Add a missing not null check"
+				"name": "Missing non-null check",
+				"fullname": "Missing non-null check addition"
 			}
 		},
 		"Other": {
-			"initFix": {
-				"name": "Fix Initialisation"
+			"singleLine": {
+				"name": "Single Line"
 			},
-			"codeMove": {
-				"name": "Move code"
+			"copyPaste": {
+				"name": "Copy/Paste"
+			},
+			"initFix": {
+				"name": "Initialization Fix"
 			},
 			"wrongRef": {
 				"name": "Wrong Reference"
 			},
-			"singleLine": {
-				"name": "Single line"
+			"codeMove": {
+				"name": "Code Moving"
 			},
 			"notClassified": {
 				"name": "Not classified"
-			},
-			"copyPaste": {
-				"name": "Copy/Paste"
 			}
 		}
 	},
