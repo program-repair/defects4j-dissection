@@ -186,8 +186,8 @@
 				"fullname": "Type modifier modification"
 			},
 			"typImpInterf": {
-				"name": "Type implemented interface motification",
-				"fullname": "Type implemented interface motification"
+				"name": "Type implemented interface modification",
+				"fullname": "Type implemented interface modification"
 			},
 			"typObj2Met": {
 				"name": "Direct object access replacement",
