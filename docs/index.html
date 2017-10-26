@@ -237,14 +237,10 @@
 			<a ng-click="$ctrl.previous()"><i class="fa fa-arrow-left" aria-hidden="true"></i> Previous Bug</a> | <a ng-click="$ctrl.next()">Next Bug <i class="fa fa-arrow-right" aria-hidden="true"></i></a> 
 		</div>
 		<div class="modal-body" id="modal-body">
-			<section ng-show="$ctrl.bug.Observations">
-				<h3>Comments</h3>
-				{{$ctrl.bug.Observations}}
-			</section>
-			<section ng-if="$ctrl.bug.repairTools">
-				<h3>Repaired with</h3>
+			<section>
+				<h3>Patterns</h3>
 				<section class="filters">
-					<span class="filter" ng-repeat="(key,value) in $ctrl.bug" ng-if="$ctrl.repairName(key) != null">{{$ctrl.repairName(key)}} </span>
+					<span class="filter" ng-repeat="(key,value) in $ctrl.bug" ng-if="$ctrl.patternName(key) != null">{{$ctrl.patternName(key)}} </span>
 				</section>
 			</section>
 			<section>
@@ -253,11 +249,15 @@
 					<span class="filter" ng-repeat="(key,value) in $ctrl.bug" ng-if="$ctrl.actionName(key) != null">{{$ctrl.actionName(key)}} </span>
 				</section>
 			</section>
-			<section>
-				<h3>Patterns</h3>
+			<section ng-if="$ctrl.bug.repairTools">
+				<h3>Repaired with</h3>
 				<section class="filters">
-					<span class="filter" ng-repeat="(key,value) in $ctrl.bug" ng-if="$ctrl.patternName(key) != null">{{$ctrl.patternName(key)}} </span>
+					<span class="filter" ng-repeat="(key,value) in $ctrl.bug" ng-if="$ctrl.repairName(key) != null">{{$ctrl.repairName(key)}} </span>
 				</section>
+			</section>
+			<section ng-show="$ctrl.bug.Observations">
+				<h3>Comments</h3>
+				{{$ctrl.bug.Observations}}
 			</section>
 			<h3>Human Patch</h3>
 			<div diff></div>
