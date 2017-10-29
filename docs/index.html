@@ -21,6 +21,7 @@
 		<script src="//ajax.googleapis.com/ajax/libs/angularjs/1.6.6/angular.min.js"></script>
 		<script src="//ajax.googleapis.com/ajax/libs/angularjs/1.6.6/angular-animate.min.js"></script>
 		<script src="//ajax.googleapis.com/ajax/libs/angularjs/1.6.6/angular-touch.min.js"></script>
+		<script src="//ajax.googleapis.com/ajax/libs/angularjs/1.6.6/angular-route.js"></script>
 		<script src="//angular-ui.github.io/bootstrap/ui-bootstrap-tpls-2.5.0.min.js"></script>
 		<script src="//cdn.jsdelivr.net/npm/angu-fixed-header-table@1.2.1/angu-fixed-header-table.min.js"></script>
 		<script src="//cdnjs.cloudflare.com/ajax/libs/jquery/2.2.3/jquery.js"></script>
@@ -185,6 +186,7 @@
 			</div>
 			<!-- /#page-wrapper -->
 		</div><!-- /#wrapper -->
+		<span ng-controller="bugController"></span>
 	</body>
 	<script type="text/ng-template" id="welcome.html">
 		<div class="modal-header">
@@ -234,7 +236,7 @@
 	<script type="text/ng-template" id="modelBug.html">
 		<div class="modal-header">
 			<h3 class="modal-title" id="modal-title">{{ $ctrl.bug.project }} {{ $ctrl.bug.bugId }}</h3>
-			<a ng-click="$ctrl.previous()"><i class="fa fa-arrow-left" aria-hidden="true"></i> Previous Bug</a> | <a ng-click="$ctrl.next()">Next Bug <i class="fa fa-arrow-right" aria-hidden="true"></i></a> 
+			<a ng-click="$ctrl.previousBug()"><i class="fa fa-arrow-left" aria-hidden="true"></i> Previous Bug</a> | <a ng-click="$ctrl.nextBug()">Next Bug <i class="fa fa-arrow-right" aria-hidden="true"></i></a>
 		</div>
 		<div class="modal-body" id="modal-body">
 			<section>

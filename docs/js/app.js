@@ -1,4 +1,15 @@
-angular.module('defects4j-website', ['ui.bootstrap', 'anguFixedHeaderTable'])
+angular.module('defects4j-website', ['ngRoute', 'ui.bootstrap', 'anguFixedHeaderTable'])
+	.config(function($routeProvider, $locationProvider) {
+		$routeProvider
+			.when('/bug/:project/:id', {
+				controller: 'bugController'
+			})
+			.when('/', {
+				controller: 'mainController'
+			});
+		// configure html5 to get links working on jsfiddle
+		$locationProvider.html5Mode(false);
+	})
 	.directive('keypressEvents', [
 		'$document',
 		'$rootScope',
@@ -24,23 +35,39 @@ angular.module('defects4j-website', ['ui.bootstrap', 'anguFixedHeaderTable'])
 				});
 			}
 		}
-	  }])
-	.controller('bugController', function($rootScope, $uibModalInstance, bugs, index, classifications) {
+		}])
+	.controller('welcomeController', function($uibModalInstance) {
+		this.ok = function () {
+			$uibModalInstance.close();
+		};
+	})
+	.controller('bugModal', function($rootScope, $uibModalInstance, bug, classifications) {
 		var $ctrl = this;
-		$ctrl.index = index;
-		$ctrl.bug = bugs[index];
+		$ctrl.bug = bug;
 		$ctrl.classifications = classifications;
 
+		$rootScope.$on('new_bug', function(e, bug) {
+			$ctrl.bug = bug;
+		});
+		$ctrl.ok = function () {
+			$uibModalInstance.close();
+		};
+		$ctrl.nextBug = function () {
+      $rootScope.$emit('next_bug', 'next');
+    };
+    $ctrl.previousBug = function () {
+      $rootScope.$emit('previous_bug', 'next');
+    };
 		$ctrl.actionName = function (key) {
-		    for(var i in $ctrl.classifications['Repair Actions']) {
-		        if ($ctrl.classifications['Repair Actions'][i][key] != null) {
-		            if ($ctrl.classifications['Repair Actions'][i][key].fullname) {
-		                return $ctrl.classifications['Repair Actions'][i][key].fullname;
-		            }
-		            return $ctrl.classifications['Repair Actions'][i][key].name;
-		        }
-		    }
-		    return null;
+			for(var i in $ctrl.classifications['Repair Actions']) {
+				if ($ctrl.classifications['Repair Actions'][i][key] != null) {
+					if ($ctrl.classifications['Repair Actions'][i][key].fullname) {
+						return $ctrl.classifications['Repair Actions'][i][key].fullname;
+					}
+					return $ctrl.classifications['Repair Actions'][i][key].name;
+				}
+			}
+			return null;
 		};
 		$ctrl.patternName = function (key) {
 			for(var i in $ctrl.classifications['Repair Patterns']) {
@@ -63,37 +90,121 @@ angular.module('defects4j-website', ['ui.bootstrap', 'anguFixedHeaderTable'])
 			}
 			return null;
 		};
-		$rootScope.$on('keypress:39', function(onEvent, keypressEvent) {
-			$rootScope.$apply(function () {
-				$ctrl.next();
-			});
-		});
-		$rootScope.$on('keypress:37', function(onEvent, keypressEvent) {
-			$rootScope.$apply(function () {
-				$ctrl.previous();
-			});
-		});
-		$ctrl.next = function () {
-			$ctrl.index++;
-			if ($ctrl.index == bugs.length)  {
-				$ctrl.index = 0;
-			}
-			$ctrl.bug = bugs[$ctrl.index];
-			return false;
-		};
-		$ctrl.previous = function () {
-			$ctrl.index--;
-			if ($ctrl.index < 0) {
-				$ctrl.index = bugs.length -1;
-			}
-			$ctrl.bug = bugs[$ctrl.index];
-			return false;
-		};
-		$ctrl.ok = function () {
-			$uibModalInstance.close();
-		};
 	})
-	.controller('mainController', function($scope,$rootScope, $http, $uibModal) {
+	.controller('bugController', function($scope, $location, $rootScope, $routeParams, $uibModal) {
+		var $ctrl = $scope;
+		$ctrl.classifications = $scope.$parent.classifications;
+		$ctrl.bugs = $scope.$parent.filteredBug;
+		$ctrl.index = -1;
+		$ctrl.bug = null;
+
+		$scope.$watch("$parent.filteredBug", function () {
+			$ctrl.bugs = $scope.$parent.filteredBug;
+      $ctrl.index = getIndex($routeParams.project, $routeParams.id);
+		});
+		$scope.$watch("$parent.classifications", function () {
+			$ctrl.classifications = $scope.$parent.classifications;
+		});
+
+		var getIndex = function (project, bugId) {
+			if ($ctrl.bugs == null) {
+				return -1;
+			}
+			for (var i = 0; i < $ctrl.bugs.length; i++) {
+				if ($ctrl.bugs[i].project == project && $ctrl.bugs[i].bugId == bugId) {
+					return i;
+				}
+			}
+			return -1;
+		};
+
+		$scope.$on('$routeChangeStart', function(next, current) {
+			$ctrl.index = getIndex(current.params.project, current.params.id);
+		});
+
+		var modalInstance = null;
+		$scope.$watch("index", function () {
+			if ($scope.index != -1) {
+			  if (welcomeModal != null) {
+			    welcomeModal.close();
+        }
+				if (modalInstance == null) {
+					modalInstance = $uibModal.open({
+						animation: true,
+						ariaLabelledBy: 'modal-title',
+						ariaDescribedBy: 'modal-body',
+						templateUrl: 'modelBug.html',
+						controller: 'bugModal',
+						controllerAs: '$ctrl',
+						size: "lg",
+						resolve: {
+							bug: function () {
+								return $scope.bugs[$scope.index];
+							},
+							classifications: $scope.classifications
+						}
+					});
+					modalInstance.result.then(function () {
+						modalInstance = null;
+						$location.path("/");
+					}, function () {
+						modalInstance = null;
+            $location.path("/");
+					})
+				} else {
+					$rootScope.$emit('new_bug', $scope.bugs[$scope.index]);
+				}
+			}
+		});
+    var welcomeModal = null;
+    $scope.openWelcome = function () {
+      welcomeModal = $uibModal.open({
+        animation: true,
+        ariaLabelledBy: 'modal-title',
+        ariaDescribedBy: 'modal-body',
+        templateUrl: 'welcome.html',
+        controller: 'welcomeController',
+        controllerAs: '$ctrl',
+        size: "lg"
+      });
+      welcomeModal.result.then(function () {
+        welcomeModal = null;
+      }, function () {
+        welcomeModal = null;
+      })
+    };
+    $scope.openWelcome();
+		var nextBug = function () {
+      var index  = $scope.index + 1;
+      if (index == $ctrl.bugs.length)  {
+        index = 0;
+      }
+      $location.path( "/bug/" + $ctrl.bugs[index]["project"] + "/" + $ctrl.bugs[index]["bugId"] );
+			return false;
+		};
+		var previousBug = function () {
+      var index  = $scope.index - 1;
+      if (index < 0) {
+        index = $ctrl.bugs.length - 1;
+      }
+      $location.path( "/bug/" + $ctrl.bugs[index]["project"] + "/" + $ctrl.bugs[index]["bugId"] );
+			return false;
+		};
+
+    $scope.$on('keypress:39', function () {
+      $scope.$apply(function () {
+        nextBug();
+      });
+    });
+    $scope.$on('keypress:37', function () {
+      $scope.$apply(function () {
+        previousBug();
+      });
+    });
+    $rootScope.$on('next_bug', nextBug);
+    $rootScope.$on('previous_bug', previousBug);
+	})
+	.controller('mainController', function($scope, $location, $rootScope, $http, $uibModal) {
 		$scope.sortType     = ['project', 'bugId']; // set the default sort type
 		$scope.sortReverse  = false;
 		$scope.match  = "all";
@@ -146,40 +257,8 @@ angular.module('defects4j-website', ['ui.bootstrap', 'anguFixedHeaderTable'])
 			return filterKey;
 		}
 
-		$scope.openWelcome = function () {
-			var modalInstance = $uibModal.open({
-				animation: true,
-				ariaLabelledBy: 'modal-title',
-				ariaDescribedBy: 'modal-body',
-				templateUrl: 'welcome.html',
-				controller: 'bugController',
-				controllerAs: '$ctrl',
-				size: "lg",
-				resolve: {
-					bugs: {},
-					index: {},
-					classifications: {}
-				}
-			});
-		};
-		$scope.openWelcome();
-
-
 		$scope.openBug = function (bug) {
-			var modalInstance = $uibModal.open({
-				animation: true,
-				ariaLabelledBy: 'modal-title',
-				ariaDescribedBy: 'modal-body',
-				templateUrl: 'modelBug.html',
-				controller: 'bugController',
-				controllerAs: '$ctrl',
-				size: "lg",
-				resolve: {
-					bugs: function () {return $scope.filteredBug;},
-					index: $scope.filteredBug.indexOf(bug),
-					classifications: $scope.classifications
-				}
-			});
+			$location.path( "/bug/" + bug["project"] + "/" + bug["bugId"] );
 		};
 
 		$scope.sort = function (sort) {
