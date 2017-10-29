@@ -192,14 +192,6 @@
 			"typObj2Met": {
 				"name": "Direct object access replacement",
 				"fullname": "Direct object access replacement by a method call"
-			},
-			"dsInitValChange": {
-				"name": "Data structure initialization modification",
-				"fullname": "Data structure initialization modification"
-			},
-			"dsDimChange": {
-				"name": "Data structure dimension modification",
-				"fullname": "Data structure dimension modification"
 			}
 		},
 		"Variable": {
