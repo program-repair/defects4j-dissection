@@ -27,6 +27,10 @@
 				"name": "else branch addition",
 				"fullname": "Conditional (else) branch addition"	
 			},
+			"condBranCaseAdd": {
+				"name": "case branch addition",
+				"fullname": "Conditional (case in switch) branch addition"	
+			},
 			"condBranRem": {
 				"name": "Removal",
 				"fullname": "Conditional (if or else) branch removal"		
