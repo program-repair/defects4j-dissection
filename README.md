@@ -88,6 +88,7 @@ condExpMod | Modify conditional expression
 condBranIfAdd | Add conditional (if) branch
 condBranIfElseAdd | Add conditional (if-else) branches
 condBranElseAdd | Add conditional (else) branch
+condBranCaseAdd | Add conditional (case in switch) branch
 condBranRem | Remove conditional (if or else) branch
 assignAdd | Add assignment
 assignRem | Remove assignment
@@ -98,10 +99,8 @@ loopCondChange | Change loop conditional expression
 loopInitVector | Add, remove or modify a vector initialisation in a loop
 loopInitChange | Change loop Initialisation fields
 tyChange | Change variable type
-dsInitValChange | Change initialisation of a data structure (object, vector or variable)
 tyModChange | Change type modifier
-dsDimChange | Change dimension of a data structure
-typObj2Met | Replace direct reference to an object by a method call
+tyObj2Met | Replace direct reference to an object by a method call
 tyAdd | Create a new type
 typImpInterf | Change impelmented interface in type
 retExpChange | Change returned value, modifying expression
