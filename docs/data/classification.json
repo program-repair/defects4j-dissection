@@ -193,7 +193,7 @@
 				"name": "Type implemented interface modification",
 				"fullname": "Type implemented interface modification"
 			},
-			"typObj2Met": {
+			"tyObj2Met": {
 				"name": "Direct object access replacement",
 				"fullname": "Direct object access replacement by a method call"
 			}
