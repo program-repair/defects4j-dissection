@@ -130,7 +130,7 @@ singleLine | Single line
 notClassified | Not classified
 copyPaste | Copy/Paste
 rtAcs | Fix with ACS
-rtAstor | Fix with jKali
+rtKali | Fix with jKali
 rtDynaMoth | Fix with DynaMoth
 rtGenProg | Fix with jGenProg
 rtHDRepair | Fix with HDRepair
