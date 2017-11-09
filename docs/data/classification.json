@@ -192,10 +192,6 @@
 			"typImpInterf": {
 				"name": "Type implemented interface modification",
 				"fullname": "Type implemented interface modification"
-			},
-			"tyObj2Met": {
-				"name": "Direct object access replacement",
-				"fullname": "Direct object access replacement by a method call"
 			}
 		},
 		"Variable": {
@@ -208,8 +204,12 @@
 				"fullname": "Variable removal"
 			},
 			"varRepl": {
-				"name": "Replacement",
-				"fullname": "Variable replacement"
+				"name": "Replacement by Another Variable",
+				"fullname": "Variable replacement by another variable"
+			},
+			"tyObj2Met": {
+				"name": "Replacement by Method Call",
+				"fullname": "Variable replacement by method call"
 			}
 		}
 	},
