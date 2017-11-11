@@ -181,10 +181,6 @@
 				"name": "Type addition",
 				"fullname": "Type addition"
 			},
-			"tyModChange": {
-				"name": "Type modifier modification",
-				"fullname": "Type modifier modification"
-			},
 			"typImpInterf": {
 				"name": "Type implemented interface modification",
 				"fullname": "Type implemented interface modification"
@@ -202,6 +198,10 @@
 			"tyChange": {
 				"name": "Type modification",
 				"fullname": "Variable type modification"
+			},
+			"tyModChange": {
+				"name": "Type modifier modification",
+				"fullname": "Type modifier modification"
 			},
 			"varRepl": {
 				"name": "Replacement by Another Variable",
