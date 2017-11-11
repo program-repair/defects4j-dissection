@@ -196,12 +196,12 @@
 				"fullname": "Variable removal"
 			},
 			"tyChange": {
-				"name": "Type modification",
-				"fullname": "Variable type modification"
+				"name": "Type change",
+				"fullname": "Variable type change"
 			},
 			"tyModChange": {
-				"name": "Type modifier modification",
-				"fullname": "Type modifier modification"
+				"name": "Modifier change",
+				"fullname": "Variable modifier change"
 			},
 			"varRepl": {
 				"name": "Replacement by Another Variable",
