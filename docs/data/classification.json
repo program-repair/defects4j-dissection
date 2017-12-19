@@ -316,27 +316,27 @@
 		"Automatic Repair": {
 			"rtAcs": {
 				"name": "ACS",
-				"fullname": "Fix with ACS"
+				"fullname": "Fixed by ACS"
 			},
 			"rtKali": {
 				"name": "jKali",
-				"fullname": "Fix with jKali"
+				"fullname": "Fixed by jKali"
 			},
 			"rtDynaMoth": {
 				"name": "DynaMoth",
-				"fullname": "Fix with DynaMoth"
+				"fullname": "Fixed by DynaMoth"
 			},
 			"rtGenProg": {
 				"name": "jGenProg",
-				"fullname": "Fix with jGenProg"
+				"fullname": "Fixed by jGenProg"
 			},
 			"rtHDRepair": {
 				"name": "HDRepair",
-				"fullname": "Fix with HDRepair"
+				"fullname": "Fixed by HDRepair"
 			},
 			"rtNopol": {
 				"name": "Nopol",
-				"fullname": "Fix with Nopol"
+				"fullname": "Fixed by Nopol"
 			}
 		}
 	}
