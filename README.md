@@ -57,81 +57,83 @@ Main files:
 
  |Acronym | Description  |
 |--------------|--------------|
-mdAdd | Add method
-mdRem | Remove method
-mdRen | Rename method
-mdParAdd | Add method parameter
-mdParRem | Remove method parameter
-mdRetTyChange | Change method return type
-mdParTyChange | Change method parameter type
-mcAdd | Add method call
-mcRem | Remove method call
-mcRepl | Replace method call
-mcParSwap | Swap method call argument
-mcParAdd | Add method call argument
-mcParRem | Change method call argument
-mcParValChange | Change method call argument value
-mcMove | Move method call
-objInstAdd | Add object instantiation
-objInstRem | Remove object instantiation
-objInstMod | Modify object instantiation
-varAdd | Add variable
-varRem | Remove variable
-varRepl | Replace variable
-exTryCatchAdd | Add Try Catch
-exTryCatchRem | Remove Try Catch
-exThrowsAdd | Add Throws
-exThrowsRem | Remove Throws
-condExpRed | Reduce conditional expression
-condExpExpand | Expand conditional expression
-condExpMod | Modify conditional expression
-condBranIfAdd | Add conditional (if) branch
-condBranIfElseAdd | Add conditional (if-else) branches
-condBranElseAdd | Add conditional (else) branch
-condBranCaseAdd | Add conditional (case in switch) branch
-condBranRem | Remove conditional (if or else) branch
-assignAdd | Add assignment
-assignRem | Remove assignment
-assignExpChange | Change assignment expression
-loopAdd | Add loop
-loopRem | Remove loop
-loopCondChange | Change loop conditional expression
-loopInitVector | Add, remove or modify a vector initialisation in a loop
-loopInitChange | Change loop Initialisation fields
-tyChange | Change variable type
-tyModChange | Change type modifier
-tyObj2Met | Replace direct reference to an object by a method call
-tyAdd | Create a new type
-typImpInterf | Change impelmented interface in type
-retExpChange | Change returned value, modifying expression
-retBranchAdd | Add return statement
-retRem | Remove return statement
-wrapsIf | Wrap with an if
-wrapsIfElse | Wrap with an else/if
-wrapsElse | Wrap with an else
-wrapsTryCatch | Wrap with a try/catch
-wrapsMethod | Wrap with a method invocation
-wrapsLoop | Wrap with a loop
+mdAdd | Method definition addition
+mdRem | Method definition removal
+mdRen | Method definition renaming
+mdParAdd | Method parameter addition
+mdParRem | Method parameter removal
+mdRetTyChange | Method return type modification
+mdParTyChange | Method parameter type modification
+mcAdd | Method call addition
+mcRem | Method call removal
+mcRepl | Method call replacement
+mcParSwap | Method call parameter value swapping
+mcParAdd | Method call parameter addition
+mcParRem | Method call parameter removal
+mcParValChange | Method call parameter value modification
+mcMove | Method call moving
+objInstAdd | Object instantiation addition
+objInstRem | Object instantiation removal
+objInstMod | Object instantiation modification
+varAdd | Variable addition
+varRem | Variable removal
+varRepl | Variable replacement by another variable
+exTryCatchAdd | try-catch addition
+exTryCatchRem | try-catch removal
+exThrowsAdd | throw addition
+exThrowsRem | throw removal
+condExpRed | Conditional expression reduction
+condExpExpand | Conditional expression expansion
+condExpMod | Conditional expression modification
+condBranIfAdd | Conditional (if) branch addition
+condBranIfElseAdd | Conditional (if-else) branches addition
+condBranElseAdd | Conditional (else) branch addition
+condBranCaseAdd | Conditional (case in switch) branch addition
+condBranRem | Conditional (if or else) branch removal
+assignAdd | Assignment addition
+assignRem | Assignment removal
+assignExpChange | Assignment expression modification
+loopAdd | Loop addition
+loopRem | Loop removal
+loopCondChange | Loop conditional expression modification
+loopInitVector | Add, remove or modify a vector initialization in a loop
+loopInitChange | Change loop initialization fields
+tyChange | Variable type change
+tyModChange | Variable modifier change
+tyObj2Met | Variable replacement by method call
+tyAdd | Type addition
+typImpInterf | Type implemented interface modification
+retExpChange | Return expression modification
+retBranchAdd | Return statement addition
+retRem | Return statement removal
+
+wrapsIf | Wrap with if statement
+wrapsIfElse | Wrap with if-else statement
+wrapsElse | Wrap with else statement
+wrapsTryCatch | Wrap with try-catch block
+wrapsMethod | Wrap with method call
+wrapsLoop | Wrap with loop
 unwrap | Unwrap
-condBlockExcAdd | Add conditional block with Exception Throws statement
-condBlockRetAdd | Add conditional block with return statement
-condBlockOthersAdd | Add other kind of conditional blocks
-condBlockRem | Remove conditional block
-missNullCheckP | Add a missing null check
-missNullCheckN | Add a missing not null check
-expLogicExpand | Expand logic expression
-expLogicReduce | Reduce Logic expression
-expLogicMod | Modify logic expression
-expArithMod | Expand arithmetic expression
-initFix | Fix Initialisation
-codeMove | Move code
+condBlockExcAdd | Conditional block addition with exception throwing
+condBlockRetAdd | Conditional block addition with return statement
+condBlockOthersAdd | Simple conditional block addition
+condBlockRem | Conditional block removal
+missNullCheckP | Missing null check addition
+missNullCheckN | Missing non-null check addition
+expLogicExpand | Logic expression expansion
+expLogicReduce | Logic expression reduction
+expLogicMod | Logic expression modification
+expArithMod | Arithmetic expression modification
+initFix | Initialization Fix
+codeMove | Code Moving
 wrongRef | Wrong Reference
-singleLine | Single line
+singleLine | Single Line
 notClassified | Not classified
 copyPaste | Copy/Paste
-rtAcs | Fix with ACS
-rtKali | Fix with jKali
-rtDynaMoth | Fix with DynaMoth
-rtGenProg | Fix with jGenProg
-rtHDRepair | Fix with HDRepair
-rtNopol | Fix with Nopol
+
+rtAcs | Fixed by ACS
+rtKali | Fixed by jKali
+rtDynaMoth | Fixed by DynaMoth
+rtGenProg | Fixed by jGenProg
+rtHDRepair | Fixed by HDRepair
+rtNopol | Fixed by Nopol
