@@ -106,7 +106,6 @@ typImpInterf | Type implemented interface modification
 retExpChange | Return expression modification
 retBranchAdd | Return statement addition
 retRem | Return statement removal
-
 wrapsIf | Wrap with if statement
 wrapsIfElse | Wrap with if-else statement
 wrapsElse | Wrap with else statement
@@ -130,7 +129,6 @@ wrongRef | Wrong Reference
 singleLine | Single Line
 notClassified | Not classified
 copyPaste | Copy/Paste
-
 rtAcs | Fixed by ACS
 rtKali | Fixed by jKali
 rtDynaMoth | Fixed by DynaMoth
