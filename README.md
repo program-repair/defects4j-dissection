@@ -135,3 +135,10 @@ rtDynaMoth | Fixed by DynaMoth
 rtGenProg | Fixed by jGenProg
 rtHDRepair | Fixed by HDRepair
 rtNopol | Fixed by Nopol
+
+## Automatic repair information sources:
+
+* ACS: [Precise Condition Synthesis for Program Repair](https://dl.acm.org/citation.cfm?id=3097418)
+* jKali: [Automatic Repair of Real Bugs in Java: A Large-Scale Experiment on the Defects4J Dataset](https://hal.archives-ouvertes.fr/hal-01387556/document)
+* jGenProg: [Automatic Repair of Real Bugs in Java: A Large-Scale Experiment on the Defects4J Dataset](https://hal.archives-ouvertes.fr/hal-01387556/document)
+* Nopol: [The Patches of the Nopol Automatic Repair System on the Bugs of Defects4J version 1.1.0](https://hal.archives-ouvertes.fr/hal-01480084)
