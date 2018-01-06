@@ -276,9 +276,14 @@
 				"name": "Loop",
 				"fullname": "Wrap with loop"
 			},
-			"unwrap": {
-				"name": "Unwrap",
-				"fullname": "Unwrap"
+			"unwrapIfElse": {
+				"name": "Unwrap with if-else statement"
+			},
+			"unwrapMethod": {
+				"name": "Unwrap with method call"
+			},
+			"unwrapTryCatch": {
+				"name": "Unwrap with try-catch block"
 			}
 		},
 		"Missing Null-Check": {

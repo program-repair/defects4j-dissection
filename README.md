@@ -112,7 +112,9 @@ wrapsElse | Wrap with else statement
 wrapsTryCatch | Wrap with try-catch block
 wrapsMethod | Wrap with method call
 wrapsLoop | Wrap with loop
-unwrap | Unwrap
+unwrapIfElse | Unwrap with if-else statement
+unwrapMethod | Unwrap with method call
+unwrapTryCatch | Unwrap with try-catch block
 condBlockExcAdd | Conditional block addition with exception throwing
 condBlockRetAdd | Conditional block addition with return statement
 condBlockOthersAdd | Simple conditional block addition
