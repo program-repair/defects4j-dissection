@@ -140,7 +140,7 @@ rtHDRepair | Fixed by HDRepair
 rtGenProg | Fixed by jGenProg
 rtKali | Fixed by jKali
 rtNopol | Fixed by Nopol
-rtssFix | ssFix
+rtssFix | Fixed by ssFix
 
 ## Automatic repair information sources:
 
