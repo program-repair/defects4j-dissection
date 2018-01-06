@@ -131,11 +131,16 @@ singleLine | Single Line
 notClassified | Not classified
 copyPaste | Copy/Paste
 rtAcs | Fixed by ACS
-rtKali | Fixed by jKali
+rtCardumen | Fixed by Cardumen
+rtDeepRepair | Fixed by DeepRepair
 rtDynaMoth | Fixed by DynaMoth
-rtGenProg | Fixed by jGenProg
+rtElixir | Fixed by Elixir
+rtGPFL | Fixed by GPFL
 rtHDRepair | Fixed by HDRepair
+rtGenProg | Fixed by jGenProg
+rtKali | Fixed by jKali
 rtNopol | Fixed by Nopol
+rtssFix | ssFix
 
 ## Automatic repair information sources:
 
