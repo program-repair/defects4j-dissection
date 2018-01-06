@@ -325,18 +325,6 @@
 				"name": "ACS",
 				"fullname": "Fixed by ACS"
 			},
-			"rtKali": {
-				"name": "jKali",
-				"fullname": "Fixed by jKali"
-			},
-			"rtDynaMoth": {
-				"name": "DynaMoth",
-				"fullname": "Fixed by DynaMoth"
-			},
-			"rtGenProg": {
-				"name": "jGenProg",
-				"fullname": "Fixed by jGenProg"
-			},
 			"rtCardumen": {
 				"name": "Cardumen",
 				"fullname": "Fixed by cardumen"
@@ -345,25 +333,37 @@
 				"name": "DeepRepair",
 				"fullname": "Fixed by DeepRepair"
 			},
-			"rtssFix": {
-				"name": "ssFix",
-				"fullname": "Fixed by ssFix"
-			},
-			"rtGPFL": {
-				"name": "GPFL",
-				"fullname": "Fixed by GPFL"
+			"rtDynaMoth": {
+				"name": "DynaMoth",
+				"fullname": "Fixed by DynaMoth"
 			},
 			"rtElixir": {
 				"name": "Elixir",
 				"fullname": "Fixed by Elixir"
 			},
+			"rtGPFL": {
+				"name": "GPFL",
+				"fullname": "Fixed by GPFL"
+			},
 			"rtHDRepair": {
 				"name": "HDRepair",
 				"fullname": "Fixed by HDRepair"
 			},
+			"rtGenProg": {
+				"name": "jGenProg",
+				"fullname": "Fixed by jGenProg"
+			},
+			"rtKali": {
+				"name": "jKali",
+				"fullname": "Fixed by jKali"
+			},
 			"rtNopol": {
 				"name": "Nopol",
 				"fullname": "Fixed by Nopol"
+			},
+			"rtssFix": {
+				"name": "ssFix",
+				"fullname": "Fixed by ssFix"
 			}
 		}
 	}
