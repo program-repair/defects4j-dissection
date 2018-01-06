@@ -125,7 +125,8 @@ expLogicMod | Logic expression modification
 expArithMod | Arithmetic expression modification
 initFix | Initialization Fix
 codeMove | Code Moving
-wrongRef | Wrong Reference
+wrongVarRef | Wrong Variable Reference
+wrongMethodRef | Wrong Method Reference
 singleLine | Single Line
 notClassified | Not classified
 copyPaste | Copy/Paste

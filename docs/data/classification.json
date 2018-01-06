@@ -291,6 +291,16 @@
 				"fullname": "Missing non-null check addition"
 			}
 		},
+		"Wrong Reference": {
+			"wrongVarRef": {
+				"name": "Variable",
+				"fullname": "Wrong Variable Reference"
+			},
+			"wrongMethodRef": {
+				"name": "Method",
+				"fullname": "Wrong Method Reference"
+			}
+		},
 		"Other": {
 			"singleLine": {
 				"name": "Single Line"
@@ -300,9 +310,6 @@
 			},
 			"initFix": {
 				"name": "Initialization Fix"
-			},
-			"wrongRef": {
-				"name": "Wrong Reference"
 			},
 			"codeMove": {
 				"name": "Code Moving"
