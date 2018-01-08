@@ -101,7 +101,13 @@ var defects4jInfoFunc = function(record, callback) {
     var sources = ["src/java", "src/main/java", "src", "source"]
     for (var i = 0; i < sources.length; i++) {
       if(fs.existsSync(defects4jBuggyProjectsPath  + projectPath + "/" + sources[i])) {
-        cmd = 'git diff ' + defects4jBuggyProjectsPath  + projectPath  + "/" + sources[i] + ' ' + defects4jFixedProjectsPath + projectPath + '/' + sources[i];
+        cmd = 'git diff '
+        if (projectPath.indexOf("chart_18") != -1 || projectPath.indexOf("closure_43") != -1 || projectPath.indexOf("closure_98") != -1 || 
+          projectPath.indexOf("lang_13") != -1 || projectPath.indexOf("lang_56") != -1 || projectPath.indexOf("math_47") != -1 || 
+          projectPath.indexOf("math_65") != -1 || projectPath.indexOf("mockito_16") != -1 || projectPath.indexOf("mockito_25") != -1) {
+          cmd += "-U0 -W "
+        }
+        cmd +=  defects4jBuggyProjectsPath  + projectPath  + "/" + sources[i] + ' ' + defects4jFixedProjectsPath + projectPath + '/' + sources[i];
         console.log(cmd)
         exec(cmd, function(error, stdout, stderr) {
           if (stderr == '' || stderr.indexOf("warning") != -1) {
