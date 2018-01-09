@@ -132,6 +132,7 @@ wrongMethodRef | Wrong Method Reference
 singleLine | Single Line
 notClassified | Not classified
 copyPaste | Copy/Paste
+constChange | Constant Change
 rtAcs | Fixed by ACS
 rtCardumen | Fixed by Cardumen
 rtDeepRepair | Fixed by DeepRepair

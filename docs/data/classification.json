@@ -319,6 +319,9 @@
 			"codeMove": {
 				"name": "Code Moving"
 			},
+			"constChange": {
+				"name": "Constant Change"
+			},
 			"notClassified": {
 				"name": "Not classified"
 			}
