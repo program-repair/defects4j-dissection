@@ -53,32 +53,32 @@ angular.module('defects4j-website', ['ngRoute', 'ui.bootstrap', 'anguFixedHeader
 			$uibModalInstance.close();
 		};
 		$ctrl.nextBug = function () {
-      $rootScope.$emit('next_bug', 'next');
-    };
-    $ctrl.previousBug = function () {
-      $rootScope.$emit('previous_bug', 'next');
-    };
-		$ctrl.actionName = function (key) {
-			for(var i in $ctrl.classifications['Repair Actions']) {
-				if ($ctrl.classifications['Repair Actions'][i][key] != null) {
-					if ($ctrl.classifications['Repair Actions'][i][key].fullname) {
-						return $ctrl.classifications['Repair Actions'][i][key].fullname;
-					}
-					return $ctrl.classifications['Repair Actions'][i][key].name;
-				}
-			}
-			return null;
+			$rootScope.$emit('next_bug', 'next');
 		};
-		$ctrl.patternName = function (key) {
-			for(var i in $ctrl.classifications['Repair Patterns']) {
-				if ($ctrl.classifications['Repair Patterns'][i][key] != null) {
-					if ($ctrl.classifications['Repair Patterns'][i][key].fullname) {
-						return $ctrl.classifications['Repair Patterns'][i][key].fullname;
+		$ctrl.previousBug = function () {
+			$rootScope.$emit('previous_bug', 'next');
+		};
+
+		var getNames = function (type, bug) {
+			var output = [];
+			for(var group in $ctrl.classifications[type]) {
+				for (var key in $ctrl.classifications[type][group]) {
+					if (bug[key] != null) {
+						if ($ctrl.classifications[type][group][key].fullname) {
+							output.push($ctrl.classifications[type][group][key].fullname);
+						} else {
+							output.push($ctrl.classifications[type][group][key].name)
+						}
 					}
-					return $ctrl.classifications['Repair Patterns'][i][key].name;
 				}
 			}
-			return null;
+			return output;
+		}
+		$ctrl.actionNames = function (bug) {
+			return getNames('Repair Actions', bug);
+		};
+		$ctrl.patternNames = function (key) {
+			return getNames('Repair Patterns', bug);
 		};
 		$ctrl.repairName = function (key) {
 			var repairNames = $ctrl.classifications['Runtime Information']["Automatic Repair"];
@@ -100,7 +100,7 @@ angular.module('defects4j-website', ['ngRoute', 'ui.bootstrap', 'anguFixedHeader
 
 		$scope.$watch("$parent.filteredBug", function () {
 			$ctrl.bugs = $scope.$parent.filteredBug;
-      $ctrl.index = getIndex($routeParams.project, $routeParams.id);
+	  $ctrl.index = getIndex($routeParams.project, $routeParams.id);
 		});
 		$scope.$watch("$parent.classifications", function () {
 			$ctrl.classifications = $scope.$parent.classifications;
@@ -126,8 +126,8 @@ angular.module('defects4j-website', ['ngRoute', 'ui.bootstrap', 'anguFixedHeader
 		$scope.$watch("index", function () {
 			if ($scope.index != -1) {
 			  if (welcomeModal != null) {
-			    welcomeModal.close();
-        }
+				welcomeModal.close();
+		}
 				if (modalInstance == null) {
 					modalInstance = $uibModal.open({
 						animation: true,
@@ -149,60 +149,60 @@ angular.module('defects4j-website', ['ngRoute', 'ui.bootstrap', 'anguFixedHeader
 						$location.path("/");
 					}, function () {
 						modalInstance = null;
-            $location.path("/");
+			$location.path("/");
 					})
 				} else {
 					$rootScope.$emit('new_bug', $scope.bugs[$scope.index]);
 				}
 			}
 		});
-    var welcomeModal = null;
-    $scope.openWelcome = function () {
-      welcomeModal = $uibModal.open({
-        animation: true,
-        ariaLabelledBy: 'modal-title',
-        ariaDescribedBy: 'modal-body',
-        templateUrl: 'welcome.html',
-        controller: 'welcomeController',
-        controllerAs: '$ctrl',
-        size: "lg"
-      });
-      welcomeModal.result.then(function () {
-        welcomeModal = null;
-      }, function () {
-        welcomeModal = null;
-      })
-    };
-    $scope.openWelcome();
+	var welcomeModal = null;
+	$scope.openWelcome = function () {
+	  welcomeModal = $uibModal.open({
+		animation: true,
+		ariaLabelledBy: 'modal-title',
+		ariaDescribedBy: 'modal-body',
+		templateUrl: 'welcome.html',
+		controller: 'welcomeController',
+		controllerAs: '$ctrl',
+		size: "lg"
+	  });
+	  welcomeModal.result.then(function () {
+		welcomeModal = null;
+	  }, function () {
+		welcomeModal = null;
+	  })
+	};
+	$scope.openWelcome();
 		var nextBug = function () {
-      var index  = $scope.index + 1;
-      if (index == $ctrl.bugs.length)  {
-        index = 0;
-      }
-      $location.path( "/bug/" + $ctrl.bugs[index]["project"] + "/" + $ctrl.bugs[index]["bugId"] );
+	  var index  = $scope.index + 1;
+	  if (index == $ctrl.bugs.length)  {
+		index = 0;
+	  }
+	  $location.path( "/bug/" + $ctrl.bugs[index]["project"] + "/" + $ctrl.bugs[index]["bugId"] );
 			return false;
 		};
 		var previousBug = function () {
-      var index  = $scope.index - 1;
-      if (index < 0) {
-        index = $ctrl.bugs.length - 1;
-      }
-      $location.path( "/bug/" + $ctrl.bugs[index]["project"] + "/" + $ctrl.bugs[index]["bugId"] );
+	  var index  = $scope.index - 1;
+	  if (index < 0) {
+		index = $ctrl.bugs.length - 1;
+	  }
+	  $location.path( "/bug/" + $ctrl.bugs[index]["project"] + "/" + $ctrl.bugs[index]["bugId"] );
 			return false;
 		};
 
-    $scope.$on('keypress:39', function () {
-      $scope.$apply(function () {
-        nextBug();
-      });
-    });
-    $scope.$on('keypress:37', function () {
-      $scope.$apply(function () {
-        previousBug();
-      });
-    });
-    $rootScope.$on('next_bug', nextBug);
-    $rootScope.$on('previous_bug', previousBug);
+	$scope.$on('keypress:39', function () {
+	  $scope.$apply(function () {
+		nextBug();
+	  });
+	});
+	$scope.$on('keypress:37', function () {
+	  $scope.$apply(function () {
+		previousBug();
+	  });
+	});
+	$rootScope.$on('next_bug', nextBug);
+	$rootScope.$on('previous_bug', previousBug);
 	})
 	.controller('mainController', function($scope, $location, $rootScope, $http, $uibModal) {
 		$scope.sortType     = ['project', 'bugId']; // set the default sort type
