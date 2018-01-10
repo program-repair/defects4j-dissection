@@ -77,7 +77,7 @@ angular.module('defects4j-website', ['ngRoute', 'ui.bootstrap', 'anguFixedHeader
 		$ctrl.actionNames = function (bug) {
 			return getNames('Repair Actions', bug);
 		};
-		$ctrl.patternNames = function (key) {
+		$ctrl.patternNames = function (bug) {
 			return getNames('Repair Patterns', bug);
 		};
 		$ctrl.repairName = function (key) {
