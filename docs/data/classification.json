@@ -251,39 +251,39 @@
 				"fullname": "Arithmetic expression modification"
 			}
 		},
-		"Wrap-with": {
+		"Wraps-with/Unwraps-from": {
 			"wrapsIf": {
 				"name": "if statement",
-				"fullname": "Wrap with if statement"
+				"fullname": "Wraps-with if statement"
 			},
 			"wrapsIfElse": {
 				"name": "if-else statement",
-				"fullname": "Wrap with if-else statement"
+				"fullname": "Wraps-with if-else statement"
 			},
 			"wrapsElse": {
 				"name": "else statement",
-				"fullname": "Wrap with else statement"
+				"fullname": "Wraps-with else statement"
 			},
 			"wrapsTryCatch": {
 				"name": "try-catch block",
-				"fullname": "Wrap with try-catch block"
+				"fullname": "Wraps-with try-catch block"
 			},
 			"wrapsMethod": {
 				"name": "Method call",
-				"fullname": "Wrap with method call"
+				"fullname": "Wraps-with method call"
 			},
 			"wrapsLoop": {
 				"name": "Loop",
-				"fullname": "Wrap with loop"
+				"fullname": "Wraps-with loop"
 			},
 			"unwrapIfElse": {
-				"name": "Unwrap with if-else statement"
+				"name": "Unwraps-from if-else statement"
 			},
 			"unwrapMethod": {
-				"name": "Unwrap with method call"
+				"name": "Unwraps-from method call"
 			},
 			"unwrapTryCatch": {
-				"name": "Unwrap with try-catch block"
+				"name": "Unwraps-from try-catch block"
 			}
 		},
 		"Missing Null-Check": {

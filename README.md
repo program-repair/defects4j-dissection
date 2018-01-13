@@ -106,15 +106,15 @@ typImpInterf | Type implemented interface modification
 retExpChange | Return expression modification
 retBranchAdd | Return statement addition
 retRem | Return statement removal
-wrapsIf | Wrap with if statement
-wrapsIfElse | Wrap with if-else statement
-wrapsElse | Wrap with else statement
-wrapsTryCatch | Wrap with try-catch block
-wrapsMethod | Wrap with method call
-wrapsLoop | Wrap with loop
-unwrapIfElse | Unwrap with if-else statement
-unwrapMethod | Unwrap with method call
-unwrapTryCatch | Unwrap with try-catch block
+wrapsIf | Wraps-with if statement
+wrapsIfElse | Wraps-with if-else statement
+wrapsElse | Wraps-with else statement
+wrapsTryCatch | Wraps-with try-catch block
+wrapsMethod | Wraps-with method call
+wrapsLoop | Wraps-with loop
+unwrapIfElse | Unwraps-from if-else statement
+unwrapMethod | Unwraps-from method call
+unwrapTryCatch | Unwraps-from try-catch block
 condBlockExcAdd | Conditional block addition with exception throwing
 condBlockRetAdd | Conditional block addition with return statement
 condBlockOthersAdd | Simple conditional block addition
