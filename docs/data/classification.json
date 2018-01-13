@@ -253,27 +253,27 @@
 		},
 		"Wraps-with/Unwraps-from": {
 			"wrapsIf": {
-				"name": "if statement",
+				"name": "Wraps-with if statement",
 				"fullname": "Wraps-with if statement"
 			},
 			"wrapsIfElse": {
-				"name": "if-else statement",
+				"name": "Wraps-with if-else statement",
 				"fullname": "Wraps-with if-else statement"
 			},
 			"wrapsElse": {
-				"name": "else statement",
+				"name": "Wraps-with else statement",
 				"fullname": "Wraps-with else statement"
 			},
 			"wrapsTryCatch": {
-				"name": "try-catch block",
+				"name": "Wraps-with try-catch block",
 				"fullname": "Wraps-with try-catch block"
 			},
 			"wrapsMethod": {
-				"name": "Method call",
+				"name": "Wraps-with method call",
 				"fullname": "Wraps-with method call"
 			},
 			"wrapsLoop": {
-				"name": "Loop",
+				"name": "Wraps-with loop",
 				"fullname": "Wraps-with loop"
 			},
 			"unwrapIfElse": {
