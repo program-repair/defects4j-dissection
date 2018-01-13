@@ -125,7 +125,6 @@ expLogicExpand | Logic expression expansion
 expLogicReduce | Logic expression reduction
 expLogicMod | Logic expression modification
 expArithMod | Arithmetic expression modification
-initFix | Initialization Fix
 codeMove | Code Moving
 wrongVarRef | Wrong Variable Reference
 wrongMethodRef | Wrong Method Reference

@@ -313,9 +313,6 @@
 			"copyPaste": {
 				"name": "Copy/Paste"
 			},
-			"initFix": {
-				"name": "Initialization Fix"
-			},
 			"codeMove": {
 				"name": "Code Moving"
 			},
