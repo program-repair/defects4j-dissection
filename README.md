@@ -102,7 +102,7 @@ tyChange | Variable type change
 tyModChange | Variable modifier change
 tyObj2Met | Variable replacement by method call
 tyAdd | Type addition
-typImpInterf | Type implemented interface modification
+tyImpInterf | Type implemented interface modification
 retExpChange | Return expression modification
 retBranchAdd | Return statement addition
 retRem | Return statement removal
