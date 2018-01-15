@@ -61,10 +61,6 @@
 				"name": "Conditional expression modification",
 				"fullname": "Loop conditional expression modification"
 			},
-			"loopInitVector": {
-				"name": "Vector initialization modification",
-				"fullname": "Add, remove or modify a vector initialization in a loop"
-			},
 			"loopInitChange": {
 				"name": "Loop initialization modification",
 				"fullname": "Change loop initialization fields"

@@ -96,7 +96,6 @@ assignExpChange | Assignment expression modification
 loopAdd | Loop addition
 loopRem | Loop removal
 loopCondChange | Loop conditional expression modification
-loopInitVector | Add, remove or modify a vector initialization in a loop
 loopInitChange | Change loop initialization fields
 varTyChange | Variable type change
 varModChange | Variable modifier change
