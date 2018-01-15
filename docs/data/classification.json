@@ -48,20 +48,6 @@
 				"fullname": "Conditional expression modification"
 			}
 		},
-		"Exception": {
-			"exTryCatchAdd": {
-				"name": "try-catch addition"
-			},
-			"exTryCatchRem": {
-				"name": "try-catch removal"
-			},
-			"exThrowsAdd": {
-				"name": "throw addition"
-			},
-			"exThrowsRem": {
-				"name": "throw removal"
-			}
-		},
 		"Loop": {
 			"loopAdd": {
 				"name": "Addition",
@@ -162,6 +148,20 @@
 				"fullname": "Object instantiation modification"
 			}
 		},
+		"Exception": {
+			"exTryCatchAdd": {
+				"name": "try-catch addition"
+			},
+			"exTryCatchRem": {
+				"name": "try-catch removal"
+			},
+			"exThrowsAdd": {
+				"name": "throw addition"
+			},
+			"exThrowsRem": {
+				"name": "throw removal"
+			}
+		},
 		"Return": {
 			"retBranchAdd": {
 				"name": "Addition",
@@ -174,16 +174,6 @@
 			"retExpChange": {
 				"name": "Expression modification",
 				"fullname": "Return expression modification"
-			}
-		},
-		"Type": {
-			"tyAdd": {
-				"name": "Type addition",
-				"fullname": "Type addition"
-			},
-			"tyImpInterf": {
-				"name": "Type implemented interface modification",
-				"fullname": "Type implemented interface modification"
 			}
 		},
 		"Variable": {
@@ -210,6 +200,16 @@
 			"varReplMc": {
 				"name": "Replacement by Method Call",
 				"fullname": "Variable replacement by method call"
+			}
+		},
+		"Type": {
+			"tyAdd": {
+				"name": "Type addition",
+				"fullname": "Type addition"
+			},
+			"tyImpInterf": {
+				"name": "Type implemented interface modification",
+				"fullname": "Type implemented interface modification"
 			}
 		}
 	},
@@ -286,16 +286,6 @@
 				"name": "Unwraps-from try-catch block"
 			}
 		},
-		"Missing Null-Check": {
-			"missNullCheckP": {
-				"name": "Missing null check",
-				"fullname": "Missing null check addition"
-			},
-			"missNullCheckN": {
-				"name": "Missing non-null check",
-				"fullname": "Missing non-null check addition"
-			}
-		},
 		"Wrong Reference": {
 			"wrongVarRef": {
 				"name": "Variable",
@@ -306,6 +296,16 @@
 				"fullname": "Wrong Method Reference"
 			}
 		},
+		"Missing Null-Check": {
+			"missNullCheckP": {
+				"name": "Missing null check",
+				"fullname": "Missing null check addition"
+			},
+			"missNullCheckN": {
+				"name": "Missing non-null check",
+				"fullname": "Missing non-null check addition"
+			}
+		},
 		"Other": {
 			"singleLine": {
 				"name": "Single Line"
@@ -313,11 +313,11 @@
 			"copyPaste": {
 				"name": "Copy/Paste"
 			},
-			"codeMove": {
-				"name": "Code Moving"
-			},
 			"constChange": {
 				"name": "Constant Change"
+			},
+			"codeMove": {
+				"name": "Code Moving"
 			},
 			"notClassified": {
 				"name": "Not classified"
