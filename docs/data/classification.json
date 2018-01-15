@@ -195,19 +195,19 @@
 				"name": "Removal",
 				"fullname": "Variable removal"
 			},
-			"tyChange": {
+			"varTyChange": {
 				"name": "Type change",
 				"fullname": "Variable type change"
 			},
-			"tyModChange": {
+			"varModChange": {
 				"name": "Modifier change",
 				"fullname": "Variable modifier change"
 			},
-			"varRepl": {
+			"varReplVar": {
 				"name": "Replacement by Another Variable",
 				"fullname": "Variable replacement by another variable"
 			},
-			"tyObj2Met": {
+			"varReplMc": {
 				"name": "Replacement by Method Call",
 				"fullname": "Variable replacement by method call"
 			}

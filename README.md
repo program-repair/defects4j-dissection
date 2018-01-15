@@ -77,7 +77,7 @@ objInstRem | Object instantiation removal
 objInstMod | Object instantiation modification
 varAdd | Variable addition
 varRem | Variable removal
-varRepl | Variable replacement by another variable
+varReplVar | Variable replacement by another variable
 exTryCatchAdd | try-catch addition
 exTryCatchRem | try-catch removal
 exThrowsAdd | throw addition
@@ -98,9 +98,9 @@ loopRem | Loop removal
 loopCondChange | Loop conditional expression modification
 loopInitVector | Add, remove or modify a vector initialization in a loop
 loopInitChange | Change loop initialization fields
-tyChange | Variable type change
-tyModChange | Variable modifier change
-tyObj2Met | Variable replacement by method call
+varTyChange | Variable type change
+varModChange | Variable modifier change
+varReplMc | Variable replacement by method call
 tyAdd | Type addition
 tyImpInterf | Type implemented interface modification
 retExpChange | Return expression modification
