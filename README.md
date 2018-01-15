@@ -96,7 +96,7 @@ assignExpChange | Assignment expression modification
 loopAdd | Loop addition
 loopRem | Loop removal
 loopCondChange | Loop conditional expression modification
-loopInitChange | Change loop initialization fields
+loopInitChange | Loop initialization field modification
 varTyChange | Variable type change
 varModChange | Variable modifier change
 varReplMc | Variable replacement by method call

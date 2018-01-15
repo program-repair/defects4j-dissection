@@ -62,8 +62,8 @@
 				"fullname": "Loop conditional expression modification"
 			},
 			"loopInitChange": {
-				"name": "Loop initialization modification",
-				"fullname": "Change loop initialization fields"
+				"name": "Initialization field modification",
+				"fullname": "Loop initialization field modification"
 			}
 		},
 		"Method Call": {
