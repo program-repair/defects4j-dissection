@@ -117,7 +117,7 @@ unwrapMethod | Unwraps-from method call
 unwrapTryCatch | Unwraps-from try-catch block
 condBlockExcAdd | Conditional block addition with exception throwing
 condBlockRetAdd | Conditional block addition with return statement
-condBlockOthersAdd | Simple conditional block addition
+condBlockOthersAdd | Conditional block addition
 condBlockRem | Conditional block removal
 missNullCheckP | Missing null check addition
 missNullCheckN | Missing non-null check addition

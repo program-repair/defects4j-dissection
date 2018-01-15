@@ -216,16 +216,16 @@
 	"Repair Patterns": {
 		"Conditional Block": {
 			"condBlockOthersAdd": {
-				"name": "Simple branch addition",
-				"fullname": "Simple conditional block addition"
+				"name": "Conditional block addition",
+				"fullname": "Conditional block addition"
 			},
 			"condBlockRetAdd": {
-				"name": "Return statement addition",
+				"name": "Addition with return statement",
 				"fullname": "Conditional block addition with return statement"
 
 			},
 			"condBlockExcAdd": {
-				"name": "Exception throwing addition",
+				"name": "Addition with exception throwing",
 				"fullname": "Conditional block addition with exception throwing"
 			},
 			"condBlockRem": {
