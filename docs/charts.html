@@ -1,0 +1,227 @@
+<!-- index.html -->
+<!DOCTYPE html>
+<html lang="en">
+	<head>
+		<meta charset="UTF-8">
+		<title>Defects4J Dissection Graph</title>
+
+		<!-- CSS -->
+		<link rel="stylesheet" href="//maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css" integrity="sha384-BVYiiSIFeK1dGmJRAkycuHAHRg32OmUcww7on3RYdg4Va+PmSTsz/K68vbdEjh4u" crossorigin="anonymous">
+
+		<!-- Optional theme -->
+		<link rel="stylesheet" href="//maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap-theme.min.css" integrity="sha384-rHyoN1iRsVXV4nD0JutlnGaslCJuC7uwjduW9SVrLvRYooPp2bWYgmgJQIXwl/Sp" crossorigin="anonymous">
+
+		<script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/2.7.1/Chart.bundle.min.js"></script>
+
+		<link rel="stylesheet" href="//maxcdn.bootstrapcdn.com/font-awesome/4.3.0/css/font-awesome.min.css">
+		<link rel="stylesheet" href="style/style.css">
+
+		<script type="text/javascript">
+			function loadData(callback) {
+				var bugs = null;
+				var classification = null;
+
+				function end() {
+					if (bugs != null && classification != null) {
+						callback(classification, bugs);
+					}
+				}
+				var xhttp = new XMLHttpRequest();
+				xhttp.onreadystatechange = function() {
+					if (this.readyState == 4 && this.status == 200) {
+						bugs = JSON.parse(this.responseText);
+						end();
+					}
+				};
+				xhttp.open("GET", "data/defects4j-bugs.json", true);
+				xhttp.send();
+
+				xhttp = new XMLHttpRequest();
+				xhttp.onreadystatechange = function() {
+					if (this.readyState == 4 && this.status == 200) {
+						classification = JSON.parse(this.responseText);
+						end();
+					}
+				};
+				xhttp.open("GET", "data/classification.json", true);
+				xhttp.send();
+			}
+			loadData(function (classifications, bugs) {
+
+				var getActionPattern = function (type, bug) {
+					var output = [];
+					for(var group in classifications[type]) {
+						for (var key in classifications[type][group]) {
+							if (bug[key] != null) {
+								output.push(key);
+							}
+						}
+					}
+					return output;
+				}
+
+				function getParentLabel(label) {
+					for (var type in classifications) {
+						for(var group in classifications[type]) {
+							if (classifications[type][group][label] != null) {
+								return group;
+							}
+						}
+					}
+				}
+
+				function getLabelData (obj, sort) {
+					if (sort ==null) {
+						sort = true;
+					} 
+					var labels = Object.keys(obj)
+					if (sort) {
+						labels = labels.sort(function (a, b) {
+							return obj[b] - obj[a];
+						});
+					}
+					var data = Object.values(obj);
+					if (sort) {
+						data = data.sort(function (a, b) {
+							return b - a;
+						});
+					}
+					return {labels: labels, data:data};
+				}
+
+				var nbPatchActions = {};
+				var nbPatchPatterns = {};
+				for (var i in bugs) {
+					var bug = bugs[i];
+					var actions = getActionPattern('Repair Actions', bug);
+					var patterns = getActionPattern('Repair Patterns', bug);
+
+					for (var a in actions) {
+						var act = actions[a];
+						if (nbPatchActions[act] == null) {
+							nbPatchActions[act] = 0;
+						}
+						nbPatchActions[act]++;
+					}
+
+					for (var p in patterns) {
+						var pat = patterns[p];
+						if (nbPatchPatterns[pat] == null) {
+							nbPatchPatterns[pat] = 0;
+						}
+						nbPatchPatterns[pat]++;
+					}
+				}
+
+				function getBugWith(id) {
+					var output = [];
+					for (var i in bugs) {
+						var bug = bugs[i];
+						if (bug[id] != null) {
+							output.push(bug);
+						}
+					}
+					return output;
+				}
+
+				var nbPatchActionsLD =  getLabelData(nbPatchActions);
+				new Chart(document.getElementById("bugPerAction").getContext('2d'), {
+					type: 'horizontalBar',
+					data: {
+						labels: nbPatchActionsLD.labels,
+						datasets: [{
+							label: '# of Repair Actions',
+							data: nbPatchActionsLD.data,
+							backgroundColor: '#5A6B7D',
+							borderWidth: 1
+						}]
+					},
+				});
+
+				var nbPatchPatternsLD = getLabelData(nbPatchPatterns);
+				new Chart(document.getElementById("patternPerAction").getContext('2d'), {
+					type: 'horizontalBar',
+					data: {
+						labels: nbPatchPatternsLD.labels,
+						datasets: [{
+							label: '# of Repair Patterns',
+							data: nbPatchPatternsLD.data,
+							backgroundColor: '#5A6B7D',
+							borderWidth: 1
+						}]
+					},
+				});
+
+				for (var p in classifications['Repair Patterns']) {
+					var pats = classifications['Repair Patterns'][p];
+					if (p != "Other") {
+						pats = {};
+						pats[p] = 0;
+					}
+					for (var sp in pats) {
+						var parent = document.getElementById("canvass")
+						var canvas = document.createElement("canvas");
+
+						var nbAction = {};
+						for (var a in classifications['Repair Actions']) {
+							if (nbAction[a] == null) {
+								nbAction[a] = 0;
+							}
+						}
+						parent.appendChild(canvas);
+
+						var cPatterns = classifications['Repair Patterns'][p];
+						if (p == "Other") {
+							cPatterns = {};
+							cPatterns[sp] = 0;
+						}
+						for (var s in cPatterns) {
+							var bugsS = getBugWith(s);
+							for (var i in bugsS) {
+								var bug = bugsS[i];
+								var actions = getActionPattern('Repair Actions', bug);
+								for (var a in actions) {
+									var act = actions[a];
+									nbAction[getParentLabel(act)] ++;
+								}
+							}
+						}
+
+						var nbActionLD = getLabelData(nbAction, false);
+						new Chart(canvas.getContext('2d'), {
+							type: 'radar',
+							data: {
+								labels: nbActionLD.labels,
+							    datasets: [{
+							    	label: sp,
+							        data: nbActionLD.data,
+							        backgroundColor: '#5A6B7D',
+							    }]
+							},
+						});
+					}
+				}
+				
+			});
+		</script>
+
+		<style>
+			.chart-container {
+				position: relative;
+				width:80vw;
+				margin: auto;
+			}
+		</style>
+	</head>
+	<body>
+		<div class="chart-container">
+			<canvas id="bugPerAction" width="400" height="200"></canvas>
+
+			<canvas id="patternPerAction" width="400" height="200"></canvas>
+
+			<div id="canvass">
+
+			</div>
+		</div>
+	</body>
+</html>
