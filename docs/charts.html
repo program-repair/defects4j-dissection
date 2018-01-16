@@ -147,7 +147,7 @@
 							label: '# of Repair Actions',
 							data: nbPatchActionsLD.data,
 							backgroundColor: '#5A6B7D',
-							borderWidth: 1
+							borderWidth: 0
 						}]
 					},
 				});
@@ -161,7 +161,7 @@
 							label: '# of Repair Patterns',
 							data: nbPatchPatternsLD.data,
 							backgroundColor: '#5A6B7D',
-							borderWidth: 1
+							borderWidth: 0
 						}]
 					},
 				});
@@ -175,7 +175,7 @@
 							label: 'Distribution of the number of actions per bug',
 							data: nbDistributionActionsLD.data,
 							backgroundColor: '#5A6B7D',
-							borderWidth: 1
+							borderWidth: 0
 						}]
 					},
 				});
@@ -189,7 +189,7 @@
 							label: 'Distribution of the number of patterns per bug',
 							data: nbDistributionPatternsLD.data,
 							backgroundColor: '#5A6B7D',
-							borderWidth: 1
+							borderWidth: 0
 						}]
 					},
 				});
@@ -202,6 +202,9 @@
 					}
 					for (var sp in pats) {
 						var parent = document.getElementById("canvass")
+						var parentCanvas = document.createElement("div");
+						parentCanvas.className = "grid-chart";
+
 						var canvas = document.createElement("canvas");
 
 						var nbAction = {};
@@ -209,8 +212,12 @@
 							if (nbAction[a] == null) {
 								nbAction[a] = 0;
 							}
+							for (b in classifications['Repair Actions'][a]) {
+								
+							}
 						}
-						parent.appendChild(canvas);
+						parentCanvas.appendChild(canvas);
+						parent.appendChild(parentCanvas);
 
 						var cPatterns = classifications['Repair Patterns'][p];
 						if (p == "Other") {
@@ -238,6 +245,7 @@
 							    	label: sp,
 							        data: nbActionLD.data,
 							        backgroundColor: '#5A6B7D',
+							        pointRadius: 0
 							    }]
 							},
 						});
@@ -252,6 +260,10 @@
 				position: relative;
 				width:80vw;
 				margin: auto;
+			}
+			.grid-chart {
+				width: 450px;
+				float: left;
 			}
 		</style>
 	</head>
