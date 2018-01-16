@@ -89,12 +89,37 @@
 					return {labels: labels, data:data};
 				}
 
+				function getBugWith(id) {
+					var output = [];
+					for (var i in bugs) {
+						var bug = bugs[i];
+						if (bug[id] != null) {
+							output.push(bug);
+						}
+					}
+					return output;
+				}
+
+
 				var nbPatchActions = {};
 				var nbPatchPatterns = {};
+
+				var nbDistributionActions = {};
+				var nbDistributionPatterns = {};
 				for (var i in bugs) {
 					var bug = bugs[i];
 					var actions = getActionPattern('Repair Actions', bug);
 					var patterns = getActionPattern('Repair Patterns', bug);
+
+					if (nbDistributionActions[actions.length] == null) {
+						nbDistributionActions[actions.length] = 0;
+					}
+					nbDistributionActions[actions.length]++;
+
+					if (nbDistributionPatterns[patterns.length] == null) {
+						nbDistributionPatterns[patterns.length] = 0;
+					}
+					nbDistributionPatterns[patterns.length]++;
 
 					for (var a in actions) {
 						var act = actions[a];
@@ -113,17 +138,6 @@
 					}
 				}
 
-				function getBugWith(id) {
-					var output = [];
-					for (var i in bugs) {
-						var bug = bugs[i];
-						if (bug[id] != null) {
-							output.push(bug);
-						}
-					}
-					return output;
-				}
-
 				var nbPatchActionsLD =  getLabelData(nbPatchActions);
 				new Chart(document.getElementById("bugPerAction").getContext('2d'), {
 					type: 'horizontalBar',
@@ -139,13 +153,41 @@
 				});
 
 				var nbPatchPatternsLD = getLabelData(nbPatchPatterns);
-				new Chart(document.getElementById("patternPerAction").getContext('2d'), {
+				new Chart(document.getElementById("bugPerPattern").getContext('2d'), {
 					type: 'horizontalBar',
 					data: {
 						labels: nbPatchPatternsLD.labels,
 						datasets: [{
 							label: '# of Repair Patterns',
 							data: nbPatchPatternsLD.data,
+							backgroundColor: '#5A6B7D',
+							borderWidth: 1
+						}]
+					},
+				});
+
+				var nbDistributionActionsLD = getLabelData(nbDistributionActions, false);
+				new Chart(document.getElementById("distributionAction").getContext('2d'), {
+					type: 'line',
+					data: {
+						labels: nbDistributionActionsLD.labels,
+						datasets: [{
+							label: 'Distribution of the number of actions per bug',
+							data: nbDistributionActionsLD.data,
+							backgroundColor: '#5A6B7D',
+							borderWidth: 1
+						}]
+					},
+				});
+
+				var nbDistributionPatternsLD = getLabelData(nbDistributionPatterns, false);
+				new Chart(document.getElementById("distributionPattern").getContext('2d'), {
+					type: 'line',
+					data: {
+						labels: nbDistributionPatternsLD.labels,
+						datasets: [{
+							label: 'Distribution of the number of patterns per bug',
+							data: nbDistributionPatternsLD.data,
 							backgroundColor: '#5A6B7D',
 							borderWidth: 1
 						}]
@@ -215,13 +257,20 @@
 	</head>
 	<body>
 		<div class="chart-container">
+			<h2>Number of bug per action</h2>
 			<canvas id="bugPerAction" width="400" height="200"></canvas>
 
-			<canvas id="patternPerAction" width="400" height="200"></canvas>
+			<h2>Number of bug per pattern</h2>
+			<canvas id="bugPerPattern" width="400" height="200"></canvas>
 
-			<div id="canvass">
+			<h2>Distribution of the number of actions by bug</h2>
+			<canvas id="distributionAction" width="400" height="200"></canvas>
 
-			</div>
+			<h2>Distribution of the number of patterns by bug</h2>
+			<canvas id="distributionPattern" width="400" height="200"></canvas>
+
+			<h2>Composition of the repair patterns in terms of repair actions.</h2>
+			<div id="canvass"></div>
 		</div>
 	</body>
 </html>
