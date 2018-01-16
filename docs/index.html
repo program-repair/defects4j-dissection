@@ -44,7 +44,10 @@
 						<span class="icon-bar"></span>
 						<span class="icon-bar"></span>
 					</button>
-					<h2>Defects4J Dissection is showing {{filteredBug.length}} Bugs <a href="https://github.com/program-repair/defects4j-dissection"><i class="fa fa-github" aria-hidden="true"></i></a></h2>
+					<h2>Defects4J Dissection is showing {{filteredBug.length}} Bugs 
+						<a href="/charts.html"><i class="fa fa-bar-chart" aria-hidden="true"></i></a>
+						<a href="https://github.com/program-repair/defects4j-dissection">
+							<i class="fa fa-github" aria-hidden="true"></i></a></h2>
 				</div>
 				<!-- Sidebar Menu Items - These collapse to the responsive navigation menu on small screens -->
 				<div class="collapse navbar-collapse navbar-ex1-collapse">
@@ -240,9 +243,10 @@
 				  <li>Repair patterns associated with the patch.</li>
 				  <li>Code listing showing the diff between buggy code and patched code, highlighting what was changed by the applied human patch (added lines in green, removed lines in red and modified lines in yellow).</li>
 				  <li>Failing test case classes and associated exceptions.</li>
+				  <li>Shortcut <i class="fa fa-arrow-left" aria-hidden="true"></i> <i class="fa fa-arrow-right" aria-hidden="true"></i>: to navigate between bugs.</li>
 				</ul><br>
 
-				For more details about the analysis, methodology and concepts related to this data, read our paper <a href="#">here</a> (to be published soon).
+				For more details about the analysis, methodology and concepts related to this data, read our paper <a href="#">here</a> (to be published soon) or check some illustrative <a href="/charts.html">charts</a> of our dissection of Defects4j (<a href="/charts.html">here</a>).
 			</section>
 		</div>
 		<div class="modal-footer">
