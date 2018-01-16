@@ -206,6 +206,8 @@
 						parentCanvas.className = "grid-chart";
 
 						var canvas = document.createElement("canvas");
+						canvas.width = 200;
+						canvas.height = 200;
 
 						var nbAction = {};
 						for (var a in classifications['Repair Actions']) {
@@ -262,7 +264,7 @@
 				margin: auto;
 			}
 			.grid-chart {
-				width: 450px;
+				width: 380px;
 				float: left;
 			}
 		</style>
