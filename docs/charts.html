@@ -258,6 +258,21 @@
 		</script>
 
 		<style>
+			#wrapper {
+				padding: 0;
+			}
+			@media(min-width:768px) {
+    			.navbar-header {
+    				left: 0px;
+    				padding-left: 10vw;
+    			}
+    		}
+    		#page-wrapper {
+    			position: relative;
+    			width:80vw;
+    			padding-top: 50px;
+				margin: auto;
+    		}
 			.chart-container {
 				position: relative;
 				width:80vw;
@@ -270,21 +285,36 @@
 		</style>
 	</head>
 	<body>
-		<div class="chart-container">
-			<h2>Number of bug per action</h2>
-			<canvas id="bugPerAction" width="400" height="200"></canvas>
-
-			<h2>Number of bug per pattern</h2>
-			<canvas id="bugPerPattern" width="400" height="200"></canvas>
-
-			<h2>Distribution of the number of actions by bug</h2>
-			<canvas id="distributionAction" width="400" height="200"></canvas>
-
-			<h2>Distribution of the number of patterns by bug</h2>
-			<canvas id="distributionPattern" width="400" height="200"></canvas>
-
-			<h2>Composition of the repair patterns in terms of repair actions.</h2>
-			<div id="canvass"></div>
+		<div id="wrapper">
+			<nav class="navbar navbar-inverse navbar-fixed-top" role="navigation">
+				<div class="navbar-header">
+					<h2>Defects4J Dissection Charts <a href="https://github.com/program-repair/defects4j-dissection"><i class="fa fa-github" aria-hidden="true"></i></a></h2>
+				</div>
+			</nav>
+			<div id="page-wrapper">
+				<h2>Number of bug per action</h2>
+				<div class="chart-container">
+					<canvas id="bugPerAction" width="400" height="200"></canvas>
+				</div>
+				
+				<h2>Number of bug per pattern</h2>
+				<div class="chart-container">
+					<canvas id="bugPerPattern" width="400" height="200"></canvas>
+				</div>
+				
+				<h2>Distribution of the number of actions by bug</h2>
+				<div class="chart-container">
+					<canvas id="distributionAction" width="400" height="200"></canvas>
+				</div>
+				
+				<h2>Distribution of the number of patterns by bug</h2>
+				<div class="chart-container">
+					<canvas id="distributionPattern" width="400" height="200"></canvas>
+				</div>
+				
+				<h2>Composition of the repair patterns in terms of repair actions.</h2>
+				<div id="canvass"></div>
+			</div>
 		</div>
 	</body>
 </html>
