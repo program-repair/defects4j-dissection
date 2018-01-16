@@ -160,6 +160,20 @@
 										</a>
 									</th>
 									<th>	
+										<a href="#" ng-click="sort('repairActions')">
+											# Repair Actions
+											<span ng-show="sortType == 'repairActions' && sortReverse" class="fa fa-caret-down"></span>
+											<span ng-show="sortType == 'repairActions' && !sortReverse" class="fa fa-caret-up"></span>
+										</a>
+									</th>
+									<th>	
+										<a href="#" ng-click="sort('repairPatterns')">
+											# Repair Patterns
+											<span ng-show="sortType == 'repairPatterns' && sortReverse" class="fa fa-caret-down"></span>
+											<span ng-show="sortType == 'repairPatterns' && !sortReverse" class="fa fa-caret-up"></span>
+										</a>
+									</th>
+									<th>	
 										First exception
 									</th>
 								</tr>
@@ -176,6 +190,8 @@
 								  <td>{{ bug.linesMod}}</td>
 								  <td>{{ bug.chunks }}</td>
 								  <td>{{ bug.failingTests.length }}</td>
+								  <td>{{ bug.repairActions }}</td>
+								  <td>{{ bug.repairPatterns }}</td>
 								  <td>{{ bug.failingTests[0].error.substring(bug.failingTests[0].error.lastIndexOf(".") + 1) }}</td>
 								</tr>
 							</tbody>
@@ -256,10 +272,6 @@
 				<section class="filters">
 					<span class="filter" ng-repeat="(key,value) in $ctrl.bug" ng-if="$ctrl.repairName(key) != null">{{$ctrl.repairName(key)}} </span>
 				</section>
-			</section>
-			<section ng-show="$ctrl.bug.Observations">
-				<h3>Comments</h3>
-				{{$ctrl.bug.Observations}}
 			</section>
 			<h3>Human Patch</h3>
 			<div diff></div>
