@@ -60,10 +60,10 @@ Main files:
 mdAdd | Method definition addition
 mdRem | Method definition removal
 mdRen | Method definition renaming
-mdParAdd | Method parameter addition
-mdParRem | Method parameter removal
+mdParAdd | Parameter addition in method definition
+mdParRem | Parameter removal from method definition
 mdRetTyChange | Method return type modification
-mdParTyChange | Method parameter type modification
+mdParTyChange | Parameter type modification in method definition
 mdModChange | Method modifier change
 mcAdd | Method call addition
 mcRem | Method call removal

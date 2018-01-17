@@ -114,19 +114,19 @@
 				"fullname": "Method definition renaming"
 			},
 			"mdParAdd": {
-				"name": "Parameter addition in method definition",
-				"fullname": "Method parameter addition"
+				"name": "Parameter addition",
+				"fullname": "Parameter addition in method definition"
 			},
 			"mdParRem": {
-				"name": "Parameter removal from method definition",
-				"fullname": "Method parameter removal"
+				"name": "Parameter removal",
+				"fullname": "Parameter removal from method definition"
 			},
 			"mdParTyChange": {
-				"name": "Parameter type modification in method definition",
-				"fullname": "Method parameter type modification"
+				"name": "Parameter type modification",
+				"fullname": "Parameter type modification in method definition"
 			},
 			"mdRetTyChange": {
-				"name": "Return type modification in method definition",
+				"name": "Return type modification",
 				"fullname": "Method return type modification"
 			},
 			"mdModChange": {
