@@ -128,6 +128,10 @@
 			"mdRetTyChange": {
 				"name": "Return type modification in method definition",
 				"fullname": "Method return type modification"
+			},
+			"mdModChange": {
+				"name": "Modifier change",
+				"fullname": "Method modifier change"
 			}
 		},
 		"Object Instantiation": {

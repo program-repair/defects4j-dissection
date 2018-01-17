@@ -64,6 +64,7 @@ mdParAdd | Method parameter addition
 mdParRem | Method parameter removal
 mdRetTyChange | Method return type modification
 mdParTyChange | Method parameter type modification
+mdModChange | Method modifier change
 mcAdd | Method call addition
 mcRem | Method call removal
 mcRepl | Method call replacement
