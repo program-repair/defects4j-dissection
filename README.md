@@ -5,8 +5,10 @@ It is the open-science appendix of "Dissection of a bug dataset: anatomy of 395 
 
 ```bibtex
 @inproceedings{defects4J-dissection,
-    title = {{Dissection of a bug dataset: anatomy of 395 patches from Defects4J}},
+    title = {{Dissection of a Bug Dataset: Anatomy of 395 Patches from Defects4J}},
     author = {Sobreira, Victor and Durieux, Thomas and Madeiral, Fernanda and Monperrus, Martin and Maia, Marcelo A.}
+    booktitle = {Proceedings of SANER},
+    year = {2018}
 }
 ```
 
