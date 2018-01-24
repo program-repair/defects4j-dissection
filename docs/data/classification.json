@@ -132,6 +132,10 @@
 			"mdModChange": {
 				"name": "Modifier change",
 				"fullname": "Method modifier change"
+			},
+			"mdOverride": {
+				"name": "Method overriding related change",
+				"fullname": "Method overriding addition or removal"
 			}
 		},
 		"Object Instantiation": {

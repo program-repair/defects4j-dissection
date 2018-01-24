@@ -67,6 +67,7 @@ mdParRem | Parameter removal from method definition
 mdRetTyChange | Method return type modification
 mdParTyChange | Parameter type modification in method definition
 mdModChange | Method modifier change
+mdOverride | Method overriding addition or removal
 mcAdd | Method call addition
 mcRem | Method call removal
 mcRepl | Method call replacement
