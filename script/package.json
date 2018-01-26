@@ -10,6 +10,7 @@
   "license": "MIT",
   "dependencies": {
     "csv-parse": "^1.2.2",
+    "ejs": "^2.5.7",
     "stream-transform": "^0.1.2"
   }
 }
