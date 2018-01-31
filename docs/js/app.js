@@ -175,11 +175,17 @@ angular.module('defects4j-website', ['ngRoute', 'ui.bootstrap', 'anguFixedHeader
 		};
 		$scope.openWelcome();
 		var nextBug = function () {
-		var index  = $scope.index + 1;
-		if (index == $ctrl.bugs.length)  {
-			index = 0;
-		}
-		$location.path( "/bug/" + $ctrl.bugs[index]["project"] + "/" + $ctrl.bugs[index]["bugId"] );
+			var index  = $scope.index + 1;
+			if (index == $ctrl.bugs.length)  {
+				index = 0;
+			
+			$location.path( "/bug/" + $ctrl.bugs[index]["project"] + "/" + $ctrl.bugs[index]["bugId"] );
+			if (gtag) {
+				gtag('send', 'event', {
+					'eventCategory': 'Shortcut',
+					'eventAction': 'next'
+				});
+			}
 			return false;
 		};
 		var previousBug = function () {
@@ -187,7 +193,14 @@ angular.module('defects4j-website', ['ngRoute', 'ui.bootstrap', 'anguFixedHeader
 			if (index < 0) {
 				index = $ctrl.bugs.length - 1;
 			}
+
 			$location.path( "/bug/" + $ctrl.bugs[index]["project"] + "/" + $ctrl.bugs[index]["bugId"] );
+			if (gtag) {
+				gtag('send', 'event', {
+					'eventCategory': 'Shortcut',
+					'eventAction': 'previous'
+				});
+			}
 			return false;
 		};
 
@@ -195,23 +208,11 @@ angular.module('defects4j-website', ['ngRoute', 'ui.bootstrap', 'anguFixedHeader
 			$scope.$apply(function () {
 				nextBug();
 			});
-			if (ga) {
-				ga('send', 'event', {
-					'eventCategory': 'Shortcut',
-					'eventAction': 'next'
-				});
-			}
 		});
 		$scope.$on('keypress:37', function () {
 			$scope.$apply(function () {
 				previousBug();
 			});
-			if (ga) {
-				ga('send', 'event', {
-					'eventCategory': 'Shortcut',
-					'eventAction': 'previous'
-				});
-			}
 		});
 		$rootScope.$on('next_bug', nextBug);
 		$rootScope.$on('previous_bug', previousBug);
@@ -330,14 +331,12 @@ angular.module('defects4j-website', ['ngRoute', 'ui.bootstrap', 'anguFixedHeader
 		};
 
 		$rootScope.$on('new_bug', function(e, bug) {
-			$window.ga('set', 'title', bug.project + " " + bug.bugId);
 			$scope.pageTitle = "Dissection of " + bug.project + " " + bug.bugId;
 		});
 
 		$scope.$on('$routeChangeSuccess', function() {
-			if ($window.ga) {
-				$window.ga('set', 'page', $location.path());
-				$window.ga('send', 'pageview');
+			if ($window.gtag) {
+				$window.gtag('config', 'UA-5954162-27', {'page_path': $location.path()});
 			}
 		});
 	});
