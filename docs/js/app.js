@@ -156,59 +156,60 @@ angular.module('defects4j-website', ['ngRoute', 'ui.bootstrap', 'anguFixedHeader
 				}
 			}
 		});
-	var welcomeModal = null;
-	$scope.openWelcome = function () {
-	  welcomeModal = $uibModal.open({
-		animation: true,
-		ariaLabelledBy: 'modal-title',
-		ariaDescribedBy: 'modal-body',
-		templateUrl: 'welcome.html',
-		controller: 'welcomeController',
-		controllerAs: '$ctrl',
-		size: "lg"
-	  });
-	  welcomeModal.result.then(function () {
-		welcomeModal = null;
-	  }, function () {
-		welcomeModal = null;
-	  })
-	};
-	$scope.openWelcome();
+		var welcomeModal = null;
+		$scope.openWelcome = function () {
+			welcomeModal = $uibModal.open({
+				animation: true,
+				ariaLabelledBy: 'modal-title',
+				ariaDescribedBy: 'modal-body',
+				templateUrl: 'welcome.html',
+				controller: 'welcomeController',
+				controllerAs: '$ctrl',
+				size: "lg"
+			});
+			welcomeModal.result.then(function () {
+				welcomeModal = null;
+			}, function () {
+				welcomeModal = null;
+			})
+		};
+		$scope.openWelcome();
 		var nextBug = function () {
-	  var index  = $scope.index + 1;
-	  if (index == $ctrl.bugs.length)  {
-		index = 0;
-	  }
-	  $location.path( "/bug/" + $ctrl.bugs[index]["project"] + "/" + $ctrl.bugs[index]["bugId"] );
+		var index  = $scope.index + 1;
+		if (index == $ctrl.bugs.length)  {
+			index = 0;
+		}
+		$location.path( "/bug/" + $ctrl.bugs[index]["project"] + "/" + $ctrl.bugs[index]["bugId"] );
 			return false;
 		};
 		var previousBug = function () {
-	  var index  = $scope.index - 1;
-	  if (index < 0) {
-		index = $ctrl.bugs.length - 1;
-	  }
-	  $location.path( "/bug/" + $ctrl.bugs[index]["project"] + "/" + $ctrl.bugs[index]["bugId"] );
+			var index  = $scope.index - 1;
+			if (index < 0) {
+				index = $ctrl.bugs.length - 1;
+			}
+			$location.path( "/bug/" + $ctrl.bugs[index]["project"] + "/" + $ctrl.bugs[index]["bugId"] );
 			return false;
 		};
 
-	$scope.$on('keypress:39', function () {
-	  $scope.$apply(function () {
-		nextBug();
-	  });
-	});
-	$scope.$on('keypress:37', function () {
-	  $scope.$apply(function () {
-		previousBug();
-	  });
-	});
-	$rootScope.$on('next_bug', nextBug);
-	$rootScope.$on('previous_bug', previousBug);
+		$scope.$on('keypress:39', function () {
+			$scope.$apply(function () {
+				nextBug();
+			});
+		});
+		$scope.$on('keypress:37', function () {
+			$scope.$apply(function () {
+				previousBug();
+			});
+		});
+		$rootScope.$on('next_bug', nextBug);
+		$rootScope.$on('previous_bug', previousBug);
 	})
-	.controller('mainController', function($scope, $location, $window, $rootScope, $http, $uibModal) {
+	.controller('mainController', function($scope, $rootScope, $location, $window, $rootScope, $http, $uibModal) {
 		$scope.sortType     = ['project', 'bugId']; // set the default sort type
 		$scope.sortReverse  = false;
 		$scope.match  = "all";
 		$scope.filter   = {};
+		$scope.pageTitle = "Defects4J Dissection";
 
 		// create the list of sushi rolls 
 		$scope.bugs = [];
@@ -258,7 +259,8 @@ angular.module('defects4j-website', ['ngRoute', 'ui.bootstrap', 'anguFixedHeader
 		}
 
 		$scope.openBug = function (bug) {
-			$location.path( "/bug/" + bug["project"] + "/" + bug["bugId"] );
+			$scope.pageTitle = "Dissection of " + bug.project + " " + bug.bugId;
+			$location.path( "/bug/" +  bug.project + "/" + bug.bugId );
 		};
 
 		$scope.sort = function (sort) {
@@ -315,10 +317,15 @@ angular.module('defects4j-website', ['ngRoute', 'ui.bootstrap', 'anguFixedHeader
 			}
 		};
 
+		$rootScope.$on('new_bug', function(e, bug) {
+			$scope.pageTitle = "Dissection of " + bug.project + " " + bug.bugId;
+		});
+
 		$scope.$on('$routeChangeSuccess', function() {
 			if ($window.ga) {
+				$window.ga('set', 'title', $window.document.title);
 				$window.ga('set', 'page', $location.path());
-        		$window.ga('send', 'pageview');
+				$window.ga('send', 'pageview');
 			}
 		});
 	});
