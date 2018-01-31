@@ -195,11 +195,23 @@ angular.module('defects4j-website', ['ngRoute', 'ui.bootstrap', 'anguFixedHeader
 			$scope.$apply(function () {
 				nextBug();
 			});
+			if (ga) {
+				ga('send', 'event', {
+					'eventCategory': 'Shortcut',
+					'eventAction': 'next'
+				});
+			}
 		});
 		$scope.$on('keypress:37', function () {
 			$scope.$apply(function () {
 				previousBug();
 			});
+			if (ga) {
+				ga('send', 'event', {
+					'eventCategory': 'Shortcut',
+					'eventAction': 'previous'
+				});
+			}
 		});
 		$rootScope.$on('next_bug', nextBug);
 		$rootScope.$on('previous_bug', previousBug);
