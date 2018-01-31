@@ -318,12 +318,12 @@ angular.module('defects4j-website', ['ngRoute', 'ui.bootstrap', 'anguFixedHeader
 		};
 
 		$rootScope.$on('new_bug', function(e, bug) {
+			$window.ga('set', 'title', bug.project + " " + bug.bugId);
 			$scope.pageTitle = "Dissection of " + bug.project + " " + bug.bugId;
 		});
 
 		$scope.$on('$routeChangeSuccess', function() {
 			if ($window.ga) {
-				$window.ga('set', 'title', $window.document.title);
 				$window.ga('set', 'page', $location.path());
 				$window.ga('send', 'pageview');
 			}
