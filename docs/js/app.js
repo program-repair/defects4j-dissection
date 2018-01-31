@@ -173,8 +173,9 @@ angular.module('defects4j-website', ['ngRoute', 'ui.bootstrap', 'anguFixedHeader
 			})
 		};
 		$scope.openWelcome();
-		
-		gtag('config', 'UA-5954162-27');
+		if (gtag) {
+			gtag('config', 'UA-5954162-27');
+		}
 
 		var nextBug = function () {
 			var index  = $scope.index + 1;
