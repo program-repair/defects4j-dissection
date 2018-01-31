@@ -151,9 +151,8 @@ angular.module('defects4j-website', ['ngRoute', 'ui.bootstrap', 'anguFixedHeader
 						modalInstance = null;
 						$location.path("/");
 					})
-				} else {
-					$rootScope.$emit('new_bug', $scope.bugs[$scope.index]);
 				}
+				$rootScope.$emit('new_bug', $scope.bugs[$scope.index]);
 			}
 		});
 		var welcomeModal = null;
@@ -174,11 +173,15 @@ angular.module('defects4j-website', ['ngRoute', 'ui.bootstrap', 'anguFixedHeader
 			})
 		};
 		$scope.openWelcome();
+		
+		gtag('config', 'UA-5954162-27');
+
 		var nextBug = function () {
 			var index  = $scope.index + 1;
 			if (index == $ctrl.bugs.length)  {
 				index = 0;
-			
+			}
+
 			$location.path( "/bug/" + $ctrl.bugs[index]["project"] + "/" + $ctrl.bugs[index]["bugId"] );
 			if (gtag) {
 				gtag('send', 'event', {
@@ -272,7 +275,6 @@ angular.module('defects4j-website', ['ngRoute', 'ui.bootstrap', 'anguFixedHeader
 		}
 
 		$scope.openBug = function (bug) {
-			$scope.pageTitle = "Dissection of " + bug.project + " " + bug.bugId;
 			$location.path( "/bug/" +  bug.project + "/" + bug.bugId );
 		};
 
@@ -331,12 +333,11 @@ angular.module('defects4j-website', ['ngRoute', 'ui.bootstrap', 'anguFixedHeader
 		};
 
 		$rootScope.$on('new_bug', function(e, bug) {
-			$scope.pageTitle = "Dissection of " + bug.project + " " + bug.bugId;
-		});
+			var title = "Dissection of " + bug.project + " " + bug.bugId;
+			$scope.pageTitle = title;
 
-		$scope.$on('$routeChangeSuccess', function() {
 			if ($window.gtag) {
-				$window.gtag('config', 'UA-5954162-27', {'page_path': $location.path()});
+				$window.gtag('config', 'UA-5954162-27', {'page_path': $location.path(), 'page_title': title});
 			}
 		});
 	});
