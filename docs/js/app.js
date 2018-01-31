@@ -184,9 +184,8 @@ angular.module('defects4j-website', ['ngRoute', 'ui.bootstrap', 'anguFixedHeader
 
 			$location.path( "/bug/" + $ctrl.bugs[index]["project"] + "/" + $ctrl.bugs[index]["bugId"] );
 			if (gtag) {
-				gtag('send', 'event', {
-					'eventCategory': 'Shortcut',
-					'eventAction': 'next'
+				gtag('event', 'next', {
+					'event_category': 'Shortcut'
 				});
 			}
 			return false;
@@ -199,9 +198,8 @@ angular.module('defects4j-website', ['ngRoute', 'ui.bootstrap', 'anguFixedHeader
 
 			$location.path( "/bug/" + $ctrl.bugs[index]["project"] + "/" + $ctrl.bugs[index]["bugId"] );
 			if (gtag) {
-				gtag('send', 'event', {
-					'eventCategory': 'Shortcut',
-					'eventAction': 'previous'
+				gtag('event', 'previous', {
+					'event_category': 'Shortcut'
 				});
 			}
 			return false;
@@ -301,6 +299,15 @@ angular.module('defects4j-website', ['ngRoute', 'ui.bootstrap', 'anguFixedHeader
 			filter.count = count;
 			return count;
 		};
+
+		$scope.clickFilter = function (vKey) {
+			if (gtag) {
+				gtag('event', vKey, {
+					'event_category': 'Filter',
+					'event_label': $scope.filterNamevKey
+				});
+			}
+		}
 
 		$scope.bugsFilter = function (value, index, array) {
 			var allFalse = true;

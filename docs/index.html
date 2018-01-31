@@ -79,7 +79,7 @@
 									<i class="fa fa-fw fa-search"></i> {{ key }} <i class="fa fa-fw fa-angle-down pull-right"></i></a>
 									<ul class="collapse" uib-collapse="!submenu1">
 										<li ng-repeat="(vKey,value) in values">
-											<label for="{{ vKey }}" ng-class="{'actived': filter[vKey]}"><input type="checkbox" id="{{ vKey }}" ng-model="filter[vKey]">{{value.name}} ({{ countBugs(vKey, value) }})</label>
+											<label for="{{ vKey }}" ng-class="{'actived': filter[vKey]}"><input type="checkbox" id="{{ vKey }}" ng-model="filter[vKey]" ng-click="clickFilter(vKey)">{{value.name}} ({{ countBugs(vKey, value) }})</label>
 										</li>
 									</ul>
 								</li>
