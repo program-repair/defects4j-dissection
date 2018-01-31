@@ -100,7 +100,7 @@ angular.module('defects4j-website', ['ngRoute', 'ui.bootstrap', 'anguFixedHeader
 
 		$scope.$watch("$parent.filteredBug", function () {
 			$ctrl.bugs = $scope.$parent.filteredBug;
-	  $ctrl.index = getIndex($routeParams.project, $routeParams.id);
+			$ctrl.index = getIndex($routeParams.project, $routeParams.id);
 		});
 		$scope.$watch("$parent.classifications", function () {
 			$ctrl.classifications = $scope.$parent.classifications;
@@ -125,9 +125,9 @@ angular.module('defects4j-website', ['ngRoute', 'ui.bootstrap', 'anguFixedHeader
 		var modalInstance = null;
 		$scope.$watch("index", function () {
 			if ($scope.index != -1) {
-			  if (welcomeModal != null) {
-				welcomeModal.close();
-		}
+				if (welcomeModal != null) {
+					welcomeModal.close();
+				}
 				if (modalInstance == null) {
 					modalInstance = $uibModal.open({
 						animation: true,
@@ -149,7 +149,7 @@ angular.module('defects4j-website', ['ngRoute', 'ui.bootstrap', 'anguFixedHeader
 						$location.path("/");
 					}, function () {
 						modalInstance = null;
-			$location.path("/");
+						$location.path("/");
 					})
 				} else {
 					$rootScope.$emit('new_bug', $scope.bugs[$scope.index]);
@@ -204,7 +204,7 @@ angular.module('defects4j-website', ['ngRoute', 'ui.bootstrap', 'anguFixedHeader
 	$rootScope.$on('next_bug', nextBug);
 	$rootScope.$on('previous_bug', previousBug);
 	})
-	.controller('mainController', function($scope, $location, $rootScope, $http, $uibModal) {
+	.controller('mainController', function($scope, $location, $window, $rootScope, $http, $uibModal) {
 		$scope.sortType     = ['project', 'bugId']; // set the default sort type
 		$scope.sortReverse  = false;
 		$scope.match  = "all";
@@ -314,4 +314,11 @@ angular.module('defects4j-website', ['ngRoute', 'ui.bootstrap', 'anguFixedHeader
 				return true;
 			}
 		};
+
+		$scope.$on('$routeChangeSuccess', function() {
+			if ($window.ga) {
+				$window.ga('set', 'page', $location.path());
+        		$window.ga('send', 'pageview');
+			}
+		});
 	});
