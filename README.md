@@ -1,7 +1,7 @@
 # Defects4J Dissection
 
 Defects4J Dissection presents data to help researchers and practitioners to better understand the Defects4J bug dataset. 
-It is the open-science appendix of "Dissection of a bug dataset: anatomy of 395 patches from Defects4J" (https://arxiv.org/abs/1801.06393).
+It is the open-science appendix of ["Dissection of a bug dataset: anatomy of 395 patches from Defects4J"](https://github.com/program-repair/defects4j-dissection/blob/master/2018.03.20%20-%20Defects4J%20Dissection%20-%20Oficial%20Pre-Print.pdf).
 
 ```bibtex
 @inproceedings{defects4J-dissection,
