@@ -331,48 +331,37 @@
 	"Runtime Information": {
 		"Automatic Repair": {
 			"rtAcs": {
-				"name": "ACS",
-				"fullname": "Fixed by ACS"
+				"name": "ACS"
 			},
 			"rtCardumen": {
-				"name": "Cardumen",
-				"fullname": "Fixed by cardumen"
+				"name": "Cardumen"
 			},
 			"rtDeepRepair": {
-				"name": "DeepRepair",
-				"fullname": "Fixed by DeepRepair"
+				"name": "DeepRepair"
 			},
 			"rtDynaMoth": {
-				"name": "DynaMoth",
-				"fullname": "Fixed by DynaMoth"
+				"name": "DynaMoth"
 			},
 			"rtElixir": {
-				"name": "Elixir",
-				"fullname": "Fixed by Elixir"
+				"name": "Elixir"
 			},
 			"rtGPFL": {
-				"name": "GPFL",
-				"fullname": "Fixed by GPFL"
+				"name": "GPFL"
 			},
 			"rtHDRepair": {
-				"name": "HDRepair",
-				"fullname": "Fixed by HDRepair"
+				"name": "HDRepair"
 			},
 			"rtGenProg": {
-				"name": "jGenProg",
-				"fullname": "Fixed by jGenProg"
+				"name": "jGenProg"
 			},
 			"rtKali": {
-				"name": "jKali",
-				"fullname": "Fixed by jKali"
+				"name": "jKali"
 			},
 			"rtNopol": {
-				"name": "Nopol",
-				"fullname": "Fixed by Nopol"
+				"name": "Nopol"
 			},
 			"rtssFix": {
-				"name": "ssFix",
-				"fullname": "Fixed by ssFix"
+				"name": "ssFix"
 			}
 		}
 	}

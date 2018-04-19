@@ -135,17 +135,17 @@ singleLine | Single Line
 notClassified | Not classified
 copyPaste | Copy/Paste
 constChange | Constant Change
-rtAcs | Fixed by ACS
-rtCardumen | Fixed by Cardumen
-rtDeepRepair | Fixed by DeepRepair
-rtDynaMoth | Fixed by DynaMoth
-rtElixir | Fixed by Elixir
-rtGPFL | Fixed by GPFL
-rtHDRepair | Fixed by HDRepair
-rtGenProg | Fixed by jGenProg
-rtKali | Fixed by jKali
-rtNopol | Fixed by Nopol
-rtssFix | Fixed by ssFix
+rtAcs | Patched by ACS
+rtCardumen | Patched by Cardumen
+rtDeepRepair | Patched by DeepRepair
+rtDynaMoth | Patched by DynaMoth
+rtElixir | Patched by Elixir
+rtGPFL | Patched by GPFL
+rtHDRepair | Patched by HDRepair
+rtGenProg | Patched by jGenProg
+rtKali | Patched by jKali
+rtNopol | Patched by Nopol
+rtssFix | Patched by ssFix
 
 ## Automatic repair information sources:
 
