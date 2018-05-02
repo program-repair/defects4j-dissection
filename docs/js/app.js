@@ -90,6 +90,22 @@ angular.module('defects4j-website', ['ngRoute', 'ui.bootstrap', 'anguFixedHeader
 			}
 			return null;
 		};
+
+		$ctrl.testURL = function (test) {
+			var url = "https://github.com/Spirals-Team/defects4j-repair/blob/";
+			url += $ctrl.bug.project + "" + $ctrl.bug.bugId;
+			if ($ctrl.bug.diff.indexOf("a/src/main/") != -1) {
+				url += "/src/test/java/"
+			} else if ($ctrl.bug.diff.indexOf("a/src/") != -1) {
+				url += "/src/test/"
+			} else {
+				url += "/tests/"
+			}
+			url += test.className.replace(/\./g, "/").trim();
+			url += ".java"
+
+			return url;
+		}
 	})
 	.controller('bugController', function($scope, $location, $rootScope, $routeParams, $uibModal) {
 		var $ctrl = $scope;

@@ -289,7 +289,7 @@
 			<div diff></div>
 			<h3>Failing Test</h3>
 			<section ng-repeat="test in $ctrl.bug.failingTests">
-				<h4>{{test.className}}:{{test.methodName}}</h4>
+				<h4><a href="{{ $ctrl.testURL(test) }}">{{test.className}}</a>:{{test.methodName}}</h4>
 				<span>{{test.error}}: {{test.message}}</span><br>
 			</section>
 		</div>
