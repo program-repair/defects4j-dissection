@@ -96,8 +96,10 @@ angular.module('defects4j-website', ['ngRoute', 'ui.bootstrap', 'anguFixedHeader
 			url += $ctrl.bug.project + "" + $ctrl.bug.bugId;
 			if ($ctrl.bug.diff.indexOf("a/src/main/") != -1) {
 				url += "/src/test/java/"
-			} else if ($ctrl.bug.diff.indexOf("a/src/") != -1) {
+			} else if ($ctrl.bug.diff.indexOf("a/src/java/") != -1) {
 				url += "/src/test/"
+			} else if ($ctrl.bug.diff.indexOf("a/src/") != -1) {
+				url += "/test/"
 			} else {
 				url += "/tests/"
 			}
