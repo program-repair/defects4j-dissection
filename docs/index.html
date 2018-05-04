@@ -108,80 +108,80 @@
 										</a>
 									</th>
 									<th>	
-										<a href="#" ng-click="sort('files')">
+										<a href="#" ng-click="sort('metrics.files')">
 											# Files
-											<span ng-show="sortType == 'files' && sortReverse" class="fa fa-caret-down"></span>
-											<span ng-show="sortType == 'files' && !sortReverse" class="fa fa-caret-up"></span>
+											<span ng-show="sortType == 'metrics.files' && sortReverse" class="fa fa-caret-down"></span>
+											<span ng-show="sortType == 'metrics.files' && !sortReverse" class="fa fa-caret-up"></span>
 										</a>
 									</th>
 									<th>	
-										<a href="#" ng-click="sort('classes')">
+										<a href="#" ng-click="sort('metrics.classes')">
 											# Classes
-											<span ng-show="sortType == 'classes' && sortReverse" class="fa fa-caret-down"></span>
-											<span ng-show="sortType == 'classes' && !sortReverse" class="fa fa-caret-up"></span>
+											<span ng-show="sortType == 'metrics.classes' && sortReverse" class="fa fa-caret-down"></span>
+											<span ng-show="sortType == 'metrics.classes' && !sortReverse" class="fa fa-caret-up"></span>
 										</a>
 									</th>
 									<th>	
-										<a href="#" ng-click="sort('methods')">
+										<a href="#" ng-click="sort('metrics.methods')">
 											# Methods
-											<span ng-show="sortType == 'methods' && sortReverse" class="fa fa-caret-down"></span>
-											<span ng-show="sortType == 'methods' && !sortReverse" class="fa fa-caret-up"></span>
+											<span ng-show="sortType == 'metrics.methods' && sortReverse" class="fa fa-caret-down"></span>
+											<span ng-show="sortType == 'metrics.methods' && !sortReverse" class="fa fa-caret-up"></span>
 										</a>
 									</th>
 									<th>	
-										<a href="#" ng-click="sort('sizeInLines')">
+										<a href="#" ng-click="sort('metrics.sizeInLines')">
 											# Lines
-											<span ng-show="sortType == 'sizeInLines' && sortReverse" class="fa fa-caret-down"></span>
-											<span ng-show="sortType == 'sizeInLines' && !sortReverse" class="fa fa-caret-up"></span>
+											<span ng-show="sortType == 'metrics.sizeInLines' && sortReverse" class="fa fa-caret-down"></span>
+											<span ng-show="sortType == 'metrics.sizeInLines' && !sortReverse" class="fa fa-caret-up"></span>
 										</a>
 									</th>
 									<th>
-										<a href="#" ng-click="sort('linesAdd')">
+										<a href="#" ng-click="sort('metrics.linesAdd')">
 											# Added
-											<span ng-show="sortType == 'linesAdd' && sortReverse" class="fa fa-caret-down"></span>
-											<span ng-show="sortType == 'linesAdd' && !sortReverse" class="fa fa-caret-up"></span>
+											<span ng-show="sortType == 'metrics.linesAdd' && sortReverse" class="fa fa-caret-down"></span>
+											<span ng-show="sortType == 'metrics.linesAdd' && !sortReverse" class="fa fa-caret-up"></span>
 										</a>
 									</th>
 									<th>
-										<a href="#" ng-click="sort('linesRem')">
+										<a href="#" ng-click="sort('metrics.linesRem')">
 											# Removed
-											<span ng-show="sortType == 'linesRem' && sortReverse" class="fa fa-caret-down"></span>
-											<span ng-show="sortType == 'linesRem' && !sortReverse" class="fa fa-caret-up"></span>
+											<span ng-show="sortType == 'metrics.linesRem' && sortReverse" class="fa fa-caret-down"></span>
+											<span ng-show="sortType == 'metrics.linesRem' && !sortReverse" class="fa fa-caret-up"></span>
 										</a>
 									</th>
 									<th>
-										<a href="#" ng-click="sort('linesMod')">
+										<a href="#" ng-click="sort('metrics.linesMod')">
 											# Modified
-											<span ng-show="sortType == 'linesMod' && sortReverse" class="fa fa-caret-down"></span>
-											<span ng-show="sortType == 'linesMod' && !sortReverse" class="fa fa-caret-up"></span>
+											<span ng-show="sortType == 'metrics.linesMod' && sortReverse" class="fa fa-caret-down"></span>
+											<span ng-show="sortType == 'metrics.linesMod' && !sortReverse" class="fa fa-caret-up"></span>
 										</a>
 									</th>
 									<th>	
-										<a href="#" ng-click="sort('chunks')">
+										<a href="#" ng-click="sort('metrics.chunks')">
 											# Chunks
-											<span ng-show="sortType == 'chunks' && sortReverse" class="fa fa-caret-down"></span>
-											<span ng-show="sortType == 'chunks' && !sortReverse" class="fa fa-caret-up"></span>
+											<span ng-show="sortType == 'metrics.chunks' && sortReverse" class="fa fa-caret-down"></span>
+											<span ng-show="sortType == 'metrics.chunks' && !sortReverse" class="fa fa-caret-up"></span>
 										</a>
 									</th>
 									<th>	
-										<a href="#" ng-click="sort('failingTests')">
+										<a href="#" ng-click="sort('failingTests.length')">
 											# Failing tests
-											<span ng-show="sortType == 'failingTests' && sortReverse" class="fa fa-caret-down"></span>
-											<span ng-show="sortType == 'failingTests' && !sortReverse" class="fa fa-caret-up"></span>
+											<span ng-show="sortType == 'failingTests.length' && sortReverse" class="fa fa-caret-down"></span>
+											<span ng-show="sortType == 'failingTests.length' && !sortReverse" class="fa fa-caret-up"></span>
 										</a>
 									</th>
 									<th>	
-										<a href="#" ng-click="sort('repairActions')">
+										<a href="#" ng-click="sort('repairActions.length')">
 											# Repair Actions
-											<span ng-show="sortType == 'repairActions' && sortReverse" class="fa fa-caret-down"></span>
-											<span ng-show="sortType == 'repairActions' && !sortReverse" class="fa fa-caret-up"></span>
+											<span ng-show="sortType == 'repairActions.lengthy' && sortReverse" class="fa fa-caret-down"></span>
+											<span ng-show="sortType == 'repairActions.length' && !sortReverse" class="fa fa-caret-up"></span>
 										</a>
 									</th>
 									<th>	
-										<a href="#" ng-click="sort('repairPatterns')">
+										<a href="#" ng-click="sort('repairPatterns.length')">
 											# Repair Patterns
-											<span ng-show="sortType == 'repairPatterns' && sortReverse" class="fa fa-caret-down"></span>
-											<span ng-show="sortType == 'repairPatterns' && !sortReverse" class="fa fa-caret-up"></span>
+											<span ng-show="sortType == 'repairPatterns.length' && sortReverse" class="fa fa-caret-down"></span>
+											<span ng-show="sortType == 'repairPatterns.length' && !sortReverse" class="fa fa-caret-up"></span>
 										</a>
 									</th>
 									<th>	
@@ -192,17 +192,17 @@
 							<tbody>
 								<tr ng-repeat="bug in bugs| orderBy:sortType:sortReverse| filter:bugsFilter as filteredBug" ng-click="openBug(bug)">
 								  <td>{{ bug.project }} {{ bug.bugId }}</td>
-								  <td>{{ bug.files }}</td>
-								  <td>{{ bug.classes }}</td>
-								  <td>{{ bug.methods }}</td>
-								  <td>{{ bug.sizeInLines }}</td>
-								  <td>{{ bug.linesAdd }}</td>
-								  <td>{{ bug.linesRem}}</td>
-								  <td>{{ bug.linesMod}}</td>
-								  <td>{{ bug.chunks }}</td>
+								  <td>{{ bug.metrics.files }}</td>
+								  <td>{{ bug.metrics.classes }}</td>
+								  <td>{{ bug.metrics.methods }}</td>
+								  <td>{{ bug.metrics.sizeInLines }}</td>
+								  <td>{{ bug.metrics.linesAdd }}</td>
+								  <td>{{ bug.metrics.linesRem}}</td>
+								  <td>{{ bug.metrics.linesMod}}</td>
+								  <td>{{ bug.metrics.chunks }}</td>
 								  <td>{{ bug.failingTests.length }}</td>
-								  <td>{{ bug.repairActions }}</td>
-								  <td>{{ bug.repairPatterns }}</td>
+								  <td>{{ bug.repairActions.length }}</td>
+								  <td>{{ bug.repairPatterns.length }}</td>
 								  <td>{{ bug.failingTests[0].error.substring(bug.failingTests[0].error.lastIndexOf(".") + 1) }}</td>
 								</tr>
 							</tbody>
@@ -277,19 +277,19 @@
 			<section>
 				<h3>Patterns</h3>
 				<section class="filters">
-					<span class="filter" ng-repeat="name in $ctrl.patternNames($ctrl.bug)">{{name}} </span>
+					<span class="filter" ng-repeat="name in $ctrl.bug.repairPatterns" ng-if="$ctrl.patternName(name)">{{$ctrl.patternName(name)}} </span>
 				</section>
 			</section>
 			<section>
 				<h3>Actions</h3>
 				<section class="filters">
-					<span class="filter" ng-repeat="name in $ctrl.actionNames($ctrl.bug)">{{name}} </span>
+					<span class="filter" ng-repeat="name in $ctrl.bug.repairActions">{{$ctrl.actionName(name)}} </span>
 				</section>
 			</section>
-			<section ng-if="$ctrl.bug.repairTools">
+			<section ng-if="$ctrl.bug.repairTools.length">
 				<h3>Patched by</h3>
 				<section class="filters">
-					<span class="filter" ng-repeat="(key,value) in $ctrl.bug" ng-if="$ctrl.repairName(key) != null">{{$ctrl.repairName(key)}} </span>
+					<span class="filter" ng-repeat="name in $ctrl.bug.repairTools">{{$ctrl.repairName(name)}} </span>
 				</section>
 			</section>
 			<h3>Human Patch</h3>

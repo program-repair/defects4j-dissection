@@ -59,26 +59,23 @@ angular.module('defects4j-website', ['ngRoute', 'ui.bootstrap', 'anguFixedHeader
 			$rootScope.$emit('previous_bug', 'next');
 		};
 
-		var getNames = function (type, bug) {
-			var output = [];
+		var getName = function (type, key) {
 			for(var group in $ctrl.classifications[type]) {
-				for (var key in $ctrl.classifications[type][group]) {
-					if (bug[key] != null) {
-						if ($ctrl.classifications[type][group][key].fullname) {
-							output.push($ctrl.classifications[type][group][key].fullname);
-						} else {
-							output.push($ctrl.classifications[type][group][key].name)
-						}
+				if ($ctrl.classifications[type][group][key]) {
+					if ($ctrl.classifications[type][group][key].fullname) {
+						return $ctrl.classifications[type][group][key].fullname;
+					} else {
+						return $ctrl.classifications[type][group][key].name;
 					}
 				}
 			}
-			return output;
+			return null
 		}
-		$ctrl.actionNames = function (bug) {
-			return getNames('Repair Actions', bug);
+		$ctrl.actionName = function (actionId) {
+			return getName('Repair Actions', actionId);
 		};
-		$ctrl.patternNames = function (bug) {
-			return getNames('Repair Patterns', bug);
+		$ctrl.patternName = function (patternId) {
+			return getName('Repair Patterns', patternId);
 		};
 		$ctrl.repairName = function (key) {
 			var repairNames = $ctrl.classifications['Runtime Information']["Automatic Repair"];
@@ -311,7 +308,10 @@ angular.module('defects4j-website', ['ngRoute', 'ui.bootstrap', 'anguFixedHeader
 			}
 			var count = 0;
 			for(var i = 0; i < $scope.bugs.length; i++) {
-				if ($scope.bugs[i][key] === true) {
+				if ($scope.bugs[i].repairActions.indexOf(key) !== -1
+					|| $scope.bugs[i].repairPatterns.indexOf(key) !== -1
+					|| $scope.bugs[i].repairTools.indexOf(key) !== -1
+					|| $scope.bugs[i][key] === true) {
 					count++;
 				}
 			}
@@ -328,7 +328,7 @@ angular.module('defects4j-website', ['ngRoute', 'ui.bootstrap', 'anguFixedHeader
 			}
 		}
 
-		$scope.bugsFilter = function (value, index, array) {
+		$scope.bugsFilter = function (bug) {
 			var allFalse = true;
 			for (var i in $scope.filter) {
 				if ($scope.filter[i] === true) {
@@ -342,7 +342,10 @@ angular.module('defects4j-website', ['ngRoute', 'ui.bootstrap', 'anguFixedHeader
 
 			for (var i in $scope.filter) {
 				if ($scope.filter[i] === true) {
-					if (value[i] === true) {
+					if (bug[i] === true 
+						|| bug.repairActions.indexOf(i) !== -1
+						|| bug.repairPatterns.indexOf(i) !== -1
+						|| bug.repairTools.indexOf(i) !== -1) {
 						if ($scope.match=="any") {
 							return true;
 						}

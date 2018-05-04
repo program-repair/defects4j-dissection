@@ -49,15 +49,8 @@
 			loadData(function (classifications, bugs) {
 
 				var getActionPattern = function (type, bug) {
-					var output = [];
-					for(var group in classifications[type]) {
-						for (var key in classifications[type][group]) {
-							if (bug[key] != null) {
-								output.push(key);
-							}
-						}
-					}
-					return output;
+					type = type.replace("Repair ", "repair")
+					return bug[type];
 				}
 
 				function getParentLabel(label) {
@@ -93,7 +86,10 @@
 					var output = [];
 					for (var i in bugs) {
 						var bug = bugs[i];
-						if (bug[id] != null) {
+						if (bug[id] != null
+							|| bug.repairPatterns.indexOf(id) != -1
+							|| bug.repairTools.indexOf(id) != -1
+							|| bug.repairActions.indexOf(id) != -1) {
 							output.push(bug);
 						}
 					}
@@ -213,9 +209,6 @@
 						for (var a in classifications['Repair Actions']) {
 							if (nbAction[a] == null) {
 								nbAction[a] = 0;
-							}
-							for (b in classifications['Repair Actions'][a]) {
-								
 							}
 						}
 						parentCanvas.appendChild(canvas);

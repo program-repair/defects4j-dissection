@@ -22,36 +22,42 @@ Main files:
 
 ```js
 [
-	{
-		"project":"Chart",
-		"bugId":8,
-		"activeSynStruct":1,
-		"activePat":2,
-		"repairTools":1,
-		"files":1,
-		"linesAdd":0,
-		"linesRem":0,
-		"linesMod":1,
-		"sizeInLines":1,
-		"chunks":1,
-		"spreadAllLines":0,
-		"spreadCodeOnly":0,
-		"mcParValChange":true,
-		... 
-		// more repair operations ("name": true)
-		"Observations":"Changes params passed to constructor.",
-		"program":"jfreechart",
-		"revisionId":"1085",
-		"failingTests":[
-			{
-				"className":" org.jfree.data.time.junit.WeekTests",
-				"methodName":"testConstructor",
-				"error":"junit.framework.AssertionFailedError",
-				"message":"expected:<35> but was:<	34>"
-			}
-		]
-		"diff":"git diff of the source"
-	}
+ {
+  "bugId": 27, 
+  "diff": "--- a/src/main/java/org/joda/time/format/PeriodFormatterBuilder.java\n+++ b/src/main/java/org/joda/time/format/PeriodFormatterBuilder.java\n@@ -798,9 +798,11 @@ private static PeriodFormatter toFormatter(List<Object> elementPairs, boolean no\n         int size = elementPairs.size();\n         if (size >= 2 && elementPairs.get(0) instanceof Separator) {\n             Separator sep = (Separator) elementPairs.get(0);\n+            if (sep.iAfterParser == null && sep.iAfterPrinter == null) {\n                 PeriodFormatter f = toFormatter(elementPairs.subList(2, size), notPrinter, notParser);\n                 sep = sep.finish(f.getPrinter(), f.getParser());\n                 return new PeriodFormatter(sep, sep);\n+            }\n         }\n         Object[] comp = createComposite(elementPairs);\n         if (notPrinter) {\n", 
+  "failingTests": [
+   {
+    "className": " org.joda.time.format.TestPeriodFormatterBuilder", 
+    "error": "java.lang.IllegalArgumentException", 
+    "message": "Invalid format: \"PT1003199059S\" is malformed at \"1003199059S\"", 
+    "methodName": "testBug2495455"
+   }
+  ], 
+  "metrics": {
+   "chunks": 2, 
+   "classes": 1, 
+   "files": 1, 
+   "linesAdd": 2, 
+   "linesMod": 0, 
+   "linesRem": 0, 
+   "methods": 1, 
+   "sizeInLines": 2, 
+   "spreadAllLines": 3, 
+   "spreadCodeOnly": 3
+  }, 
+  "observations": "", 
+  "program": "joda-time", 
+  "project": "Time", 
+  "repairActions": [
+   "condBranIfAdd"
+  ], 
+  "repairPatterns": [
+   "missNullCheckP", 
+   "wrapsIf"
+  ], 
+  "repairTools": [], 
+  "revisionId": "e0559c503f65641b9546c37e7c84c866caf37e66"
+ }
 ]
 ```
 
