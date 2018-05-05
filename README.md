@@ -24,6 +24,12 @@ Main files:
 [
  {
   "bugId": 27, 
+  "changedFiles": {
+   "org/joda/time/format/PeriodFormatterBuilder.java": [
+    801, // the lines that are impacted by the patch
+    804
+   ]
+  },
   "diff": "--- a/src/main/java/org/joda/time/format/PeriodFormatterBuilder.java\n+++ b/src/main/java/org/joda/time/format/PeriodFormatterBuilder.java\n@@ -798,9 +798,11 @@ private static PeriodFormatter toFormatter(List<Object> elementPairs, boolean no\n         int size = elementPairs.size();\n         if (size >= 2 && elementPairs.get(0) instanceof Separator) {\n             Separator sep = (Separator) elementPairs.get(0);\n+            if (sep.iAfterParser == null && sep.iAfterPrinter == null) {\n                 PeriodFormatter f = toFormatter(elementPairs.subList(2, size), notPrinter, notParser);\n                 sep = sep.finish(f.getPrinter(), f.getParser());\n                 return new PeriodFormatter(sep, sep);\n+            }\n         }\n         Object[] comp = createComposite(elementPairs);\n         if (notPrinter) {\n", 
   "failingTests": [
    {
