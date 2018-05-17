@@ -22,48 +22,104 @@ Main files:
 
 ```js
 [
- {
-  "bugId": 27, 
-  "changedFiles": {
-   "org/joda/time/format/PeriodFormatterBuilder.java": [
-    801, // the lines that are impacted by the patch
-    804
-   ]
-  },
-  "diff": "--- a/src/main/java/org/joda/time/format/PeriodFormatterBuilder.java\n+++ b/src/main/java/org/joda/time/format/PeriodFormatterBuilder.java\n@@ -798,9 +798,11 @@ private static PeriodFormatter toFormatter(List<Object> elementPairs, boolean no\n         int size = elementPairs.size();\n         if (size >= 2 && elementPairs.get(0) instanceof Separator) {\n             Separator sep = (Separator) elementPairs.get(0);\n+            if (sep.iAfterParser == null && sep.iAfterPrinter == null) {\n                 PeriodFormatter f = toFormatter(elementPairs.subList(2, size), notPrinter, notParser);\n                 sep = sep.finish(f.getPrinter(), f.getParser());\n                 return new PeriodFormatter(sep, sep);\n+            }\n         }\n         Object[] comp = createComposite(elementPairs);\n         if (notPrinter) {\n", 
-  "failingTests": [
-   {
-    "className": " org.joda.time.format.TestPeriodFormatterBuilder", 
-    "error": "java.lang.IllegalArgumentException", 
-    "message": "Invalid format: \"PT1003199059S\" is malformed at \"1003199059S\"", 
-    "methodName": "testBug2495455"
-   }
-  ], 
-  "metrics": {
-   "chunks": 2, 
-   "classes": 1, 
-   "files": 1, 
-   "linesAdd": 2, 
-   "linesMod": 0, 
-   "linesRem": 0, 
-   "methods": 1, 
-   "sizeInLines": 2, 
-   "spreadAllLines": 3, 
-   "spreadCodeOnly": 3
-  }, 
-  "observations": "", 
-  "program": "joda-time", 
-  "project": "Time", 
-  "repairActions": [
-   "condBranIfAdd"
-  ], 
-  "repairPatterns": [
-   "missNullCheckP", 
-   "wrapsIf"
-  ], 
-  "repairTools": [], 
-  "revisionId": "e0559c503f65641b9546c37e7c84c866caf37e66"
- }
+  {
+    "bugId": 18,
+    "changedFiles": {
+      "org/jfree/data/DefaultKeyedValues.java": {
+        "changes": [ // contains lines that are changed by the patch 
+          [
+            335
+          ]
+        ],
+        "deletes": [ // contains lines that are deleted by the patch 
+          [
+            318
+          ],
+          [
+            320
+          ]
+        ]
+      },
+      "org/jfree/data/DefaultKeyedValues2D.java": {
+        "inserts": [ // contains lines *before* which code is inserted by the patch 
+          [
+            455, // multiple lines in an inner array represent multiple possible locations to insert the code
+            456
+          ],
+          [
+            458
+          ],
+          [
+            459
+          ]
+        ]
+      } // caution: '-1' as a line number represents the insertion of a method or variable declaration that can not be tied to a specific location
+    },
+    "diff": "--- a/source/org/jfree/data/DefaultKeyedValues.java\n+++ b/source/org/jfree/data/DefaultKeyedValues.java\n@@ -315,30 +315,29 @@ private void rebuildIndex () {\n     public void removeValue(int index) {\n         this.keys.remove(index);\n         this.values.remove(index);\n-        if (index < this.keys.size()) {\n         rebuildIndex();\n-        }\n     }\n \n     /**\n      * Removes a value from the collection.\n      *\n      * @param key  the item key (<code>null</code> not permitted).\n      * \n      * @throws IllegalArgumentException if <code>key</code> is \n      *     <code>null</code>.\n      * @throws UnknownKeyException if <code>key</code> is not recognised.\n      */\n     public void removeValue(Comparable key) {\n         int index = getIndex(key);\n         if (index < 0) {\n-\t\t\treturn;\n+            throw new UnknownKeyException(\"The key (\" + key \n+                    + \") is not recognised.\");\n         }\n         removeValue(index);\n     }\n     \n     /**\n      * Clears all values from the collection.\n      * \n      * @since 1.0.2\n      */\n--- a/source/org/jfree/data/DefaultKeyedValues2D.java\n+++ b/source/org/jfree/data/DefaultKeyedValues2D.java\n@@ -454,12 +454,21 @@ public void removeColumn(int columnIndex) {\n     public void removeColumn(Comparable columnKey) {\r\n+    \tif (columnKey == null) {\r\n+    \t\tthrow new IllegalArgumentException(\"Null 'columnKey' argument.\");\r\n+    \t}\r\n+    \tif (!this.columnKeys.contains(columnKey)) {\r\n+    \t\tthrow new UnknownKeyException(\"Unknown key: \" + columnKey);\r\n+    \t}\r\n         Iterator iterator = this.rows.iterator();\r\n         while (iterator.hasNext()) {\r\n             DefaultKeyedValues rowData = (DefaultKeyedValues) iterator.next();\r\n+            int index = rowData.getIndex(columnKey);\r\n+            if (index >= 0) {\r\n                 rowData.removeValue(columnKey);\r\n+            }\r\n         }\r\n         this.columnKeys.remove(columnKey);\r\n     }\r\n \r\n     /**\r\n      * Clears all the data and associated keys.\r\n      */\r\n",
+    "failingTests": [
+      {
+        "className": " org.jfree.data.category.junit.DefaultCategoryDatasetTests",
+        "error": "java.lang.IndexOutOfBoundsException",
+        "message": "Index: 0, Size: 0",
+        "methodName": "testBug1835955"
+      },
+      {
+        "className": " org.jfree.data.junit.DefaultKeyedValues2DTests",
+        "error": "java.lang.IndexOutOfBoundsException",
+        "message": "Index: 0, Size: 0",
+        "methodName": "testRemoveColumnByKey"
+      },
+      {
+        "className": " org.jfree.data.junit.DefaultKeyedValuesTests",
+        "error": "junit.framework.AssertionFailedError",
+        "message": "",
+        "methodName": "testRemoveValue"
+      },
+      {
+        "className": " org.jfree.data.junit.DefaultKeyedValuesTests",
+        "error": "junit.framework.AssertionFailedError",
+        "message": "expected:<-1> but was:<0>",
+        "methodName": "testGetIndex2"
+      }
+    ],
+    "metrics": {
+      "chunks": 6,
+      "classes": 2,
+      "files": 2,
+      "linesAdd": 10,
+      "linesMod": 1,
+      "linesRem": 2,
+      "methods": 3,
+      "sizeInLines": 13,
+      "spreadAllLines": 19,
+      "spreadCodeOnly": 9
+    },
+    "observations": "Replaces return point by throw exception.",
+    "program": "jfreechart",
+    "project": "Chart",
+    "repairActions": [
+      "assignAdd",
+      "condBranIfAdd",
+      "condBranRem",
+      "exThrowsAdd",
+      "mcAdd",
+      "mcRem",
+      "objInstAdd",
+      "retRem",
+      "varAdd"
+    ],
+    "repairPatterns": [
+      "condBlockExcAdd",
+      "missNullCheckP",
+      "unwrapIfElse",
+      "wrapsIf"
+    ],
+    "repairTools": [
+      "rtDeepRepair",
+      "rtGPFL"
+    ],
+    "revisionId": "621"
+  }
 ]
 ```
 
