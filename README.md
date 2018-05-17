@@ -12,11 +12,17 @@ It is the open-science appendix of ["Dissection of a Bug Dataset: Anatomy of 395
 }
 ```
 
-Main files:
+
+
+## Main files:
 
 * The file `defects4j-bugs.json` contains all the extracted information.
 * The file [defects4j-patch.md](https://github.com/program-repair/defects4j-dissection/blob/master/defects4j-patch.md) gives link to the buggy and patched version as well as the diff.
 * The website http://program-repair.github.io/defects4j-dissection/ is a user interface that presents the information contained in `defects4j-bugs.json` in a user-friendly manner.
+
+## Contributions
+
+* Simon Heiden @heidensi for the manually extraction of the changed lines.
 
 ## defects4j-bugs.json format
 
