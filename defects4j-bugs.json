@@ -230,7 +230,6 @@
   ], 
   "repairPatterns": [
    "copyPaste", 
-   "expArithMod", 
    "wrongVarRef"
   ], 
   "repairTools": [
@@ -758,8 +757,7 @@
    "initFix", 
    "missComp", 
    "singleLine", 
-   "wrapsMethod", 
-   "wrongMethodRef"
+   "wrapsMethod"
   ], 
   "repairTools": [
    "rtCardumen", 
@@ -1108,6 +1106,7 @@
    "varReplMc"
   ], 
   "repairPatterns": [
+   "copyPaste", 
    "expLogicMod", 
    "initFix", 
    "wrongVarRef"
@@ -1346,7 +1345,9 @@
   "repairPatterns": [
    "condBlockExcAdd", 
    "condBlockOthersAdd", 
+   "expLogicMod", 
    "missComp", 
+   "missNullCheckN", 
    "unwrapIfElse", 
    "wrongVarRef"
   ], 
@@ -1820,7 +1821,6 @@
   ], 
   "repairPatterns": [
    "condBlockRetAdd", 
-   "expLogicReduce", 
    "wrongComp"
   ], 
   "repairTools": [
@@ -1930,6 +1930,7 @@
    "mcRem"
   ], 
   "repairPatterns": [
+   "condBlockRem", 
    "copyPaste", 
    "unwrapIfElse"
   ], 
@@ -1975,6 +1976,7 @@
    "mcAdd"
   ], 
   "repairPatterns": [
+   "condBlockOthersAdd", 
    "missNullCheckP", 
    "wrapsIfElse"
   ], 
@@ -2464,7 +2466,8 @@
   ], 
   "repairPatterns": [
    "condBlockRetAdd", 
-   "missNullCheckN"
+   "missNullCheckN", 
+   "wrapsIfElse"
   ], 
   "repairTools": [
    "rtDynaMoth", 
@@ -2579,7 +2582,6 @@
   "repairPatterns": [
    "condBlockRem", 
    "expLogicExpand", 
-   "expLogicMod", 
    "wrongComp"
   ], 
   "repairTools": [
@@ -2869,6 +2871,8 @@
    "retBranchAdd"
   ], 
   "repairPatterns": [
+   "condBlockOthersAdd", 
+   "condBlockRetAdd", 
    "expLogicReduce", 
    "wrapsIfElse"
   ], 
@@ -2918,8 +2922,8 @@
   ], 
   "repairPatterns": [
    "condBlockOthersAdd", 
-   "expLogicExpand", 
-   "missComp"
+   "missComp", 
+   "unwrapIfElse"
   ], 
   "repairTools": [], 
   "revisionId": "70ca6014779735bdc52ca0e80e528257829a15e7"
@@ -2992,7 +2996,6 @@
   ], 
   "repairPatterns": [
    "condBlockRem", 
-   "expLogicMod", 
    "missNullCheckN", 
    "unwrapIfElse", 
    "wrongComp"
@@ -3340,6 +3343,7 @@
    "varAdd"
   ], 
   "repairPatterns": [
+   "condBlockOthersAdd", 
    "condBlockRetAdd", 
    "expLogicReduce", 
    "initFix", 
@@ -3618,8 +3622,7 @@
   ], 
   "repairPatterns": [
    "expLogicExpand", 
-   "wrongMethodRef", 
-   "wrongVarRef"
+   "wrongMethodRef"
   ], 
   "repairTools": [], 
   "revisionId": "87b154f89cba3c67045cd7a783b79231d0630a4c"
@@ -3679,8 +3682,7 @@
    "varRem"
   ], 
   "repairPatterns": [
-   "condBlockRem", 
-   "expLogicReduce"
+   "condBlockRem"
   ], 
   "repairTools": [
    "rtNopol"
@@ -3829,6 +3831,7 @@
    "retExpChange"
   ], 
   "repairPatterns": [
+   "condBlockOthersAdd", 
    "expLogicExpand", 
    "wrapsIfElse", 
    "wrongMethodRef"
@@ -3884,6 +3887,7 @@
    "condBlockOthersAdd", 
    "expLogicExpand", 
    "initFix", 
+   "wrapsMethod", 
    "wrongMethodRef"
   ], 
   "repairTools": [
@@ -4188,7 +4192,6 @@
    "condBlockOthersAdd", 
    "missComp", 
    "missNullCheckN", 
-   "missNullCheckP", 
    "wrapsIfElse"
   ], 
   "repairTools": [], 
@@ -4409,6 +4412,8 @@
   ], 
   "repairPatterns": [
    "condBlockOthersAdd", 
+   "copyPaste", 
+   "expArithMod", 
    "initFix"
   ], 
   "repairTools": [], 
@@ -4916,7 +4921,8 @@
    "blockRemove", 
    "condBlockOthersAdd", 
    "condBlockRem", 
-   "missComp"
+   "missComp", 
+   "unwrapIfElse"
   ], 
   "repairTools": [
    "rtDynaMoth", 
@@ -5018,6 +5024,7 @@
    "objInstAdd"
   ], 
   "repairPatterns": [
+   "condBlockOthersAdd", 
    "wrapsIfElse"
   ], 
   "repairTools": [], 
@@ -5261,6 +5268,7 @@
   ], 
   "repairPatterns": [
    "condBlockOthersAdd", 
+   "expLogicMod", 
    "expLogicReduce", 
    "missComp", 
    "missNullCheckN", 
@@ -5320,6 +5328,7 @@
    "retBranchAdd"
   ], 
   "repairPatterns": [
+   "condBlockRetAdd", 
    "wrapsIfElse"
   ], 
   "repairTools": [], 
@@ -5362,6 +5371,7 @@
    "mcAdd"
   ], 
   "repairPatterns": [
+   "condBlockOthersAdd", 
    "wrapsIfElse"
   ], 
   "repairTools": [], 
@@ -5913,6 +5923,7 @@
    "varAdd"
   ], 
   "repairPatterns": [
+   "condBlockOthersAdd", 
    "condBlockRetAdd", 
    "copyPaste", 
    "missComp", 
@@ -6802,7 +6813,6 @@
   ], 
   "repairPatterns": [
    "constChange", 
-   "expLogicMod", 
    "singleLine"
   ], 
   "repairTools": [
@@ -7075,6 +7085,7 @@
    "varAdd"
   ], 
   "repairPatterns": [
+   "condBlockOthersAdd", 
    "condBlockRetAdd", 
    "wrongComp"
   ], 
@@ -7412,7 +7423,7 @@
   "repairPatterns": [
    "expArithMod", 
    "missComp", 
-   "singleLine"
+   "wrongVarRef"
   ], 
   "repairTools": [], 
   "revisionId": "ee749e286b477f8d6f53ff5960a38453baf50f31"
@@ -7978,7 +7989,6 @@
   "repairPatterns": [
    "condBlockOthersAdd", 
    "expLogicExpand", 
-   "missNullCheckN", 
    "missNullCheckP"
   ], 
   "repairTools": [], 
@@ -8550,6 +8560,7 @@
    "retExpChange"
   ], 
   "repairPatterns": [
+   "condBlockOthersAdd", 
    "singleLine", 
    "wrapsIfElse"
   ], 
@@ -8631,7 +8642,8 @@
    "initFix", 
    "missNullCheckN", 
    "missNullCheckP", 
-   "wrapsIfElse"
+   "wrapsIfElse", 
+   "wrongVarRef"
   ], 
   "repairTools": [], 
   "revisionId": "13fb7fcbcad87f8df63535491627bf7b01471064"
@@ -9093,8 +9105,7 @@
   "repairPatterns": [
    "condBlockRetAdd", 
    "expLogicExpand", 
-   "missComp", 
-   "missNullCheckP"
+   "missComp"
   ], 
   "repairTools": [
    "rtDynaMoth", 
@@ -9411,8 +9422,8 @@
    "varTyChange"
   ], 
   "repairPatterns": [
-   "initFix", 
-   "wrongVarRef"
+   "copyPaste", 
+   "initFix"
   ], 
   "repairTools": [], 
   "revisionId": "fb47b96ab635d7cc6e9edefdddc46f1baf63b117"
@@ -9807,7 +9818,8 @@
   "repairPatterns": [
    "initFix", 
    "notClassified", 
-   "wrongComp"
+   "wrongComp", 
+   "wrongVarRef"
   ], 
   "repairTools": [], 
   "revisionId": "a4a455053e7e4a77320efd6db0814f4de82d754d"
@@ -10066,6 +10078,7 @@
   ], 
   "repairPatterns": [
    "condBlockExcAdd", 
+   "condBlockOthersAdd", 
    "missNullCheckN", 
    "wrapsIfElse"
   ], 
@@ -10112,6 +10125,7 @@
    "mcParValChange"
   ], 
   "repairPatterns": [
+   "condBlockOthersAdd", 
    "expLogicMod", 
    "wrapsIfElse"
   ], 
@@ -10167,6 +10181,7 @@
    "mcRem"
   ], 
   "repairPatterns": [
+   "condBlockRem", 
    "initFix", 
    "missComp", 
    "unwrapIfElse", 
@@ -10353,6 +10368,7 @@
   ], 
   "repairPatterns": [
    "constChange", 
+   "copyPaste", 
    "expLogicMod", 
    "singleLine", 
    "wrongVarRef"
@@ -10415,6 +10431,7 @@
    "varAdd"
   ], 
   "repairPatterns": [
+   "condBlockOthersAdd", 
    "condBlockRetAdd", 
    "constChange", 
    "expArithMod", 
@@ -10578,6 +10595,7 @@
   "repairPatterns": [
    "condBlockRem", 
    "copyPaste", 
+   "expArithMod", 
    "initFix"
   ], 
   "repairTools": [
@@ -10952,6 +10970,7 @@
    "varAdd"
   ], 
   "repairPatterns": [
+   "condBlockOthersAdd", 
    "wrapsIfElse"
   ], 
   "repairTools": [], 
@@ -11052,6 +11071,7 @@
    "varAdd"
   ], 
   "repairPatterns": [
+   "condBlockOthersAdd", 
    "condBlockRetAdd", 
    "missComp", 
    "wrapsIfElse"
@@ -11111,7 +11131,6 @@
    "condBlockOthersAdd", 
    "expLogicMod", 
    "initFix", 
-   "missNullCheckN", 
    "missNullCheckP"
   ], 
   "repairTools": [], 
@@ -11357,6 +11376,7 @@
    "retExpChange"
   ], 
   "repairPatterns": [
+   "condBlockRem", 
    "expLogicExpand", 
    "missNullCheckN", 
    "unwrapIfElse"
@@ -11546,6 +11566,7 @@
    "varTyChange"
   ], 
   "repairPatterns": [
+   "condBlockOthersAdd", 
    "wrapsIfElse", 
    "wrongComp", 
    "wrongMethodRef"
@@ -11985,6 +12006,7 @@
    "mcAdd"
   ], 
   "repairPatterns": [
+   "condBlockOthersAdd", 
    "wrapsIfElse"
   ], 
   "repairTools": [], 
@@ -12124,6 +12146,7 @@
    "retExpChange"
   ], 
   "repairPatterns": [
+   "copyPaste", 
    "wrapsIf"
   ], 
   "repairTools": [], 
@@ -12188,9 +12211,9 @@
    "objInstRem"
   ], 
   "repairPatterns": [
+   "codeMove", 
    "condBlockRem", 
    "copyPaste", 
-   "expLogicMod", 
    "unwrapIfElse", 
    "wrongComp"
   ], 
@@ -12575,7 +12598,6 @@
   ], 
   "repairPatterns": [
    "condBlockExcAdd", 
-   "condBlockOthersAdd", 
    "condBlockRetAdd", 
    "missComp"
   ], 
@@ -12755,6 +12777,7 @@
    "varReplVar"
   ], 
   "repairPatterns": [
+   "copyPaste", 
    "expLogicMod", 
    "wrongVarRef"
   ], 
@@ -12876,6 +12899,7 @@
   ], 
   "repairPatterns": [
    "blockRemove", 
+   "condBlockRem", 
    "expArithMod", 
    "fixAPI", 
    "wrongComp"
@@ -13121,8 +13145,8 @@
   ], 
   "repairPatterns": [
    "constChange", 
-   "expArithMod", 
-   "singleLine"
+   "singleLine", 
+   "wrongVarRef"
   ], 
   "repairTools": [
    "rtAcs", 
@@ -13175,6 +13199,7 @@
    "varTyChange"
   ], 
   "repairPatterns": [
+   "copyPaste", 
    "notClassified"
   ], 
   "repairTools": [
@@ -13462,6 +13487,7 @@
   "repairPatterns": [
    "constChange", 
    "copyPaste", 
+   "expArithMod", 
    "expLogicMod", 
    "initFix", 
    "wrongComp", 
@@ -13564,6 +13590,7 @@
   ], 
   "repairPatterns": [
    "copyPaste", 
+   "expLogicMod", 
    "wrapsLoop", 
    "wrongComp", 
    "wrongVarRef"
@@ -13772,6 +13799,7 @@
    "varAdd"
   ], 
   "repairPatterns": [
+   "condBlockRetAdd", 
    "missComp", 
    "wrapsIfElse"
   ], 
@@ -13830,6 +13858,7 @@
   ], 
   "repairPatterns": [
    "blockRemove", 
+   "condBlockRetAdd", 
    "missComp", 
    "wrapsIfElse"
   ], 
@@ -13874,8 +13903,11 @@
    "varAdd"
   ], 
   "repairPatterns": [
+   "constChange", 
+   "expArithMod", 
    "expLogicMod", 
-   "initFix"
+   "initFix", 
+   "wrongVarRef"
   ], 
   "repairTools": [], 
   "revisionId": "b221a7342856a2a548f5d9817055defc0ec4dea6"
@@ -13918,6 +13950,7 @@
    "retBranchAdd"
   ], 
   "repairPatterns": [
+   "condBlockRetAdd", 
    "wrapsIfElse"
   ], 
   "repairTools": [], 
@@ -14030,6 +14063,7 @@
    "varAdd"
   ], 
   "repairPatterns": [
+   "condBlockRetAdd", 
    "copyPaste", 
    "wrapsIfElse"
   ], 
@@ -14290,6 +14324,7 @@
    "varReplVar"
   ], 
   "repairPatterns": [
+   "copyPaste", 
    "expArithMod", 
    "expLogicMod", 
    "wrongComp", 
@@ -14470,6 +14505,7 @@
    "mcAdd"
   ], 
   "repairPatterns": [
+   "copyPaste", 
    "expLogicMod", 
    "wrapsMethod"
   ], 
@@ -14580,6 +14616,7 @@
   ], 
   "repairPatterns": [
    "condBlockOthersAdd", 
+   "expArithMod", 
    "missComp", 
    "wrongComp"
   ], 
@@ -15246,6 +15283,7 @@
    "condBranIfElseAdd"
   ], 
   "repairPatterns": [
+   "condBlockOthersAdd", 
    "missNullCheckN", 
    "wrapsIfElse", 
    "wrongComp"
@@ -15294,6 +15332,8 @@
    "varReplVar"
   ], 
   "repairPatterns": [
+   "constChange", 
+   "expLogicMod", 
    "initFix", 
    "singleLine", 
    "wrongVarRef"
@@ -15424,6 +15464,7 @@
    "condExpMod"
   ], 
   "repairPatterns": [
+   "copyPaste", 
    "expLogicMod"
   ], 
   "repairTools": [], 
@@ -16123,6 +16164,7 @@
   ], 
   "repairPatterns": [
    "blockRemove", 
+   "condBlockOthersAdd", 
    "condBlockRem", 
    "condBlockRetAdd", 
    "unwrapTryCatch"
@@ -16177,6 +16219,8 @@
   ], 
   "repairPatterns": [
    "condBlockOthersAdd", 
+   "condBlockRetAdd", 
+   "unwrapMethod", 
    "wrapsIfElse"
   ], 
   "repairTools": [], 
@@ -16228,7 +16272,8 @@
   "repairPatterns": [
    "blockRemove", 
    "expArithMod", 
-   "wrongComp"
+   "wrongComp", 
+   "wrongVarRef"
   ], 
   "repairTools": [
    "rtDeepRepair", 
@@ -16276,6 +16321,7 @@
    "varAdd"
   ], 
   "repairPatterns": [
+   "copyPaste", 
    "expLogicMod", 
    "initFix"
   ], 
@@ -16379,6 +16425,8 @@
    "varRem"
   ], 
   "repairPatterns": [
+   "condBlockRem", 
+   "constChange", 
    "expArithMod", 
    "wrongComp", 
    "wrongMethodRef"
@@ -16481,6 +16529,7 @@
   ], 
   "repairPatterns": [
    "constChange", 
+   "copyPaste", 
    "expLogicMod", 
    "initFix", 
    "wrongComp", 
@@ -16619,6 +16668,7 @@
    "condBlockOthersAdd", 
    "condBlockRem", 
    "condBlockRetAdd", 
+   "copyPaste", 
    "expArithMod", 
    "missNullCheckN", 
    "wrongComp", 
@@ -16737,6 +16787,7 @@
    "varAdd"
   ], 
   "repairPatterns": [
+   "condBlockOthersAdd", 
    "condBlockRetAdd", 
    "missNullCheckN", 
    "wrapsIfElse"
@@ -17673,6 +17724,7 @@
    "objInstAdd"
   ], 
   "repairPatterns": [
+   "condBlockExcAdd", 
    "wrapsIfElse"
   ], 
   "repairTools": [
@@ -17719,6 +17771,7 @@
    "mcAdd"
   ], 
   "repairPatterns": [
+   "expLogicExpand", 
    "wrapsIfElse", 
    "wrongComp"
   ], 
@@ -17882,6 +17935,7 @@
    "varTyChange"
   ], 
   "repairPatterns": [
+   "copyPaste", 
    "expArithMod", 
    "initFix", 
    "wrongComp"
@@ -18116,6 +18170,7 @@
    "mcRem"
   ], 
   "repairPatterns": [
+   "copyPaste", 
    "expLogicMod", 
    "singleLine", 
    "unwrapMethod"
@@ -19277,7 +19332,8 @@
   ], 
   "repairPatterns": [
    "missComp", 
-   "notClassified"
+   "notClassified", 
+   "wrongMethodRef"
   ], 
   "repairTools": [], 
   "revisionId": "1beeae39ac9f79d6a0db285dec311b78025ac062"
@@ -19757,6 +19813,7 @@
    "retBranchAdd"
   ], 
   "repairPatterns": [
+   "condBlockRetAdd", 
    "wrapsIfElse"
   ], 
   "repairTools": [], 
@@ -19854,7 +19911,9 @@
    "varAdd"
   ], 
   "repairPatterns": [
+   "condBlockOthersAdd", 
    "expLogicMod", 
+   "missNullCheckP", 
    "wrapsIfElse"
   ], 
   "repairTools": [], 
@@ -19938,7 +19997,8 @@
    "retBranchAdd"
   ], 
   "repairPatterns": [
-   "condBlockRetAdd"
+   "condBlockRetAdd", 
+   "wrapsIfElse"
   ], 
   "repairTools": [], 
   "revisionId": "d0c872e4b0837aef1e1635bf5f15d33c3d8d9698"
@@ -20097,7 +20157,8 @@
   ], 
   "repairPatterns": [
    "condBlockOthersAdd", 
-   "condBlockRetAdd"
+   "condBlockRetAdd", 
+   "copyPaste"
   ], 
   "repairTools": [], 
   "revisionId": "110ffa80070bf54ab8efabdaaa27b193a93d6128"
@@ -20155,8 +20216,8 @@
    "varAdd"
   ], 
   "repairPatterns": [
-   "condBlockOthersAdd", 
    "condBlockRetAdd", 
+   "wrapsLoop", 
    "wrongComp"
   ], 
   "repairTools": [], 
@@ -20215,8 +20276,7 @@
    "varTyChange"
   ], 
   "repairPatterns": [
-   "condBlockOthersAdd", 
-   "missNullCheckP"
+   "condBlockOthersAdd"
   ], 
   "repairTools": [], 
   "revisionId": "82935114a09390cbab0c6b6df9b6fd6788bf55d9"
@@ -20258,9 +20318,7 @@
    "varAdd"
   ], 
   "repairPatterns": [
-   "missComp", 
-   "singleLine", 
-   "wrapsMethod"
+   "missComp"
   ], 
   "repairTools": [], 
   "revisionId": "0464f5657dc8c76a4ff209a2cf7fd6312885cdc3"
@@ -20308,6 +20366,7 @@
    "retExpChange"
   ], 
   "repairPatterns": [
+   "condBlockOthersAdd", 
    "singleLine", 
    "wrapsIfElse"
   ], 
@@ -20447,6 +20506,7 @@
    "varRem"
   ], 
   "repairPatterns": [
+   "condBlockOthersAdd", 
    "missComp", 
    "notClassified"
   ], 
@@ -20906,7 +20966,8 @@
   ], 
   "repairPatterns": [
    "initFix", 
-   "notClassified"
+   "notClassified", 
+   "wrongMethodRef"
   ], 
   "repairTools": [], 
   "revisionId": "3c924f80a4db3692a13341f0da4517052ab77a2a"
@@ -21028,6 +21089,7 @@
    "blockRemove", 
    "condBlockExcAdd", 
    "expLogicMod", 
+   "wrongMethodRef", 
    "wrongVarRef"
   ], 
   "repairTools": [], 
@@ -21603,6 +21665,7 @@
   ], 
   "repairPatterns": [
    "constChange", 
+   "copyPaste", 
    "initFix"
   ], 
   "repairTools": [], 
@@ -21701,6 +21764,7 @@
    "varAdd"
   ], 
   "repairPatterns": [
+   "condBlockOthersAdd", 
    "condBlockRetAdd", 
    "copyPaste", 
    "missComp", 
@@ -21901,7 +21965,6 @@
   ], 
   "repairPatterns": [
    "condBlockOthersAdd", 
-   "expArithMod", 
    "wrapsIfElse"
   ], 
   "repairTools": [], 
@@ -22004,7 +22067,10 @@
    "varRem"
   ], 
   "repairPatterns": [
+   "condBlockOthersAdd", 
+   "condBlockRem", 
    "condBlockRetAdd", 
+   "copyPaste", 
    "expArithMod", 
    "expLogicMod", 
    "missComp", 
@@ -22145,8 +22211,7 @@
   "repairPatterns": [
    "condBlockOthersAdd", 
    "condBlockRetAdd", 
-   "missNullCheckN", 
-   "missNullCheckP"
+   "missNullCheckN"
   ], 
   "repairTools": [], 
   "revisionId": "a92450e88df85d6b7a0fa53517da46286c24f53f"
@@ -22356,7 +22421,8 @@
   "repairPatterns": [
    "initFix", 
    "notClassified", 
-   "wrongComp"
+   "wrongComp", 
+   "wrongMethodRef"
   ], 
   "repairTools": [], 
   "revisionId": "57c8aaf94b95323c295dcfec5f40f181846164e7"
