@@ -8,7 +8,8 @@ It is the open-science appendix of ["Dissection of a Bug Dataset: Anatomy of 395
     title = {{Dissection of a Bug Dataset: Anatomy of 395 Patches from Defects4J}},
     author = {Sobreira, Victor and Durieux, Thomas and Madeiral, Fernanda and Monperrus, Martin and Maia, Marcelo A.},
     booktitle = {Proceedings of SANER},
-    year = {2018}
+    year = {2018},
+    doi = {10.1109/SANER.2018.8330203}
 }
 ```
 
